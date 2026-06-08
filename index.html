@@ -9,451 +9,342 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:       #0A0A0A;
-    --ink-2:     #141414;
-    --ink-3:     #1E1E1E;
-    --ink-4:     #2A2A2A;
-    --lime:      #C9FF40;
-    --lime-dim:  #a8d630;
-    --coral:     #FF4D28;
-    --cream:     #F2EDE8;
-    --cream-dim: #B8B0A8;
-    --white:     #FFFFFF;
-    --border:    rgba(242,237,232,0.09);
+    --forest:      #1B4332;
+    --forest-2:    #2D6A4F;
+    --forest-3:    #40916C;
+    --forest-soft: #D8EDDF;
+    --gold:        #F4A51C;
+    --gold-bg:     #FFF9ED;
+    --coral:       #E76F51;
+    --white:       #FFFFFF;
+    --off-white:   #F7F3EE;
+    --cream:       #EDE8DF;
+    --ink:         #1A1A18;
+    --ink-mid:     #4A4744;
+    --ink-muted:   #8C8880;
+    --border:      #E2DDD5;
+    --border-soft: #EDE8E0;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--ink); color: var(--cream); overflow-x: hidden; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--white); color: var(--ink); overflow-x: hidden; }
 
-  .skip-link { position: absolute; top: -100px; left: 16px; background: var(--lime); color: var(--ink); padding: 10px 20px; border-radius: 8px; font-weight: 700; text-decoration: none; z-index: 9999; transition: top 0.2s; }
+  .skip-link { position: absolute; top: -100px; left: 16px; background: var(--forest); color: var(--white); padding: 10px 20px; border-radius: 8px; font-weight: 700; text-decoration: none; z-index: 9999; transition: top 0.2s; }
   .skip-link:focus { top: 16px; }
-  :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+  :focus-visible { outline: 3px solid var(--forest); outline-offset: 3px; border-radius: 4px; }
   button, a, [role="button"] { cursor: pointer; }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     html { scroll-behavior: auto; }
   }
 
   /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-    background: rgba(10,10,10,0.88); backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 clamp(20px, 5vw, 60px);
-    height: 62px; display: flex; align-items: center; justify-content: space-between;
+    background: rgba(255,255,255,0.94); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-soft);
+    padding: 0 clamp(20px, 5vw, 64px);
+    height: 64px; display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo {
-    font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.2rem;
-    color: var(--cream); text-decoration: none; display: flex; align-items: center; gap: 8px;
+    font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.25rem;
+    color: var(--forest); text-decoration: none; display: flex; align-items: center; gap: 8px;
   }
-  .nav-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); display: inline-block; }
+  .nav-logo svg { color: var(--forest); }
   .nav-cta {
-    background: var(--lime); color: var(--ink);
-    padding: 10px 22px; border-radius: 6px; font-size: 0.85rem; font-weight: 700;
+    background: var(--forest); color: var(--white);
+    padding: 10px 22px; border-radius: 8px; font-size: 0.875rem; font-weight: 700;
     text-decoration: none; transition: background 0.2s, transform 0.15s;
     min-height: 44px; display: inline-flex; align-items: center;
   }
-  .nav-cta:hover { background: #d8ff55; transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--forest-2); transform: translateY(-1px); }
 
-  /* ── HERO SPLIT SCREEN ── */
+  /* ── HERO ── */
   .hero {
-    min-height: 100vh; display: grid; grid-template-columns: 55fr 45fr;
-    padding-top: 62px; /* nav height */
+    min-height: 100vh; display: grid; grid-template-columns: 52fr 48fr;
+    padding-top: 64px;
   }
   .hero-left {
-    background: var(--ink); display: flex; flex-direction: column;
-    justify-content: center; padding: clamp(48px, 7vw, 100px) clamp(24px, 5vw, 80px);
-    position: relative;
-  }
-  .hero-left::after {
-    content: ''; position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(ellipse 80% 60% at 20% 80%, rgba(201,255,64,0.05) 0%, transparent 60%);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 80px);
+    background: var(--white); position: relative;
   }
   .hero-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(201,255,64,0.1); border: 1px solid rgba(201,255,64,0.25);
-    padding: 5px 14px; border-radius: 4px;
-    font-size: 0.72rem; font-weight: 700; color: var(--lime);
-    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--forest-soft); color: var(--forest);
+    padding: 6px 14px; border-radius: 100px;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
     margin-bottom: 28px; width: fit-content;
     animation: fadeUp 0.5s ease both;
   }
   .hero-title {
     font-family: 'Fraunces', serif;
-    font-size: clamp(3.2rem, 6.5vw, 6.5rem);
-    font-weight: 900; line-height: 0.95; letter-spacing: -0.04em;
-    color: var(--cream); margin-bottom: 28px;
+    font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+    font-weight: 900; line-height: 1.0; letter-spacing: -0.035em;
+    color: var(--ink); margin-bottom: 24px;
     animation: fadeUp 0.5s 0.08s ease both;
   }
-  .hero-title em { font-style: italic; color: var(--lime); font-weight: 300; }
+  .hero-title em { font-style: italic; color: var(--forest); font-weight: 300; }
   .hero-sub {
-    font-size: clamp(0.95rem, 1.4vw, 1.1rem); color: var(--cream-dim);
-    line-height: 1.75; max-width: 440px; margin-bottom: 40px;
+    font-size: clamp(1rem, 1.4vw, 1.1rem); color: var(--ink-muted);
+    line-height: 1.75; max-width: 440px; margin-bottom: 36px;
     animation: fadeUp 0.5s 0.16s ease both;
   }
-  .hero-sub strong { color: var(--cream); }
-  .hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.5s 0.24s ease both; }
+  .hero-sub strong { color: var(--ink); }
+  .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.5s 0.24s ease both; }
   .btn-primary {
-    background: var(--lime); color: var(--ink);
-    padding: 15px 30px; border-radius: 6px; font-size: 0.95rem; font-weight: 700;
+    background: var(--forest); color: var(--white);
+    padding: 15px 28px; border-radius: 8px; font-size: 0.95rem; font-weight: 700;
     text-decoration: none; border: none; cursor: pointer;
-    transition: background 0.2s, transform 0.15s;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(27,67,50,0.25);
     display: inline-flex; align-items: center; gap: 8px;
   }
-  .btn-primary:hover { background: #d8ff55; transform: translateY(-2px); }
+  .btn-primary:hover { background: var(--forest-2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,67,50,0.3); }
   .btn-ghost {
-    color: var(--cream-dim); font-size: 0.9rem; font-weight: 600;
-    text-decoration: none; border: 1px solid var(--border); padding: 14px 22px;
-    border-radius: 6px; transition: color 0.2s, border-color 0.2s;
+    color: var(--ink-mid); font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; border: 1.5px solid var(--border);
+    padding: 14px 20px; border-radius: 8px; transition: all 0.2s;
     display: inline-flex; align-items: center; gap: 6px;
   }
-  .btn-ghost:hover { color: var(--cream); border-color: rgba(242,237,232,0.25); }
-  .hero-stat-row {
-    display: flex; gap: 32px; margin-top: 48px;
+  .btn-ghost:hover { border-color: var(--forest); color: var(--forest); }
+  .hero-trust {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-soft);
     animation: fadeUp 0.5s 0.32s ease both;
-    padding-top: 32px; border-top: 1px solid var(--border);
   }
-  .hero-stat-num { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900; color: var(--cream); line-height: 1; }
-  .hero-stat-label { font-size: 0.78rem; color: var(--cream-dim); margin-top: 4px; }
+  .hero-avatars { display: flex; }
+  .hero-avatars span { width: 34px; height: 34px; border-radius: 50%; border: 2.5px solid var(--white); background: var(--cream); margin-left: -9px; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .hero-avatars span:first-child { margin-left: 0; }
+  .hero-trust-text { font-size: 0.85rem; color: var(--ink-muted); }
+  .hero-trust-text strong { color: var(--ink); }
 
   .hero-right { position: relative; overflow: hidden; }
-  .hero-right img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center 20%;
-    filter: brightness(0.88) contrast(1.05);
+  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .hero-right::before {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to right, rgba(255,255,255,0.15) 0%, transparent 25%),
+                linear-gradient(to top, rgba(27,67,50,0.3) 0%, transparent 40%);
   }
-  .hero-right::after {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--ink) 0%, transparent 30%);
-    pointer-events: none;
+  .hero-result-card {
+    position: absolute; bottom: 32px; left: 32px; right: 32px; z-index: 2;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
+    border-radius: 16px; padding: 18px 20px;
+    box-shadow: 0 8px 32px rgba(27,67,50,0.15);
+    display: flex; align-items: center; gap: 14px;
+    max-width: 280px;
   }
-  .hero-right-badge {
-    position: absolute; bottom: 32px; right: 32px; z-index: 2;
-    background: rgba(10,10,10,0.85); backdrop-filter: blur(12px);
-    border: 1px solid var(--border); border-radius: 12px;
-    padding: 16px 20px; max-width: 200px;
-  }
-  .hero-badge-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--lime); font-weight: 700; margin-bottom: 4px; }
-  .hero-badge-text { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); }
-  .hero-badge-sub { font-size: 0.78rem; color: var(--cream-dim); margin-top: 2px; }
+  .hero-result-emoji { font-size: 2.2rem; flex-shrink: 0; }
+  .hero-result-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--forest); font-weight: 700; margin-bottom: 3px; }
+  .hero-result-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .hero-result-pct { font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px; }
+  .hero-result-bar { height: 4px; background: var(--border); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+  .hero-result-bar-fill { height: 100%; width: 94%; background: linear-gradient(90deg, var(--forest), var(--forest-3)); border-radius: 4px; }
 
   /* ── TICKER ── */
-  .ticker-wrap {
-    background: var(--lime); overflow: hidden; padding: 12px 0;
-    border-top: none;
-  }
-  .ticker-track {
-    display: flex; gap: 0; white-space: nowrap;
-    animation: ticker 22s linear infinite;
-  }
-  .ticker-item {
-    font-size: 0.82rem; font-weight: 700; color: var(--ink);
-    text-transform: uppercase; letter-spacing: 0.06em;
-    padding: 0 32px; flex-shrink: 0;
-  }
-  .ticker-sep { color: rgba(10,10,10,0.35); }
+  .ticker-wrap { background: var(--forest); overflow: hidden; padding: 13px 0; }
+  .ticker-track { display: flex; white-space: nowrap; animation: ticker 24s linear infinite; }
+  .ticker-item { font-size: 0.8rem; font-weight: 700; color: rgba(255,255,255,0.85); text-transform: uppercase; letter-spacing: 0.08em; padding: 0 28px; flex-shrink: 0; }
+  .ticker-sep { color: var(--gold); margin: 0 4px; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
   /* ── SECTIONS ── */
-  .section { padding: clamp(72px, 10vw, 130px) clamp(24px, 6vw, 80px); }
-  .label-tag {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--lime); margin-bottom: 20px;
-  }
-  .section-title {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
-    font-weight: 900; line-height: 1.0; letter-spacing: -0.03em;
-    color: var(--cream); margin-bottom: 20px;
-  }
-  .section-sub { font-size: 1rem; color: var(--cream-dim); line-height: 1.75; }
-  .section-center { text-align: center; max-width: 680px; margin: 0 auto; }
+  .section { padding: clamp(72px, 9vw, 120px) clamp(24px, 6vw, 80px); }
+  .label-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--forest); margin-bottom: 18px; }
+  .label-tag-light { color: rgba(255,255,255,0.6); }
+  .section-title { font-family: 'Fraunces', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 18px; }
+  .section-title-light { color: var(--white); }
+  .section-sub { font-size: 1rem; color: var(--ink-muted); line-height: 1.75; }
+  .section-sub-light { color: rgba(255,255,255,0.65); }
+  .section-center { text-align: center; max-width: 660px; margin: 0 auto; }
 
   /* ── PROBLEM ── */
-  .problem-section { background: var(--ink-2); }
-  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px; }
+  .problem-section { background: var(--off-white); }
+  .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
   .problem-card {
-    background: var(--ink-3); padding: 36px 32px;
-    transition: background 0.2s;
-    position: relative; overflow: hidden;
+    background: var(--white); border-radius: 20px; padding: 32px 28px;
+    border: 1px solid var(--border-soft);
+    transition: transform 0.22s, box-shadow 0.22s; position: relative;
   }
-  .problem-card::before {
-    content: attr(data-num);
-    position: absolute; top: -10px; right: 16px;
-    font-family: 'Fraunces', serif; font-size: 6rem; font-weight: 900;
-    color: rgba(242,237,232,0.04); line-height: 1;
-    pointer-events: none;
-  }
-  .problem-card:hover { background: var(--ink-4); }
-  .problem-icon { font-size: 1.8rem; margin-bottom: 20px; }
-  .problem-card h3 {
-    font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700;
-    color: var(--cream); margin-bottom: 12px; line-height: 1.2;
-  }
-  .problem-card p { font-size: 0.88rem; color: var(--cream-dim); line-height: 1.65; }
+  .problem-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(27,67,50,0.1); }
+  .prob-num { font-family: 'Fraunces', serif; font-size: 0.8rem; font-weight: 700; color: var(--forest); letter-spacing: 0.06em; margin-bottom: 16px; opacity: 0.6; }
+  .problem-icon { font-size: 2rem; margin-bottom: 16px; }
+  .problem-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.25; }
+  .problem-card p { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.65; }
 
   /* ── QUIZ ── */
-  .quiz-section {
-    background: var(--ink-2);
-    padding: clamp(72px, 10vw, 130px) clamp(24px, 6vw, 80px);
-    position: relative; overflow: hidden;
-  }
-  .quiz-section::before {
-    content: ''; position: absolute; top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(201,255,64,0.06) 0%, transparent 65%);
-    pointer-events: none;
-  }
+  .quiz-section { background: var(--forest); padding: clamp(72px, 9vw, 120px) clamp(24px, 6vw, 80px); position: relative; overflow: hidden; }
+  .quiz-section::before { content: ''; position: absolute; top: -160px; right: -160px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(244,165,28,0.1) 0%, transparent 65%); pointer-events: none; }
+  .quiz-section::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(64,145,108,0.2) 0%, transparent 65%); pointer-events: none; }
   .quiz-header { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
-  .quiz-header .section-sub { max-width: 520px; margin: 0 auto; }
+  .quiz-header .section-sub { max-width: 520px; margin: 0 auto; color: rgba(255,255,255,0.65); }
   .quiz-container { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
   .quiz-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
-  .quiz-step { flex: 1; height: 3px; background: var(--ink-4); border-radius: 3px; transition: background 0.4s; }
-  .quiz-step.active { background: var(--lime); }
-  .quiz-step.done { background: var(--lime-dim); }
-  .quiz-step-label { font-size: 0.75rem; color: var(--cream-dim); white-space: nowrap; margin-left: 4px; }
-  .quiz-card {
-    background: var(--ink-3); border: 1px solid var(--border);
-    border-radius: 16px; padding: clamp(28px, 5vw, 48px);
-  }
-  .quiz-q {
-    font-family: 'Fraunces', serif; font-size: clamp(1.35rem, 2.5vw, 1.9rem);
-    font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.2;
-  }
-  .quiz-q-sub { font-size: 0.88rem; color: var(--cream-dim); margin-bottom: 28px; }
+  .quiz-step { flex: 1; height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; transition: background 0.4s; }
+  .quiz-step.active { background: var(--gold); }
+  .quiz-step.done { background: rgba(244,165,28,0.5); }
+  .quiz-step-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); white-space: nowrap; margin-left: 4px; }
+  .quiz-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: clamp(28px, 4vw, 48px); backdrop-filter: blur(8px); }
+  .quiz-q { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.4vw, 1.85rem); font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
+  .quiz-q-sub { font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .quiz-opt {
-    background: var(--ink-2); border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 16px 18px; cursor: pointer;
+    background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: 12px; padding: 16px 18px; cursor: pointer;
     transition: all 0.18s; display: flex; align-items: center; gap: 12px;
-    color: var(--cream); font-size: 0.92rem; font-weight: 500;
+    color: rgba(255,255,255,0.9); font-size: 0.92rem; font-weight: 500;
     font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; min-height: 64px;
   }
-  .quiz-opt:hover { background: var(--ink-4); border-color: rgba(201,255,64,0.4); }
-  .quiz-opt.selected { background: rgba(201,255,64,0.1); border-color: var(--lime); color: var(--cream); }
+  .quiz-opt:hover { background: rgba(255,255,255,0.1); border-color: rgba(244,165,28,0.5); }
+  .quiz-opt.selected { background: rgba(244,165,28,0.15); border-color: var(--gold); color: var(--white); }
   .opt-icon { font-size: 1.3rem; flex-shrink: 0; }
-  .opt-sub { font-size: 0.75rem; opacity: 0.55; display: block; margin-top: 2px; }
+  .opt-sub { font-size: 0.74rem; opacity: 0.55; display: block; margin-top: 2px; }
   .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; }
-  .quiz-back {
-    background: none; border: none; color: var(--cream-dim); font-size: 0.88rem;
-    font-weight: 600; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: color 0.2s; padding: 0; display: flex; align-items: center; gap: 6px;
-  }
-  .quiz-back:hover { color: var(--cream); }
-  .quiz-next {
-    background: var(--lime); color: var(--ink); border: none;
-    padding: 13px 26px; border-radius: 6px; font-size: 0.92rem; font-weight: 700;
-    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: all 0.18s; display: flex; align-items: center; gap: 8px; min-height: 48px;
-  }
-  .quiz-next:hover { background: #d8ff55; transform: translateY(-1px); }
-  .quiz-next:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+  .quiz-back { background: none; border: none; color: rgba(255,255,255,0.45); font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s; padding: 0; display: flex; align-items: center; gap: 6px; }
+  .quiz-back:hover { color: rgba(255,255,255,0.85); }
+  .quiz-next { background: var(--gold); color: var(--ink); border: none; padding: 13px 26px; border-radius: 8px; font-size: 0.92rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.18s; display: flex; align-items: center; gap: 8px; min-height: 48px; }
+  .quiz-next:hover { background: #f5b740; transform: translateY(-1px); }
+  .quiz-next:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
 
-  /* RESULT */
+  /* ── RESULT ── */
   .quiz-result { display: none; }
   .quiz-result.show { display: block; }
   .quiz-questions.hide { display: none; }
   .result-intro { text-align: center; margin-bottom: 20px; }
-  .result-intro h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 900; color: var(--cream); margin-bottom: 4px; }
-  .result-intro p { font-size: 0.83rem; color: var(--cream-dim); }
+  .result-intro h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
+  .result-intro p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
   .result-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
-  .result-card { background: var(--ink-2); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
-  .result-card.secondary { opacity: 0.85; }
+  .result-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
+  .result-card.secondary { opacity: 0.9; }
   .result-rank { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 14px; display: flex; align-items: center; gap: 5px; }
-  .result-rank.rank-1 { background: var(--lime); color: var(--ink); }
-  .result-rank.rank-2 { background: var(--ink-4); color: var(--cream-dim); }
-  .result-header { padding: 14px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); }
+  .result-rank.rank-1 { background: var(--forest); color: var(--white); }
+  .result-rank.rank-2 { background: var(--cream); color: var(--ink-mid); }
+  .result-header { padding: 14px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-soft); }
   .result-emoji { font-size: 1.9rem; flex-shrink: 0; }
-  .result-header-text h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--cream); line-height: 1.2; }
+  .result-header-text h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
   .result-match-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-  .result-pct { font-size: 0.75rem; font-weight: 700; color: var(--lime); white-space: nowrap; }
-  .result-bar { flex: 1; height: 3px; background: var(--ink-4); border-radius: 3px; overflow: hidden; }
-  .result-bar-fill { height: 100%; background: var(--lime); border-radius: 3px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
+  .result-pct { font-size: 0.75rem; font-weight: 700; color: var(--forest); white-space: nowrap; }
+  .result-bar { flex: 1; height: 4px; background: var(--cream); border-radius: 4px; overflow: hidden; }
+  .result-bar-fill { height: 100%; background: linear-gradient(90deg, var(--forest), var(--forest-3)); border-radius: 4px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
   .result-body { padding: 14px 16px; }
   .result-traits { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
-  .result-trait { background: var(--ink-4); border: 1px solid var(--border); padding: 3px 9px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; color: var(--cream-dim); }
-  .result-desc { font-size: 0.81rem; color: var(--cream-dim); line-height: 1.6; }
-  .result-cta-box { background: rgba(201,255,64,0.07); border: 1px solid rgba(201,255,64,0.2); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 14px; }
-  .result-cta-box p { font-size: 0.86rem; color: var(--cream-dim); line-height: 1.6; margin-bottom: 14px; }
-  .result-cta-box strong { color: var(--cream); }
-  .result-cta-box .btn-primary { font-size: 0.9rem; padding: 12px 24px; text-decoration: none; }
-  .result-retake { background: none; border: none; color: var(--cream-dim); opacity: 0.45; font-size: 0.8rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: underline; display: block; text-align: center; width: 100%; margin-top: 4px; }
+  .result-trait { background: var(--forest-soft); color: var(--forest); padding: 3px 9px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; }
+  .result-desc { font-size: 0.81rem; color: var(--ink-muted); line-height: 1.6; }
+  .result-cta-box { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+  .result-cta-box p { font-size: 0.86rem; color: rgba(255,255,255,0.65); line-height: 1.6; margin-bottom: 14px; }
+  .result-cta-box strong { color: var(--white); }
+  .result-cta-box .btn-gold { background: var(--gold); color: var(--ink); padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
+  .result-cta-box .btn-gold:hover { background: #f5b740; }
+  .result-retake { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 0.8rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: underline; display: block; text-align: center; width: 100%; margin-top: 4px; }
   @media (max-width: 560px) { .result-cards-grid { grid-template-columns: 1fr; } }
 
   /* ── BREEDS ── */
-  .breeds-section { background: var(--ink); }
+  .breeds-section { background: var(--off-white); }
   .breeds-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
-  .breeds-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .breed-card {
-    background: var(--ink-2); border: 1px solid var(--border);
-    border-radius: 14px; overflow: hidden;
-    transition: border-color 0.22s, transform 0.22s;
-  }
-  .breed-card:hover { border-color: rgba(201,255,64,0.35); transform: translateY(-4px); }
-  .breed-card-img {
-    aspect-ratio: 3/2; position: relative; overflow: hidden;
-    background: var(--ink-3); display: flex; align-items: center; justify-content: center;
-    font-size: 4rem;
-  }
-  .breed-card-img img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; z-index: 2; transition: transform 0.4s ease;
-  }
+  .breeds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .breed-card { background: var(--white); border-radius: 18px; overflow: hidden; border: 1px solid var(--border-soft); transition: transform 0.22s, box-shadow 0.22s; }
+  .breed-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(27,67,50,0.12); }
+  .breed-card-img { aspect-ratio: 4/3; position: relative; overflow: hidden; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
+  .breed-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: transform 0.4s ease; }
   .breed-card:hover .breed-card-img img { transform: scale(1.06); }
   .breed-card-img .emoji-fb { position: relative; z-index: 1; }
-  .breed-card-img::after {
-    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
-    background: linear-gradient(to top, rgba(10,10,10,0.55) 0%, transparent 100%);
-    z-index: 3; pointer-events: none;
-  }
-  .breed-difficulty {
-    position: absolute; top: 10px; right: 10px; z-index: 4;
-    padding: 3px 9px; border-radius: 4px; font-size: 0.68rem;
-    font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
-  }
-  .diff-easy { background: rgba(201,255,64,0.15); color: var(--lime); }
-  .diff-medium { background: rgba(255,200,50,0.15); color: #FFD060; }
-  .diff-hard { background: rgba(255,77,40,0.15); color: var(--coral); }
+  .breed-card-img::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(27,67,50,0.25) 0%, transparent 100%); z-index: 3; pointer-events: none; }
+  .breed-difficulty { position: absolute; top: 10px; right: 10px; z-index: 4; padding: 4px 10px; border-radius: 100px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .diff-easy { background: var(--forest-soft); color: var(--forest); }
+  .diff-medium { background: #FFF3CD; color: #8B6914; }
+  .diff-hard { background: #FFE8E3; color: var(--coral); }
   .breed-card-body { padding: 18px 20px; }
-  .breed-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 6px; }
-  .breed-desc { font-size: 0.82rem; color: var(--cream-dim); line-height: 1.55; margin-bottom: 14px; }
-  .breed-stats { display: flex; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
-  .breed-stat { font-size: 0.73rem; color: var(--cream-dim); display: flex; flex-direction: column; }
-  .breed-stat strong { color: var(--cream); font-size: 0.82rem; order: 2; font-weight: 600; }
+  .breed-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+  .breed-desc { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.55; margin-bottom: 14px; }
+  .breed-stats { display: flex; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border-soft); }
+  .breed-stat { font-size: 0.73rem; color: var(--ink-muted); display: flex; flex-direction: column; }
+  .breed-stat strong { color: var(--ink); font-size: 0.82rem; order: 2; font-weight: 600; }
 
   /* ── OFFER ── */
-  .offer-section { background: var(--ink-2); }
+  .offer-section { background: var(--white); }
   .offer-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
   .book-visual { position: relative; display: flex; justify-content: center; }
-  .book-3d { position: relative; width: 260px; }
+  .book-3d { position: relative; width: 270px; }
   .book-cover {
-    background: linear-gradient(145deg, #1A1A1A 0%, #111 100%);
-    border: 1px solid rgba(201,255,64,0.2); border-radius: 8px;
-    padding: 36px 30px; position: relative; overflow: hidden;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(201,255,64,0.15);
+    background: linear-gradient(145deg, var(--forest) 0%, #0F2D1F 100%);
+    border-radius: 6px 16px 16px 6px; padding: 36px 30px; position: relative; overflow: hidden;
+    box-shadow: 0 32px 64px rgba(27,67,50,0.3), inset -6px 0 18px rgba(0,0,0,0.2), 8px 8px 0 rgba(27,67,50,0.25);
   }
-  .book-cover::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
-    background: var(--lime); border-radius: 8px 0 0 8px;
-  }
-  .book-cover::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 40% at 80% 20%, rgba(201,255,64,0.08) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .book-title { font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 900; color: var(--cream); line-height: 1.15; margin-bottom: 12px; position: relative; z-index: 1; }
-  .book-subtitle { font-size: 0.78rem; color: var(--cream-dim); line-height: 1.5; position: relative; z-index: 1; }
-  .book-dog-icon { font-size: 4rem; display: block; text-align: right; margin-top: 20px; position: relative; z-index: 1; }
-  .book-badge-price {
-    position: absolute; top: -16px; right: -16px;
-    width: 72px; height: 72px; background: var(--lime);
-    border-radius: 50%; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; font-weight: 900; color: var(--ink);
-    box-shadow: 0 4px 24px rgba(201,255,64,0.4); z-index: 10;
-  }
-  .book-badge-price .price { font-size: 1.25rem; line-height: 1; }
+  .book-cover::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: rgba(0,0,0,0.3); }
+  .book-cover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(244,165,28,0.12) 0%, transparent 60%); pointer-events: none; }
+  .book-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 12px; position: relative; z-index: 1; }
+  .book-subtitle { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.55; position: relative; z-index: 1; }
+  .book-dog-icon { font-size: 4.5rem; display: block; text-align: right; margin-top: 20px; position: relative; z-index: 1; }
+  .book-badge-price { position: absolute; top: -18px; right: -18px; width: 74px; height: 74px; background: var(--gold); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; color: var(--ink); box-shadow: 0 4px 20px rgba(244,165,28,0.5); z-index: 10; }
+  .book-badge-price .price { font-size: 1.3rem; line-height: 1; }
   .book-badge-price .currency { font-size: 0.65rem; }
-  .book-badge-price .was { font-size: 0.6rem; text-decoration: line-through; opacity: 0.5; font-weight: 600; }
-  .offer-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.025em; color: var(--cream); margin-bottom: 20px; }
-  .offer-headline em { font-style: italic; color: var(--lime); font-weight: 300; }
-  .offer-lead { font-size: 0.97rem; color: var(--cream-dim); line-height: 1.75; margin-bottom: 28px; }
+  .book-badge-price .was { font-size: 0.6rem; text-decoration: line-through; opacity: 0.55; font-weight: 600; }
+  .offer-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; }
+  .offer-headline em { font-style: italic; color: var(--forest); font-weight: 300; }
+  .offer-lead { font-size: 0.97rem; color: var(--ink-muted); line-height: 1.75; margin-bottom: 28px; }
   .value-stack { margin-bottom: 28px; }
-  .value-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .value-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-soft); }
   .value-item:last-child { border-bottom: none; }
-  .value-check { width: 20px; height: 20px; background: var(--lime); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 0.65rem; color: var(--ink); font-weight: 900; }
-  .value-text { font-size: 0.88rem; color: var(--cream-dim); line-height: 1.55; }
-  .value-text strong { color: var(--cream); }
-  .offer-urgency {
-    background: rgba(255,77,40,0.08); border: 1px solid rgba(255,77,40,0.2);
-    border-radius: 8px; padding: 12px 16px; font-size: 0.84rem; color: var(--coral);
-    font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
-  }
+  .value-check { width: 22px; height: 22px; background: var(--forest-soft); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 0.65rem; color: var(--forest); font-weight: 900; }
+  .value-text { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.55; }
+  .value-text strong { color: var(--ink); }
+  .offer-urgency { background: #FFF8E7; border: 1px solid #FFE299; border-radius: 10px; padding: 12px 16px; font-size: 0.84rem; color: #7A5C0A; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
   .offer-cta-row { display: flex; flex-direction: column; gap: 12px; }
-  .btn-cta-big {
-    background: var(--lime); color: var(--ink); border: none;
-    padding: 18px 36px; border-radius: 8px; font-size: 1rem; font-weight: 700;
-    cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.18s;
-    text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  }
-  .btn-cta-big:hover { background: #d8ff55; transform: translateY(-2px); }
-  .offer-guarantee { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--cream-dim); }
+  .btn-cta-big { background: var(--forest); color: var(--white); border: none; padding: 18px 36px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; box-shadow: 0 6px 24px rgba(27,67,50,0.3); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+  .btn-cta-big:hover { background: var(--forest-2); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,67,50,0.4); }
+  .offer-guarantee { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--ink-muted); }
   .offer-guarantee::before { content: '🛡️'; font-size: 1rem; }
 
   /* ── TESTIMONIALS ── */
-  .testimonials-section { background: var(--ink-3); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px; }
-  .testi-card { background: var(--ink-2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; transition: border-color 0.2s; }
-  .testi-card:hover { border-color: rgba(201,255,64,0.2); }
-  .testi-stars { color: var(--lime); font-size: 0.85rem; margin-bottom: 14px; letter-spacing: 2px; }
-  .testi-text { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+  .testimonials-section { background: var(--off-white); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+  .testi-card { background: var(--white); border: 1px solid var(--border-soft); border-radius: 20px; padding: 26px; transition: transform 0.2s, box-shadow 0.2s; }
+  .testi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(27,67,50,0.08); }
+  .testi-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
+  .testi-text { font-size: 0.91rem; color: var(--ink-mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
   .testi-author { display: flex; align-items: center; gap: 10px; }
-  .testi-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ink-4); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-  .testi-name { font-weight: 700; font-size: 0.86rem; color: var(--cream); }
-  .testi-detail { font-size: 0.75rem; color: var(--cream-dim); margin-top: 2px; }
-  .testi-breed { display: inline-block; background: rgba(201,255,64,0.1); color: var(--lime); padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-top: 4px; }
+  .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--forest-soft); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .testi-name { font-weight: 700; font-size: 0.88rem; color: var(--ink); }
+  .testi-detail { font-size: 0.76rem; color: var(--ink-muted); margin-top: 2px; }
+  .testi-breed { display: inline-block; background: var(--forest-soft); color: var(--forest); padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; margin-top: 4px; }
 
   /* ── GUARANTEE ── */
-  .guarantee-wrap { background: var(--ink-2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .guarantee-wrap { background: var(--forest-soft); }
   .guarantee-section { padding: clamp(40px, 6vw, 72px) clamp(24px, 6vw, 80px); display: flex; align-items: center; gap: 40px; max-width: 900px; margin: 0 auto; }
   .guarantee-icon { font-size: 4rem; flex-shrink: 0; }
-  .guarantee-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
-  .guarantee-text { font-size: 0.92rem; color: var(--cream-dim); line-height: 1.75; }
+  .guarantee-title { font-family: 'Fraunces', serif; font-size: 1.55rem; font-weight: 700; color: var(--forest); margin-bottom: 10px; }
+  .guarantee-text { font-size: 0.93rem; color: var(--forest-2); line-height: 1.75; }
 
   /* ── FAQ ── */
-  .faq-section { background: var(--ink); }
+  .faq-section { background: var(--white); }
   .faq-list { max-width: 680px; margin: 48px auto 0; }
-  .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-q {
-    width: 100%; background: none; border: none; padding: 20px 0;
-    font-size: 0.97rem; font-weight: 600; color: var(--cream);
-    font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
-    text-align: left; transition: color 0.2s;
-  }
-  .faq-q:hover { color: var(--lime); }
-  .faq-arrow { font-size: 0.75rem; color: var(--cream-dim); transition: transform 0.25s; flex-shrink: 0; }
-  .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--lime); }
-  .faq-a { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+  .faq-item { border-bottom: 1px solid var(--border-soft); }
+  .faq-q { width: 100%; background: none; border: none; padding: 20px 0; font-size: 0.97rem; font-weight: 600; color: var(--ink); font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; text-align: left; transition: color 0.2s; }
+  .faq-q:hover { color: var(--forest); }
+  .faq-arrow { font-size: 0.75rem; color: var(--ink-muted); transition: transform 0.25s; flex-shrink: 0; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--forest); }
+  .faq-item.open .faq-q { color: var(--forest); }
+  .faq-a { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
   .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
-  .faq-item.open .faq-q { color: var(--lime); }
 
   /* ── FINAL CTA ── */
-  .final-cta {
-    background: var(--lime); padding: clamp(72px, 10vw, 130px) clamp(24px, 6vw, 80px);
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .final-cta::before {
-    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-    width: 800px; height: 400px;
-    background: radial-gradient(ellipse, rgba(255,255,255,0.3) 0%, transparent 60%);
-    pointer-events: none;
-  }
-  .final-cta .section-title { color: var(--ink); position: relative; z-index: 1; }
-  .final-cta .section-sub { color: rgba(10,10,10,0.65); position: relative; z-index: 1; max-width: 520px; margin: 0 auto 40px; }
-  .final-cta .btn-final {
-    background: var(--ink); color: var(--cream); border: none;
-    padding: 18px 40px; border-radius: 8px; font-size: 1.05rem; font-weight: 700;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    transition: all 0.18s; position: relative; z-index: 1;
-    font-family: 'Plus Jakarta Sans', sans-serif; cursor: pointer;
-  }
-  .final-cta .btn-final:hover { background: var(--ink-2); transform: translateY(-2px); }
-  .final-cta .label-tag { color: rgba(10,10,10,0.5); justify-content: center; display: flex; margin-bottom: 20px; }
-  .final-cta-small { color: rgba(10,10,10,0.45); font-size: 0.8rem; margin-top: 18px; position: relative; z-index: 1; }
+  .final-cta { background: var(--forest); padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 80px); text-align: center; position: relative; overflow: hidden; }
+  .final-cta::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 700px; height: 400px; background: radial-gradient(ellipse, rgba(244,165,28,0.15) 0%, transparent 65%); pointer-events: none; }
+  .final-cta .section-title { color: var(--white); position: relative; z-index: 1; margin-bottom: 20px; }
+  .final-cta .section-sub { color: rgba(255,255,255,0.65); position: relative; z-index: 1; max-width: 520px; margin: 0 auto 40px; }
+  .final-cta .label-tag { color: rgba(255,255,255,0.5); justify-content: center; display: flex; margin-bottom: 20px; }
+  .btn-cta-gold { background: var(--gold); color: var(--ink); border: none; padding: 18px 40px; border-radius: 10px; font-size: 1.05rem; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; position: relative; z-index: 1; box-shadow: 0 6px 24px rgba(244,165,28,0.4); }
+  .btn-cta-gold:hover { background: #f5b740; transform: translateY(-2px); box-shadow: 0 10px 32px rgba(244,165,28,0.5); }
+  .final-cta-small { color: rgba(255,255,255,0.4); font-size: 0.8rem; margin-top: 18px; position: relative; z-index: 1; }
 
   /* ── FOOTER ── */
-  footer { background: var(--ink-2); padding: 32px clamp(24px, 6vw, 80px); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; border-top: 1px solid var(--border); }
-  footer .nav-logo { color: var(--cream-dim); font-size: 1rem; }
+  footer { background: #0F2D1F; padding: 32px clamp(24px, 6vw, 80px); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .nav-logo { color: rgba(255,255,255,0.5); font-size: 1rem; }
   .footer-links { display: flex; gap: 24px; }
-  .footer-links a { font-size: 0.8rem; color: rgba(242,237,232,0.3); text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--cream-dim); }
-  footer .footer-copy { font-size: 0.78rem; color: rgba(242,237,232,0.2); width: 100%; }
+  .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+  footer .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.2); width: 100%; }
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -463,19 +354,18 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
     .hero { grid-template-columns: 1fr; }
-    .hero-right { height: 50vw; min-height: 300px; }
-    .hero-right::after { background: linear-gradient(to bottom, var(--ink) 0%, transparent 30%); }
-    .breeds-intro { grid-template-columns: 1fr; gap: 24px; }
+    .hero-right { height: 55vw; min-height: 280px; }
+    .hero-right::before { background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 20%); }
+    .breeds-intro { grid-template-columns: 1fr; gap: 20px; }
     .offer-grid { grid-template-columns: 1fr; }
     .book-visual { margin-bottom: 40px; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .guarantee-section { flex-direction: column; text-align: center; }
   }
   @media (max-width: 720px) {
-    .problem-grid { grid-template-columns: 1fr; gap: 2px; }
+    .problem-grid { grid-template-columns: 1fr; }
     .breeds-grid { grid-template-columns: 1fr 1fr; }
     .quiz-options { grid-template-columns: 1fr; }
-    .hero-stat-row { gap: 20px; }
   }
   @media (max-width: 500px) {
     .breeds-grid { grid-template-columns: 1fr; }
@@ -488,7 +378,8 @@
 
 <nav role="navigation" aria-label="Hauptnavigation">
   <a class="nav-logo" href="#" aria-label="HundeFinder - Startseite">
-    <span class="nav-logo-dot"></span> HundeFinder
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
+    HundeFinder
   </a>
   <a class="nav-cta" href="#angebot" aria-label="Ratgeber jetzt kaufen für 9,90 Euro">Ratgeber – 9,90€</a>
 </nav>
@@ -498,42 +389,39 @@
 <!-- ── HERO ── -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-left">
-    <div class="hero-eyebrow">Kostenloser Rassenquiz</div>
+    <div class="hero-eyebrow">✦ Kostenloser Rassenquiz</div>
     <h1 class="hero-title" id="hero-title">
-      Welcher<br>
-      Hund passt<br>
-      <em>wirklich</em><br>
+      Welcher Hund<br>
+      passt <em>wirklich</em><br>
       zu dir?
     </h1>
     <p class="hero-sub">
-      2-Minuten-Quiz. <strong>50 Rassen.</strong> Dein persönliches Ergebnis –
-      bevor du eine Entscheidung triffst, die 15 Jahre dauert.
+      Mach den kostenlosen 2-Minuten-Quiz und finde heraus, welche Hunderasse perfekt zu deinem Leben passt –
+      <strong>bevor du eine Entscheidung triffst, die 15 Jahre dauert.</strong>
     </p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#quiz">Quiz starten →</a>
-      <a class="btn-ghost" href="#rassen">Alle Rassen ↓</a>
+      <a class="btn-primary" href="#quiz">Quiz jetzt starten →</a>
+      <a class="btn-ghost" href="#rassen">Alle Rassen ansehen</a>
     </div>
-    <div class="hero-stat-row">
-      <div>
-        <div class="hero-stat-num">2.847</div>
-        <div class="hero-stat-label">Menschen geholfen</div>
+    <div class="hero-trust">
+      <div class="hero-avatars">
+        <span>👩</span><span>👨</span><span>👱</span><span>👧</span>
       </div>
-      <div>
-        <div class="hero-stat-num">50</div>
-        <div class="hero-stat-label">Rassen im Quiz</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">4,9★</div>
-        <div class="hero-stat-label">Bewertung</div>
+      <div class="hero-trust-text">
+        <strong>2.847 Menschen</strong> haben ihren Hund schon gefunden
       </div>
     </div>
   </div>
   <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1534361960057-19f4434a4f5c?w=1200&h=900&fit=crop&auto=format" alt="Hund – finde deine perfekte Rasse" onerror="this.style.opacity=0">
-    <div class="hero-right-badge">
-      <div class="hero-badge-label">Quiz-Ergebnis</div>
-      <div class="hero-badge-text">Golden Retriever</div>
-      <div class="hero-badge-sub">94% Übereinstimmung</div>
+    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&h=900&fit=crop&auto=format" alt="Glücklicher Golden Retriever" onerror="this.style.opacity=0">
+    <div class="hero-result-card">
+      <div class="hero-result-emoji">🐕</div>
+      <div>
+        <div class="hero-result-label">Quiz-Ergebnis</div>
+        <div class="hero-result-name">Golden Retriever</div>
+        <div class="hero-result-pct">94% Übereinstimmung</div>
+        <div class="hero-result-bar"><div class="hero-result-bar-fill"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -541,18 +429,18 @@
 <!-- ── TICKER ── -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Sofort-Download <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">Sofort-Download <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">·</span></span>
-    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
   </div>
 </div>
 
@@ -561,20 +449,23 @@
   <div class="section-center reveal">
     <div class="label-tag">Das Problem</div>
     <h2 class="section-title">Die falsche Rasse kostet dich Jahre</h2>
-    <p class="section-sub">Viele Hundebesitzer bereuen ihre Wahl – nicht weil sie den Hund nicht lieben, sondern weil er nicht zu ihrem Leben passt.</p>
+    <p class="section-sub">Viele Hundebesitzer bereuen ihre Wahl – nicht weil sie den Hund nicht lieben, sondern weil er nicht zu ihrem Leben passt. Das muss nicht sein.</p>
   </div>
   <div class="problem-grid">
-    <div class="problem-card reveal" data-num="01">
+    <div class="problem-card reveal">
+      <div class="prob-num">01</div>
       <div class="problem-icon">😰</div>
       <h3>Überfordert & gestresst</h3>
       <p>Ein Border Collie in der Wohnung, ein Husky ohne Laufstrecke – die falsche Rasse bedeutet täglichen Stress für Mensch und Tier.</p>
     </div>
-    <div class="problem-card reveal" data-num="02">
+    <div class="problem-card reveal">
+      <div class="prob-num">02</div>
       <div class="problem-icon">💸</div>
       <h3>Teure Fehlentscheidung</h3>
       <p>Tierheim, Trainer, Umzüge: Die Konsequenzen einer falschen Rassenwahl summieren sich schnell auf Tausende Euro.</p>
     </div>
-    <div class="problem-card reveal" data-num="03">
+    <div class="problem-card reveal">
+      <div class="prob-num">03</div>
       <div class="problem-icon">🔎</div>
       <h3>Infoschwemme ohne Antwort</h3>
       <p>Hunderte Webseiten, widersprüchliche Ratschläge – dabei willst du nur wissen: Welcher Hund ist meiner?</p>
@@ -585,9 +476,9 @@
 <!-- ── QUIZ ── -->
 <section class="quiz-section" id="quiz">
   <div class="quiz-header">
-    <div class="label-tag">Kostenlos · 2 Minuten · 5 Fragen</div>
-    <h2 class="section-title">Finde deinen perfekten Hund</h2>
-    <p class="section-sub">Beantworte ehrlich – wir suchen aus 50 Rassen das perfekte Match für deinen Alltag.</p>
+    <div class="label-tag label-tag-light">Kostenlos · 2 Minuten · 5 Fragen</div>
+    <h2 class="section-title section-title-light">Finde deinen perfekten Hund</h2>
+    <p class="section-sub section-sub-light">Beantworte ehrlich – wir suchen aus 50 Rassen das perfekte Match für deinen Alltag.</p>
   </div>
   <div class="quiz-container">
     <div class="quiz-progress" id="quizProgress">
@@ -623,7 +514,7 @@
   <div class="breeds-grid">
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=450&fit=crop&auto=format" alt="Golden Retriever" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=450&fit=crop&auto=format" alt="Golden Retriever" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🐕</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
@@ -639,7 +530,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=450&fit=crop&auto=format" alt="Französische Bulldogge" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=450&fit=crop&auto=format" alt="Französische Bulldogge" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🐩</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
@@ -655,7 +546,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1503256207526-0d5523f31580?w=600&h=450&fit=crop&auto=format" alt="Border Collie" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1503256207526-0d5523f31580?w=600&h=450&fit=crop&auto=format" alt="Border Collie" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🐕‍🦺</span>
         <span class="breed-difficulty diff-hard">Erfahren</span>
       </div>
@@ -671,7 +562,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&h=450&fit=crop&auto=format" alt="Deutscher Schäferhund" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&h=450&fit=crop&auto=format" alt="Deutscher Schäferhund" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🦮</span>
         <span class="breed-difficulty diff-medium">Fortgeschritten</span>
       </div>
@@ -687,7 +578,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&h=450&fit=crop&auto=format" alt="Beagle" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&h=450&fit=crop&auto=format" alt="Beagle" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🐶</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
@@ -703,7 +594,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1617895153857-82fe0c43621b?w=600&h=450&fit=crop&auto=format" alt="Siberian Husky" loading="lazy" width="600" height="400" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1617895153857-82fe0c43621b?w=600&h=450&fit=crop&auto=format" alt="Siberian Husky" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb" aria-hidden="true">🐾</span>
         <span class="breed-difficulty diff-hard">Erfahren</span>
       </div>
@@ -861,14 +752,17 @@
   <div class="label-tag">Dein Hund wartet auf dich</div>
   <h2 class="section-title">Die richtige Wahl beginnt<br>mit dem richtigen Wissen</h2>
   <p class="section-sub">Für weniger als ein Hundefutter bekommst du alles, was du brauchst – und triffst die Entscheidung, die dich 15 Jahre glücklich macht.</p>
-  <a class="btn-final" href="#">Ratgeber jetzt für 9,90€ kaufen →</a>
+  <a class="btn-cta-gold" href="#">Ratgeber jetzt für 9,90€ kaufen →</a>
   <p class="final-cta-small">Sofort-Download · 30 Tage Geld-zurück-Garantie · Einmalzahlung</p>
 </section>
 
 </main>
 
 <footer>
-  <a class="nav-logo" href="#"><span class="nav-logo-dot"></span> HundeFinder</a>
+  <a class="nav-logo" href="#">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
+    HundeFinder
+  </a>
   <div class="footer-links">
     <a href="#">Datenschutz</a>
     <a href="#">Impressum</a>
@@ -879,259 +773,91 @@
 
 <script>
 const questions = [
-  {
-    q: "Wie aktiv ist dein Alltag?",
-    sub: "Denke an einen typischen Tag – nicht an deinen aktivsten.",
-    opts: [
-      { icon: "🛋️", text: "Eher entspannt", sub: "Ich genieße Ruhe", val: "low" },
-      { icon: "🚶", text: "Moderat aktiv", sub: "Spaziergänge, kein Sport", val: "med" },
-      { icon: "🏃", text: "Sehr aktiv", sub: "Sport & Outdoor täglich", val: "high" },
-      { icon: "⚡", text: "Extrem aktiv", sub: "Wandern, Joggen, Abenteuer", val: "xhigh" }
-    ]
-  },
-  {
-    q: "Wo wohnst du?",
-    sub: "Deine Wohnsituation bestimmt viel.",
-    opts: [
-      { icon: "🏢", text: "Wohnung ohne Garten", sub: "Innenstadt oder urban", val: "apt" },
-      { icon: "🏡", text: "Haus mit Garten", sub: "Eigener Außenbereich", val: "house" },
-      { icon: "🌳", text: "Auf dem Land", sub: "Viel Platz & Natur", val: "rural" },
-      { icon: "🏘️", text: "Reihenhaus / DHH", sub: "Kleiner Garten", val: "semi" }
-    ]
-  },
-  {
-    q: "Lebst du mit Kindern zusammen?",
-    sub: "Ehrlichkeit zählt – auch geplante Kinder.",
-    opts: [
-      { icon: "👶", text: "Ja, kleine Kinder", sub: "Unter 6 Jahren", val: "toddler" },
-      { icon: "🧒", text: "Ja, ältere Kinder", sub: "6 bis 14 Jahre", val: "kids" },
-      { icon: "🧑", text: "Teenager im Haushalt", sub: "Ab 14 Jahren", val: "teen" },
-      { icon: "🙋", text: "Nein, keine Kinder", sub: "Allein oder Paar", val: "nokids" }
-    ]
-  },
-  {
-    q: "Wie viel Erfahrung hast du mit Hunden?",
-    sub: "Sei ehrlich – es geht um deinen zukünftigen Hund.",
-    opts: [
-      { icon: "🐣", text: "Keine Erfahrung", sub: "Mein erster Hund", val: "xp0" },
-      { icon: "🐥", text: "Wenig Erfahrung", sub: "Als Kind Hund gehabt", val: "xp1" },
-      { icon: "🐦", text: "Gute Erfahrung", sub: "Eigenen Hund gehabt", val: "xp2" },
-      { icon: "🦅", text: "Viel Erfahrung", sub: "Mehrere Hunde trainiert", val: "xp3" }
-    ]
-  },
-  {
-    q: "Was ist dir am wichtigsten?",
-    sub: "Deine ehrliche Priorität.",
-    opts: [
-      { icon: "🤗", text: "Treuer Schmusebegleiter", sub: "Gemütlichkeit & Nähe", val: "cuddle" },
-      { icon: "🏃", text: "Sportlicher Partner", sub: "Joggen, Wandern, Agility", val: "sport" },
-      { icon: "🛡️", text: "Schutz & Sicherheit", sub: "Wachsamer Hund", val: "guard" },
-      { icon: "🎾", text: "Spielkamerad", sub: "Verspielt & witzig", val: "play" }
-    ]
-  }
+  { q: "Wie aktiv ist dein Alltag?", sub: "Denke an einen typischen Tag – nicht an deinen aktivsten.", opts: [
+    { icon: "🛋️", text: "Eher entspannt", sub: "Ich genieße Ruhe", val: "low" },
+    { icon: "🚶", text: "Moderat aktiv", sub: "Spaziergänge, kein Sport", val: "med" },
+    { icon: "🏃", text: "Sehr aktiv", sub: "Sport & Outdoor täglich", val: "high" },
+    { icon: "⚡", text: "Extrem aktiv", sub: "Wandern, Joggen, Abenteuer", val: "xhigh" }
+  ]},
+  { q: "Wo wohnst du?", sub: "Deine Wohnsituation bestimmt viel.", opts: [
+    { icon: "🏢", text: "Wohnung ohne Garten", sub: "Innenstadt oder urban", val: "apt" },
+    { icon: "🏡", text: "Haus mit Garten", sub: "Eigener Außenbereich", val: "house" },
+    { icon: "🌳", text: "Auf dem Land", sub: "Viel Platz & Natur", val: "rural" },
+    { icon: "🏘️", text: "Reihenhaus / DHH", sub: "Kleiner Garten", val: "semi" }
+  ]},
+  { q: "Lebst du mit Kindern zusammen?", sub: "Ehrlichkeit zählt – auch geplante Kinder.", opts: [
+    { icon: "👶", text: "Ja, kleine Kinder", sub: "Unter 6 Jahren", val: "toddler" },
+    { icon: "🧒", text: "Ja, ältere Kinder", sub: "6 bis 14 Jahre", val: "kids" },
+    { icon: "🧑", text: "Teenager im Haushalt", sub: "Ab 14 Jahren", val: "teen" },
+    { icon: "🙋", text: "Nein, keine Kinder", sub: "Allein oder Paar", val: "nokids" }
+  ]},
+  { q: "Wie viel Erfahrung hast du mit Hunden?", sub: "Sei ehrlich – es geht um deinen zukünftigen Hund.", opts: [
+    { icon: "🐣", text: "Keine Erfahrung", sub: "Mein erster Hund", val: "xp0" },
+    { icon: "🐥", text: "Wenig Erfahrung", sub: "Als Kind Hund gehabt", val: "xp1" },
+    { icon: "🐦", text: "Gute Erfahrung", sub: "Eigenen Hund gehabt", val: "xp2" },
+    { icon: "🦅", text: "Viel Erfahrung", sub: "Mehrere Hunde trainiert", val: "xp3" }
+  ]},
+  { q: "Was ist dir am wichtigsten?", sub: "Deine ehrliche Priorität.", opts: [
+    { icon: "🤗", text: "Treuer Schmusebegleiter", sub: "Gemütlichkeit & Nähe", val: "cuddle" },
+    { icon: "🏃", text: "Sportlicher Partner", sub: "Joggen, Wandern, Agility", val: "sport" },
+    { icon: "🛡️", text: "Schutz & Sicherheit", sub: "Wachsamer Hund", val: "guard" },
+    { icon: "🎾", text: "Spielkamerad", sub: "Verspielt & witzig", val: "play" }
+  ]}
 ];
 
 const breeds = [
-  { name: "Golden Retriever", emoji: "🐕",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 },
-    traits: ["Familienfreundlich","Geduldig","Lernwillig","Verspielt"],
-    desc: "Der Golden Retriever ist der ideale Allrounder – liebevoll, geduldig mit Kindern und leicht zu erziehen. Perfekt für Familien und Erstbesitzer." },
-  { name: "Labrador Retriever", emoji: "🐶",
-    scores: { low:2, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 },
-    traits: ["Begeistert","Treu","Robust","Kinderlieb"],
-    desc: "Der Labrador ist ein absoluter Lebenskünstler – anpassungsfähig, fröhlich und für fast jede Lebenssituation geeignet." },
-  { name: "Französische Bulldogge", emoji: "🐩",
-    scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:1, play:2 },
-    traits: ["Stadttauglich","Ruhig","Anhänglich","Charmant"],
-    desc: "Charmant, entspannt und begeistert vom Sofa – die Französische Bulldogge ist gemacht für das Stadtleben." },
-  { name: "Border Collie", emoji: "🐕‍🦺",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Hochintelligent","Energiegeladen","Fokussiert","Lernbegeistert"],
-    desc: "Für aktive, erfahrene Hundehalter: Der Border Collie braucht täglich geistige und körperliche Auslastung – gibt dafür alles zurück." },
-  { name: "Beagle", emoji: "🐕",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:3, toddler:3, kids:3, teen:2, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 },
-    traits: ["Verspielt","Neugierig","Familiär","Robust"],
-    desc: "Der Beagle ist ein fröhlicher Familienbegleiter – lebhaft, neugierig und ausgesprochen kinderfreundlich." },
-  { name: "Siberian Husky", emoji: "🐾",
-    scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Abenteuerlustig","Unabhängig","Energiegeladen","Dramatisch"],
-    desc: "Wunderschön, eigensinnig und für echte Abenteurer. Der Husky ist nichts für Anfänger – belohnt aber jeden Einsatz." },
-  { name: "Dackel", emoji: "🐕",
-    scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:2, play:2 },
-    traits: ["Charakter-Hund","Mutig","Anpassungsfähig","Treu"],
-    desc: "Mit großem Charakter im kleinen Körper: Der Dackel ist selbstbewusst, liebt seine Familie und passt überall rein." },
-  { name: "Deutscher Schäferhund", emoji: "🦮",
-    scores: { low:1, med:2, high:3, xhigh:3, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 },
-    traits: ["Schutztrieb","Intelligent","Treu","Arbeitsfreudig"],
-    desc: "Der Deutsche Schäferhund ist einer der vielseitigsten Hunde – treu, klug, schutzbewusst. Braucht eine konsequente Hand." },
-  { name: "Pudel", emoji: "🐩",
-    scores: { low:1, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 },
-    traits: ["Hochintelligent","Hypoallergen","Vielseitig","Verspielt"],
-    desc: "Der Pudel ist einer der klügsten Hunde der Welt – hypoallergen, lernbegeistert und für fast jeden Lebensstil geeignet." },
-  { name: "Englische Bulldogge", emoji: "🐶",
-    scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:2, play:2 },
-    traits: ["Entspannt","Loyal","Stadttauglich","Gemütlich"],
-    desc: "Die Englische Bulldogge ist ein echter Sofakönig – gemütlich, loyal und perfekt für entspannte Stadtbewohner." },
-  { name: "Rottweiler", emoji: "🦮",
-    scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:1 },
-    traits: ["Schutztrieb","Selbstbewusst","Treu","Kraftvoll"],
-    desc: "Der Rottweiler ist ein selbstbewusster Schutz- und Familienhund. Braucht erfahrene, konsequente Führung." },
-  { name: "Yorkshire Terrier", emoji: "🐕",
-    scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 },
-    traits: ["Kompakt","Mutig","Anhänglich","Pflegeleicht"],
-    desc: "Klein aber oho: Der Yorkshire Terrier ist ein mutiger Begleiter, ideal für die Wohnung und für Menschen die einen treuen Minibegleiter suchen." },
-  { name: "Boxer", emoji: "🐕",
-    scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:2, play:3 },
-    traits: ["Verspielt","Treu","Kinderlieb","Energiegeladen"],
-    desc: "Der Boxer ist ein ewiges Kind – verspielt, liebevoll und ein fantastischer Familienhund für aktive Haushalte." },
-  { name: "Dobermann", emoji: "🦮",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:3, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 },
-    traits: ["Schutztrieb","Athletisch","Intelligent","Loyal"],
-    desc: "Der Dobermann ist ein eleganter Arbeitshund – athletisch, hochintelligent und ein unvergleichlicher Schutzbegleiter für erfahrene Halter." },
-  { name: "Cavalier King Charles Spaniel", emoji: "🐶",
-    scores: { low:3, med:3, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 },
-    traits: ["Sanft","Kinderlieb","Anhänglich","Pflegeleicht"],
-    desc: "Der Cavalier ist pure Wärme – sanft, anhänglich und der perfekte Schmusebegleiter für jede Lebenssituation." },
-  { name: "Shih Tzu", emoji: "🐩",
-    scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:0, play:2 },
-    traits: ["Entspannt","Anhänglich","Stadtgeeignet","Charmant"],
-    desc: "Der Shih Tzu ist ein charmanter Stadthund – ruhig, anhänglich und pflegeleicht im Alltag." },
-  { name: "Chihuahua", emoji: "🐕",
-    scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:1 },
-    traits: ["Treu","Mutig","Kompakt","Temperamentvoll"],
-    desc: "Der Chihuahua ist ein großer Hund im kleinsten Körper – treu bis auf die Knochen, aber nichts für kleine Kinder." },
-  { name: "Malteser", emoji: "🐩",
-    scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 },
-    traits: ["Elegant","Sanft","Anhänglich","Hypoallergen"],
-    desc: "Der Malteser ist ein eleganter kleiner Begleiter – sanft, hypoallergen und ideal für ruhige Haushalte." },
-  { name: "Australischer Schäferhund", emoji: "🐕‍🦺",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:2, play:3 },
-    traits: ["Hochintelligent","Sportlich","Lernwillig","Energiegeladen"],
-    desc: "Der Australische Schäferhund ist ein brillanter Sportpartner – bunt, klug und für aktive Hundesportler gemacht." },
-  { name: "Berner Sennenhund", emoji: "🦮",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 },
-    traits: ["Sanftmütig","Familiär","Treu","Imposant"],
-    desc: "Der Berner Sennenhund ist ein sanfter Riese – treu, kinderlieb und ein beeindruckender Familienhund für Haus und Garten." },
-  { name: "Weimaraner", emoji: "🐕",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Elegant","Ausdauernd","Jagdtrieb","Sportlich"],
-    desc: "Der Weimaraner ist ein eleganter Jagd- und Sporthund – ideal für aktive Menschen mit viel Zeit im Freien." },
-  { name: "Dalmatiner", emoji: "🐶",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:3 },
-    traits: ["Ausdauernd","Verspielt","Einzigartig","Sportlich"],
-    desc: "Der Dalmatiner ist ein unverwechselbarer Sportler – ausdauernd, lebhaft und braucht täglich viel Bewegung." },
-  { name: "Cocker Spaniel", emoji: "🐕",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 },
-    traits: ["Fröhlich","Sanft","Verspielt","Familiär"],
-    desc: "Der Cocker Spaniel ist ein fröhlicher Alltagsbegleiter – ausgeglichen, verspielt und wunderbar mit Kindern." },
-  { name: "Havaneser", emoji: "🐩",
-    scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 },
-    traits: ["Lebhaft","Anhänglich","Stadtgeeignet","Sozial"],
-    desc: "Der Havaneser ist ein fröhlicher kleiner Stadtbegleiter – anhänglich, sozial und für Erstbesitzer ideal." },
-  { name: "Jack Russell Terrier", emoji: "🐕",
-    scores: { low:0, med:2, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:1, sport:2, guard:1, play:3 },
-    traits: ["Temperamentvoll","Mutig","Neugierig","Ausdauernd"],
-    desc: "Der Jack Russell ist ein dynamisches Kraftpaket – temperamentvoll, neugierig und braucht viel Beschäftigung." },
-  { name: "Spitz / Pomeranian", emoji: "🐕",
-    scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 },
-    traits: ["Flauschig","Lebhaft","Treu","Stadtgeeignet"],
-    desc: "Der Spitz ist ein flauschiger Minibegleiter – lebendig, treu und der perfekte Stadtbegleiter für ruhige Haushalte." },
-  { name: "Schnauzer", emoji: "🐶",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 },
-    traits: ["Robust","Wachsam","Vielseitig","Charakterstark"],
-    desc: "Der Schnauzer ist ein vielseitiger Alltagsbegleiter mit Charakter – robust, wachsam und für viele Lebenssituationen geeignet." },
-  { name: "Irischer Setter", emoji: "🦮",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:0, play:3 },
-    traits: ["Lebhaft","Fröhlich","Sportlich","Familiär"],
-    desc: "Der Irische Setter ist ein feuriger Sportler – wunderschön, fröhlich und braucht täglich ausgedehnte Bewegung." },
-  { name: "Whippet", emoji: "🐕",
-    scores: { low:2, med:3, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:2 },
-    traits: ["Sanft","Elegant","Anpassungsfähig","Schnell"],
-    desc: "Der Whippet ist ein eleganter Widerspruch – schnellster Hund auf der Couch und im Sprint. Sanft, anpassungsfähig und pflegeleicht." },
-  { name: "Samojede", emoji: "🐕",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:2 },
-    traits: ["Lächelnd","Freundlich","Ausdauernd","Flauschig"],
-    desc: "Der Samojede lächelt buchstäblich – ein freundlicher, flauschiger Nordlandhund für aktive Menschen." },
-  { name: "Alaskan Malamute", emoji: "🐾",
-    scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Kraftvoll","Ausdauernd","Unabhängig","Imposant"],
-    desc: "Der Malamute ist ein echter Kraftprotz – für extreme Outdoor-Aktivitäten und sehr erfahrene Hundehalter." },
-  { name: "Chow Chow", emoji: "🐶",
-    scores: { low:2, med:2, high:1, xhigh:0, apt:2, house:3, rural:2, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:0, guard:2, play:0 },
-    traits: ["Würdevoll","Unabhängig","Wachsam","Loyal"],
-    desc: "Der Chow Chow ist ein würdevoller Einzelgänger – tief loyal zu seiner Person, aber nichts für Kinder oder Anfänger." },
-  { name: "Akita", emoji: "🦮",
-    scores: { low:1, med:2, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:2, sport:1, guard:3, play:1 },
-    traits: ["Würdevoll","Loyal","Schutztrieb","Selbstbewusst"],
-    desc: "Der Akita ist ein japanischer Würdenträger – absolut loyal zu seiner Familie, aber nur für sehr erfahrene Halter geeignet." },
-  { name: "Shiba Inu", emoji: "🐕",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:2, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:1, guard:1, play:2 },
-    traits: ["Unabhängig","Reinlich","Charakterstark","Kompakt"],
-    desc: "Der Shiba Inu ist Japans beliebtester Hund – charakterstark, reinlich wie eine Katze, aber braucht erfahrene Führung." },
-  { name: "West Highland Terrier", emoji: "🐶",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:1, play:2 },
-    traits: ["Selbstbewusst","Robust","Mutig","Fröhlich"],
-    desc: "Der Westie ist ein selbstbewusster kleiner Terrier – robust, pflegeleicht und voller Lebensfreude." },
-  { name: "Rhodesian Ridgeback", emoji: "🦮",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 },
-    traits: ["Athletisch","Selbstbewusst","Schutztrieb","Ausdauernd"],
-    desc: "Der Rhodesian Ridgeback ist ein südafrikanischer Löwenjäger – athletisch, selbstbewusst und für erfahrene Sportler." },
-  { name: "Irischer Wolfshund", emoji: "🦮",
-    scores: { low:1, med:2, high:2, xhigh:3, apt:0, house:2, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:1, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:1, play:2 },
-    traits: ["Sanfter Riese","Ruhig","Treu","Imposant"],
-    desc: "Der Irische Wolfshund ist der größte Hund der Welt – sanft, ruhig und ein beeindruckender Begleiter mit viel Platzanspruch." },
-  { name: "Hovawart", emoji: "🐕‍🦺",
-    scores: { low:0, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 },
-    traits: ["Wachsam","Familiär","Treu","Arbeitsfreudig"],
-    desc: "Der Hovawart ist ein zuverlässiger Familienwächter – treu, schutzbewusst und für aktive Familien auf dem Land ideal." },
-  { name: "Leonberger", emoji: "🦮",
-    scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 },
-    traits: ["Sanftmütig","Imposant","Familiär","Treu"],
-    desc: "Der Leonberger ist ein majestätischer Löwenhund – sanftmütig, kinderlieb und braucht viel Platz und Pflege." },
-  { name: "Neufundländer", emoji: "🐶",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:2, rural:3, semi:1, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:1, play:2 },
-    traits: ["Sanftmütig","Wasserhund","Kinderlieb","Treu"],
-    desc: "Der Neufundländer ist der sanfteste Riese – ein geborener Rettungshund und absolut kinderlieb. Braucht viel Platz." },
-  { name: "Belgischer Schäferhund (Malinois)", emoji: "🦮",
-    scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:3, play:2 },
-    traits: ["Arbeitstier","Hochintelligent","Sportlich","Schutztrieb"],
-    desc: "Der Malinois ist kein Haustier – er ist ein Profi. Nur für sehr erfahrene Hundesportler und Arbeitsführer geeignet." },
-  { name: "Deutsch Kurzhaar", emoji: "🐕",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Vielseitig","Ausdauernd","Jagdtrieb","Sportlich"],
-    desc: "Der Deutsch Kurzhaar ist der universelle Jagdhund – vielseitig, ausdauernd und ideal für aktive Jäger und Sportler." },
-  { name: "Vizsla", emoji: "🦮",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:1, play:3 },
-    traits: ["Anhänglich","Sportlich","Sanft","Energiegeladen"],
-    desc: "Der Vizsla ist der goldene Sportkamerad – unglaublich anhänglich, aktiv und für sportliche Familien gemacht." },
-  { name: "Staffordshire Bullterrier", emoji: "🐶",
-    scores: { low:1, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:2, play:3 },
-    traits: ["Mutig","Verspielt","Treu","Kraftvoll"],
-    desc: "Der Staffy ist ein verkannter Liebhaber – verspielt, treu und mit der richtigen Führung ein fantastischer Familienhund." },
-  { name: "Greyhound", emoji: "🐕",
-    scores: { low:3, med:2, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:1 },
-    traits: ["Sanft","Schnell","Entspannt","Elegant"],
-    desc: "Der Greyhound ist der schnellste Sofabegleiter der Welt – draußen ein Blitz, drinnen ein Kuscheltier." },
-  { name: "Basenji", emoji: "🐕",
-    scores: { low:1, med:2, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:1, sport:2, guard:1, play:2 },
-    traits: ["Unabhängig","Katzenartig","Lautlos","Charakterstark"],
-    desc: "Der Basenji bellt nicht – ein uralter afrikanischer Jagdhund, unabhängig wie eine Katze und nur für erfahrene Halter." },
-  { name: "Eurasier", emoji: "🐶",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 },
-    traits: ["Ausgeglichen","Familiär","Treu","Ruhig"],
-    desc: "Der Eurasier ist ein ausgeglichener Familienhund – ruhig, treu und perfekt für Familien die einen harmonischen Begleiter suchen." },
-  { name: "Lagotto Romagnolo", emoji: "🐩",
-    scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 },
-    traits: ["Verspielt","Intelligent","Lernwillig","Hypoallergen"],
-    desc: "Der Lagotto ist Italiens Trüffeljäger – intelligent, lernbegeistert, hypoallergen und ein toller Alltagsbegleiter." },
-  { name: "Großer Münsterländer", emoji: "🦮",
-    scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 },
-    traits: ["Ausdauernd","Jagdtrieb","Sportlich","Vielseitig"],
-    desc: "Der Große Münsterländer ist ein klassischer Jagd- und Sporthund – ausdauernd, klug und für aktive Outdoor-Menschen." }
+  { name: "Golden Retriever", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 }, traits: ["Familienfreundlich","Geduldig","Lernwillig","Verspielt"], desc: "Der Golden Retriever ist der ideale Allrounder – liebevoll, geduldig mit Kindern und leicht zu erziehen. Perfekt für Familien und Erstbesitzer." },
+  { name: "Labrador Retriever", emoji: "🐶", scores: { low:2, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 }, traits: ["Begeistert","Treu","Robust","Kinderlieb"], desc: "Der Labrador ist ein absoluter Lebenskünstler – anpassungsfähig, fröhlich und für fast jede Lebenssituation geeignet." },
+  { name: "Französische Bulldogge", emoji: "🐩", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Stadttauglich","Ruhig","Anhänglich","Charmant"], desc: "Charmant, entspannt und begeistert vom Sofa – die Französische Bulldogge ist gemacht für das Stadtleben." },
+  { name: "Border Collie", emoji: "🐕‍🦺", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Hochintelligent","Energiegeladen","Fokussiert","Lernbegeistert"], desc: "Für aktive, erfahrene Hundehalter: Der Border Collie braucht täglich geistige und körperliche Auslastung – gibt dafür alles zurück." },
+  { name: "Beagle", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:3, toddler:3, kids:3, teen:2, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Verspielt","Neugierig","Familiär","Robust"], desc: "Der Beagle ist ein fröhlicher Familienbegleiter – lebhaft, neugierig und ausgesprochen kinderfreundlich." },
+  { name: "Siberian Husky", emoji: "🐾", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Abenteuerlustig","Unabhängig","Energiegeladen","Dramatisch"], desc: "Wunderschön, eigensinnig und für echte Abenteurer. Der Husky ist nichts für Anfänger – belohnt aber jeden Einsatz." },
+  { name: "Dackel", emoji: "🐕", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:2, play:2 }, traits: ["Charakter-Hund","Mutig","Anpassungsfähig","Treu"], desc: "Mit großem Charakter im kleinen Körper: Der Dackel ist selbstbewusst, liebt seine Familie und passt überall rein." },
+  { name: "Deutscher Schäferhund", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:3, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 }, traits: ["Schutztrieb","Intelligent","Treu","Arbeitsfreudig"], desc: "Der Deutsche Schäferhund ist einer der vielseitigsten Hunde – treu, klug, schutzbewusst. Braucht eine konsequente Hand." },
+  { name: "Pudel", emoji: "🐩", scores: { low:1, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Hochintelligent","Hypoallergen","Vielseitig","Verspielt"], desc: "Der Pudel ist einer der klügsten Hunde der Welt – hypoallergen, lernbegeistert und für fast jeden Lebensstil geeignet." },
+  { name: "Englische Bulldogge", emoji: "🐶", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:2, play:2 }, traits: ["Entspannt","Loyal","Stadttauglich","Gemütlich"], desc: "Die Englische Bulldogge ist ein echter Sofakönig – gemütlich, loyal und perfekt für entspannte Stadtbewohner." },
+  { name: "Rottweiler", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:1 }, traits: ["Schutztrieb","Selbstbewusst","Treu","Kraftvoll"], desc: "Der Rottweiler ist ein selbstbewusster Schutz- und Familienhund. Braucht erfahrene, konsequente Führung." },
+  { name: "Yorkshire Terrier", emoji: "🐕", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Kompakt","Mutig","Anhänglich","Pflegeleicht"], desc: "Klein aber oho: Der Yorkshire Terrier ist ein mutiger Begleiter, ideal für die Wohnung und für Menschen die einen treuen Minibegleiter suchen." },
+  { name: "Boxer", emoji: "🐕", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:2, play:3 }, traits: ["Verspielt","Treu","Kinderlieb","Energiegeladen"], desc: "Der Boxer ist ein ewiges Kind – verspielt, liebevoll und ein fantastischer Familienhund für aktive Haushalte." },
+  { name: "Dobermann", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:3, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 }, traits: ["Schutztrieb","Athletisch","Intelligent","Loyal"], desc: "Der Dobermann ist ein eleganter Arbeitshund – athletisch, hochintelligent und ein unvergleichlicher Schutzbegleiter für erfahrene Halter." },
+  { name: "Cavalier King Charles Spaniel", emoji: "🐶", scores: { low:3, med:3, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Sanft","Kinderlieb","Anhänglich","Pflegeleicht"], desc: "Der Cavalier ist pure Wärme – sanft, anhänglich und der perfekte Schmusebegleiter für jede Lebenssituation." },
+  { name: "Shih Tzu", emoji: "🐩", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Entspannt","Anhänglich","Stadtgeeignet","Charmant"], desc: "Der Shih Tzu ist ein charmanter Stadthund – ruhig, anhänglich und pflegeleicht im Alltag." },
+  { name: "Chihuahua", emoji: "🐕", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:1 }, traits: ["Treu","Mutig","Kompakt","Temperamentvoll"], desc: "Der Chihuahua ist ein großer Hund im kleinsten Körper – treu bis auf die Knochen, aber nichts für kleine Kinder." },
+  { name: "Malteser", emoji: "🐩", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Elegant","Sanft","Anhänglich","Hypoallergen"], desc: "Der Malteser ist ein eleganter kleiner Begleiter – sanft, hypoallergen und ideal für ruhige Haushalte." },
+  { name: "Australischer Schäferhund", emoji: "🐕‍🦺", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:2, play:3 }, traits: ["Hochintelligent","Sportlich","Lernwillig","Energiegeladen"], desc: "Der Australische Schäferhund ist ein brillanter Sportpartner – bunt, klug und für aktive Hundesportler gemacht." },
+  { name: "Berner Sennenhund", emoji: "🦮", scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 }, traits: ["Sanftmütig","Familiär","Treu","Imposant"], desc: "Der Berner Sennenhund ist ein sanfter Riese – treu, kinderlieb und ein beeindruckender Familienhund für Haus und Garten." },
+  { name: "Weimaraner", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Elegant","Ausdauernd","Jagdtrieb","Sportlich"], desc: "Der Weimaraner ist ein eleganter Jagd- und Sporthund – ideal für aktive Menschen mit viel Zeit im Freien." },
+  { name: "Dalmatiner", emoji: "🐶", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:3 }, traits: ["Ausdauernd","Verspielt","Einzigartig","Sportlich"], desc: "Der Dalmatiner ist ein unverwechselbarer Sportler – ausdauernd, lebhaft und braucht täglich viel Bewegung." },
+  { name: "Cocker Spaniel", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Fröhlich","Sanft","Verspielt","Familiär"], desc: "Der Cocker Spaniel ist ein fröhlicher Alltagsbegleiter – ausgeglichen, verspielt und wunderbar mit Kindern." },
+  { name: "Havaneser", emoji: "🐩", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Lebhaft","Anhänglich","Stadtgeeignet","Sozial"], desc: "Der Havaneser ist ein fröhlicher kleiner Stadtbegleiter – anhänglich, sozial und für Erstbesitzer ideal." },
+  { name: "Jack Russell Terrier", emoji: "🐕", scores: { low:0, med:2, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:1, sport:2, guard:1, play:3 }, traits: ["Temperamentvoll","Mutig","Neugierig","Ausdauernd"], desc: "Der Jack Russell ist ein dynamisches Kraftpaket – temperamentvoll, neugierig und braucht viel Beschäftigung." },
+  { name: "Spitz / Pomeranian", emoji: "🐕", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Flauschig","Lebhaft","Treu","Stadtgeeignet"], desc: "Der Spitz ist ein flauschiger Minibegleiter – lebendig, treu und der perfekte Stadtbegleiter für ruhige Haushalte." },
+  { name: "Schnauzer", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 }, traits: ["Robust","Wachsam","Vielseitig","Charakterstark"], desc: "Der Schnauzer ist ein vielseitiger Alltagsbegleiter mit Charakter – robust, wachsam und für viele Lebenssituationen geeignet." },
+  { name: "Irischer Setter", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:0, play:3 }, traits: ["Lebhaft","Fröhlich","Sportlich","Familiär"], desc: "Der Irische Setter ist ein feuriger Sportler – wunderschön, fröhlich und braucht täglich ausgedehnte Bewegung." },
+  { name: "Whippet", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:2 }, traits: ["Sanft","Elegant","Anpassungsfähig","Schnell"], desc: "Der Whippet ist ein eleganter Widerspruch – schnellster Hund auf der Couch und im Sprint. Sanft, anpassungsfähig und pflegeleicht." },
+  { name: "Samojede", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:2 }, traits: ["Lächelnd","Freundlich","Ausdauernd","Flauschig"], desc: "Der Samojede lächelt buchstäblich – ein freundlicher, flauschiger Nordlandhund für aktive Menschen." },
+  { name: "Alaskan Malamute", emoji: "🐾", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Kraftvoll","Ausdauernd","Unabhängig","Imposant"], desc: "Der Malamute ist ein echter Kraftprotz – für extreme Outdoor-Aktivitäten und sehr erfahrene Hundehalter." },
+  { name: "Chow Chow", emoji: "🐶", scores: { low:2, med:2, high:1, xhigh:0, apt:2, house:3, rural:2, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:0, guard:2, play:0 }, traits: ["Würdevoll","Unabhängig","Wachsam","Loyal"], desc: "Der Chow Chow ist ein würdevoller Einzelgänger – tief loyal zu seiner Person, aber nichts für Kinder oder Anfänger." },
+  { name: "Akita", emoji: "🦮", scores: { low:1, med:2, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:2, sport:1, guard:3, play:1 }, traits: ["Würdevoll","Loyal","Schutztrieb","Selbstbewusst"], desc: "Der Akita ist ein japanischer Würdenträger – absolut loyal zu seiner Familie, aber nur für sehr erfahrene Halter geeignet." },
+  { name: "Shiba Inu", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:2, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:1, guard:1, play:2 }, traits: ["Unabhängig","Reinlich","Charakterstark","Kompakt"], desc: "Der Shiba Inu ist Japans beliebtester Hund – charakterstark, reinlich wie eine Katze, aber braucht erfahrene Führung." },
+  { name: "West Highland Terrier", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:1, play:2 }, traits: ["Selbstbewusst","Robust","Mutig","Fröhlich"], desc: "Der Westie ist ein selbstbewusster kleiner Terrier – robust, pflegeleicht und voller Lebensfreude." },
+  { name: "Rhodesian Ridgeback", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 }, traits: ["Athletisch","Selbstbewusst","Schutztrieb","Ausdauernd"], desc: "Der Rhodesian Ridgeback ist ein südafrikanischer Löwenjäger – athletisch, selbstbewusst und für erfahrene Sportler." },
+  { name: "Irischer Wolfshund", emoji: "🦮", scores: { low:1, med:2, high:2, xhigh:3, apt:0, house:2, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:1, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:1, play:2 }, traits: ["Sanfter Riese","Ruhig","Treu","Imposant"], desc: "Der Irische Wolfshund ist der größte Hund der Welt – sanft, ruhig und ein beeindruckender Begleiter mit viel Platzanspruch." },
+  { name: "Hovawart", emoji: "🐕‍🦺", scores: { low:0, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 }, traits: ["Wachsam","Familiär","Treu","Arbeitsfreudig"], desc: "Der Hovawart ist ein zuverlässiger Familienwächter – treu, schutzbewusst und für aktive Familien auf dem Land ideal." },
+  { name: "Leonberger", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 }, traits: ["Sanftmütig","Imposant","Familiär","Treu"], desc: "Der Leonberger ist ein majestätischer Löwenhund – sanftmütig, kinderlieb und braucht viel Platz und Pflege." },
+  { name: "Neufundländer", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:2, rural:3, semi:1, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:1, play:2 }, traits: ["Sanftmütig","Wasserhund","Kinderlieb","Treu"], desc: "Der Neufundländer ist der sanfteste Riese – ein geborener Rettungshund und absolut kinderlieb. Braucht viel Platz." },
+  { name: "Belgischer Schäferhund (Malinois)", emoji: "🦮", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:3, play:2 }, traits: ["Arbeitstier","Hochintelligent","Sportlich","Schutztrieb"], desc: "Der Malinois ist kein Haustier – er ist ein Profi. Nur für sehr erfahrene Hundesportler und Arbeitsführer geeignet." },
+  { name: "Deutsch Kurzhaar", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Vielseitig","Ausdauernd","Jagdtrieb","Sportlich"], desc: "Der Deutsch Kurzhaar ist der universelle Jagdhund – vielseitig, ausdauernd und ideal für aktive Jäger und Sportler." },
+  { name: "Vizsla", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:1, play:3 }, traits: ["Anhänglich","Sportlich","Sanft","Energiegeladen"], desc: "Der Vizsla ist der goldene Sportkamerad – unglaublich anhänglich, aktiv und für sportliche Familien gemacht." },
+  { name: "Staffordshire Bullterrier", emoji: "🐶", scores: { low:1, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:2, play:3 }, traits: ["Mutig","Verspielt","Treu","Kraftvoll"], desc: "Der Staffy ist ein verkannter Liebhaber – verspielt, treu und mit der richtigen Führung ein fantastischer Familienhund." },
+  { name: "Greyhound", emoji: "🐕", scores: { low:3, med:2, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:1 }, traits: ["Sanft","Schnell","Entspannt","Elegant"], desc: "Der Greyhound ist der schnellste Sofabegleiter der Welt – draußen ein Blitz, drinnen ein Kuscheltier." },
+  { name: "Basenji", emoji: "🐕", scores: { low:1, med:2, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:1, sport:2, guard:1, play:2 }, traits: ["Unabhängig","Katzenartig","Lautlos","Charakterstark"], desc: "Der Basenji bellt nicht – ein uralter afrikanischer Jagdhund, unabhängig wie eine Katze und nur für erfahrene Halter." },
+  { name: "Eurasier", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 }, traits: ["Ausgeglichen","Familiär","Treu","Ruhig"], desc: "Der Eurasier ist ein ausgeglichener Familienhund – ruhig, treu und perfekt für Familien die einen harmonischen Begleiter suchen." },
+  { name: "Lagotto Romagnolo", emoji: "🐩", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Verspielt","Intelligent","Lernwillig","Hypoallergen"], desc: "Der Lagotto ist Italiens Trüffeljäger – intelligent, lernbegeistert, hypoallergen und ein toller Alltagsbegleiter." },
+  { name: "Großer Münsterländer", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Ausdauernd","Jagdtrieb","Sportlich","Vielseitig"], desc: "Der Große Münsterländer ist ein klassischer Jagd- und Sporthund – ausdauernd, klug und für aktive Outdoor-Menschen." }
 ];
 
-let currentQ = 0;
-let answers = {};
+let currentQ = 0, answers = {};
 
 function renderQuestion() {
   const q = questions[currentQ];
@@ -1139,133 +865,97 @@ function renderQuestion() {
     <div class="quiz-q">${q.q}</div>
     <div class="quiz-q-sub">${q.sub}</div>
     <div class="quiz-options">
-      ${q.opts.map((o, i) => `
-        <button class="quiz-opt${answers[currentQ]?.idx === i ? ' selected' : ''}" onclick="selectOpt(${i},'${o.val}')">
+      ${q.opts.map((o,i) => `
+        <button class="quiz-opt${answers[currentQ]?.idx===i?' selected':''}" onclick="selectOpt(${i},'${o.val}')">
           <span class="opt-icon">${o.icon}</span>
           <span>${o.text}<span class="opt-sub">${o.sub}</span></span>
-        </button>
-      `).join('')}
-    </div>
-  `;
-  for (let i = 0; i < 5; i++) {
-    const s = document.getElementById('step' + i);
-    s.className = 'quiz-step' + (i < currentQ ? ' done' : i === currentQ ? ' active' : '');
-  }
-  document.getElementById('stepLabel').textContent = `Frage ${currentQ + 1} / 5`;
-  document.getElementById('backBtn').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
-  document.getElementById('nextBtn').disabled = answers[currentQ] === undefined;
-  document.getElementById('nextBtn').textContent = currentQ === 4 ? 'Ergebnis anzeigen ✨' : 'Weiter →';
+        </button>`).join('')}
+    </div>`;
+  for (let i=0;i<5;i++) document.getElementById('step'+i).className='quiz-step'+(i<currentQ?' done':i===currentQ?' active':'');
+  document.getElementById('stepLabel').textContent=`Frage ${currentQ+1} / 5`;
+  document.getElementById('backBtn').style.visibility=currentQ>0?'visible':'hidden';
+  document.getElementById('nextBtn').disabled=answers[currentQ]===undefined;
+  document.getElementById('nextBtn').textContent=currentQ===4?'Ergebnis anzeigen ✨':'Weiter →';
 }
 
-function selectOpt(idx, val) {
-  answers[currentQ] = { idx, val };
-  document.querySelectorAll('.quiz-opt').forEach((el, i) => el.classList.toggle('selected', i === idx));
-  document.getElementById('nextBtn').disabled = false;
+function selectOpt(idx,val) {
+  answers[currentQ]={idx,val};
+  document.querySelectorAll('.quiz-opt').forEach((el,i)=>el.classList.toggle('selected',i===idx));
+  document.getElementById('nextBtn').disabled=false;
 }
 
-function nextQ() {
-  if (answers[currentQ] === undefined) return;
-  if (currentQ < 4) { currentQ++; renderQuestion(); }
-  else showResult();
+function nextQ() { if(answers[currentQ]===undefined)return; if(currentQ<4){currentQ++;renderQuestion();}else showResult(); }
+function prevQ() { if(currentQ>0){currentQ--;renderQuestion();} }
+
+function buildWhy(breed,vals) {
+  const [activity,housing,kids,xp]=vals;
+  const parts=[];
+  if(breed.scores[activity]>=2){const m={low:'Für deinen entspannten Alltag ist das ideal',med:'Passt gut zu deinem moderaten Aktivitätslevel',high:'Als aktiver Mensch wirst du hier auf deine Kosten kommen',xhigh:'Diese Rasse hält mit deinem extrem aktiven Lebensstil problemlos mit'};parts.push(m[activity]||'');}
+  if(breed.scores[housing]>=2){const m={apt:'und fühlt sich auch in der Wohnung pudelwohl',house:'und gedeiht hervorragend mit Garten',rural:'und liebt das Leben auf dem Land',semi:'und kommt gut mit deiner Wohnsituation zurecht'};parts.push(m[housing]||'');}
+  if(breed.scores[kids]>=2){const m={toddler:'– bekannt für seine Sanftheit mit kleinen Kindern',kids:'– ideal für Familien mit Kindern',teen:'– unkompliziert im Umgang mit Teenagern',nokids:'– perfekt für Paare oder Einzelpersonen'};parts.push(m[kids]||'');}
+  const s1=parts.filter(Boolean).join(' ')+'.';
+  const xpNote=(xp==='xp0'||xp==='xp1')&&breed.scores[xp]>=2?'Als Einsteiger wirst du gut mit dieser Rasse zurechtkommen – sie verzeiht Lernfehler.':((xp==='xp2'||xp==='xp3')&&breed.scores[xp]>=2?'Deine Erfahrung kommt dieser Rasse zugute.':'');
+  return [s1,xpNote].filter(Boolean).join(' ');
 }
 
-function prevQ() {
-  if (currentQ > 0) { currentQ--; renderQuestion(); }
-}
-
-function buildWhy(breed, vals) {
-  const activity = vals[0], housing = vals[1], kids = vals[2], xp = vals[3], prio = vals[4];
-  const parts = [];
-  if (breed.scores[activity] >= 2) {
-    const map = { low:'Für deinen entspannten Alltag ist das ideal', med:'Passt gut zu deinem moderaten Aktivitätslevel', high:'Als aktiver Mensch wirst du hier auf deine Kosten kommen', xhigh:'Diese Rasse hält mit deinem extrem aktiven Lebensstil problemlos mit' };
-    parts.push(map[activity] || '');
-  }
-  if (breed.scores[housing] >= 2) {
-    const map = { apt:'und fühlt sich auch in der Wohnung pudelwohl', house:'und gedeiht hervorragend mit Garten', rural:'und liebt das Leben auf dem Land', semi:'und kommt gut mit deiner Wohnsituation zurecht' };
-    parts.push(map[housing] || '');
-  }
-  if (breed.scores[kids] >= 2) {
-    const map = { toddler:'– bekannt für seine Sanftheit mit kleinen Kindern', kids:'– ideal für Familien mit Kindern', teen:'– unkompliziert im Umgang mit Teenagern', nokids:'– perfekt für Paare oder Einzelpersonen' };
-    parts.push(map[kids] || '');
-  }
-  const sentence1 = parts.filter(Boolean).join(' ') + '.';
-  const xpNote = (xp === 'xp0' || xp === 'xp1') && breed.scores[xp] >= 2 ? 'Als Einsteiger wirst du gut mit dieser Rasse zurechtkommen – sie verzeiht Lernfehler.' : (xp === 'xp2' || xp === 'xp3') && breed.scores[xp] >= 2 ? 'Deine Erfahrung kommt dieser Rasse zugute.' : '';
-  return [sentence1, xpNote].filter(Boolean).join(' ');
-}
-
-function renderBreedCard(item, rank, idx) {
-  const b = item.breed;
-  const pct = Math.min(97, Math.round(58 + (item.score / 15) * 39));
-  const vals = [answers[0]?.val, answers[1]?.val, answers[2]?.val, answers[3]?.val, answers[4]?.val];
-  const why = buildWhy(b, vals);
-  return `
-    <div class="result-card ${rank === 2 ? 'secondary' : ''}">
-      <div class="result-rank rank-${rank}">${rank === 1 ? '★ Bester Match' : '✦ Ebenfalls passend'}</div>
-      <div class="result-header">
-        <span class="result-emoji">${b.emoji}</span>
-        <div class="result-header-text">
-          <h4>${b.name}</h4>
-          <div class="result-match-row">
-            <span class="result-pct">${pct}%</span>
-            <div class="result-bar"><div class="result-bar-fill" id="bar${idx}" style="width:0"></div></div>
-          </div>
+function renderBreedCard(item,rank,idx) {
+  const b=item.breed;
+  const pct=Math.min(97,Math.round(58+(item.score/15)*39));
+  const vals=[answers[0]?.val,answers[1]?.val,answers[2]?.val,answers[3]?.val,answers[4]?.val];
+  const why=buildWhy(b,vals);
+  return `<div class="result-card${rank===2?' secondary':''}">
+    <div class="result-rank rank-${rank}">${rank===1?'★ Bester Match':'✦ Ebenfalls passend'}</div>
+    <div class="result-header"><span class="result-emoji">${b.emoji}</span>
+      <div class="result-header-text"><h4>${b.name}</h4>
+        <div class="result-match-row"><span class="result-pct">${pct}%</span>
+          <div class="result-bar"><div class="result-bar-fill" id="bar${idx}" style="width:0"></div></div>
         </div>
       </div>
-      <div class="result-body">
-        <div class="result-traits">${b.traits.map(t => `<span class="result-trait">${t}</span>`).join('')}</div>
-        <p class="result-desc">${b.desc}${why ? ' ' + why : ''}</p>
-      </div>
-    </div>`;
+    </div>
+    <div class="result-body">
+      <div class="result-traits">${b.traits.map(t=>`<span class="result-trait">${t}</span>`).join('')}</div>
+      <p class="result-desc">${b.desc}${why?' '+why:''}</p>
+    </div>
+  </div>`;
 }
 
 function showResult() {
-  const vals = [answers[0]?.val, answers[1]?.val, answers[2]?.val, answers[3]?.val, answers[4]?.val];
-  const scored = breeds.map(b => ({ breed: b, score: vals.reduce((s, v) => s + (b.scores[v] || 0), 0) }))
-    .sort((a, b) => b.score - a.score);
-  const top2 = scored.slice(0, 2);
-
-  document.getElementById('quizResult').innerHTML = `
-    <div class="result-intro">
-      <h3>Deine 2 perfekten Matches</h3>
-      <p>Basierend auf deinen Antworten – von 50 Rassen für dich ausgewählt</p>
-    </div>
-    <div class="result-cards-grid">
-      ${renderBreedCard(top2[0], 1, 0)}
-      ${renderBreedCard(top2[1], 2, 1)}
-    </div>
+  const vals=[answers[0]?.val,answers[1]?.val,answers[2]?.val,answers[3]?.val,answers[4]?.val];
+  const scored=breeds.map(b=>({breed:b,score:vals.reduce((s,v)=>s+(b.scores[v]||0),0)})).sort((a,b)=>b.score-a.score);
+  const top2=scored.slice(0,2);
+  document.getElementById('quizResult').innerHTML=`
+    <div class="result-intro"><h3>Deine 2 perfekten Matches</h3><p>Basierend auf deinen Antworten – von 50 Rassen für dich ausgewählt</p></div>
+    <div class="result-cards-grid">${renderBreedCard(top2[0],1,0)}${renderBreedCard(top2[1],2,1)}</div>
     <div class="result-cta-box">
       <p>Alles über <strong>${top2[0].breed.name}</strong> & <strong>${top2[1].breed.name}</strong> – Charakter, Pflege, Kosten & 48 weitere Rassen im Vergleich?</p>
-      <a class="btn-primary" href="#angebot" style="text-decoration:none">Ratgeber holen – nur 9,90€ →</a>
+      <a class="btn-gold" href="#angebot">Ratgeber holen – nur 9,90€ →</a>
     </div>
-    <button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>
-  `;
-
+    <button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>`;
   document.getElementById('quizQuestions').classList.add('hide');
-  document.getElementById('quizNav').style.display = 'none';
-  document.getElementById('quizProgress').style.opacity = '0.4';
+  document.getElementById('quizNav').style.display='none';
+  document.getElementById('quizProgress').style.opacity='0.4';
   document.getElementById('quizResult').classList.add('show');
-  setTimeout(() => {
-    const pct0 = Math.min(97, Math.round(58 + (top2[0].score / 15) * 39));
-    const pct1 = Math.min(97, Math.round(58 + (top2[1].score / 15) * 39));
-    document.getElementById('bar0').style.width = pct0 + '%';
-    document.getElementById('bar1').style.width = pct1 + '%';
-  }, 200);
+  setTimeout(()=>{
+    const p0=Math.min(97,Math.round(58+(top2[0].score/15)*39));
+    const p1=Math.min(97,Math.round(58+(top2[1].score/15)*39));
+    document.getElementById('bar0').style.width=p0+'%';
+    document.getElementById('bar1').style.width=p1+'%';
+  },200);
 }
 
 function resetQuiz() {
-  currentQ = 0; answers = {};
+  currentQ=0;answers={};
   document.getElementById('quizQuestions').classList.remove('hide');
-  document.getElementById('quizNav').style.display = 'flex';
-  document.getElementById('quizProgress').style.opacity = '1';
+  document.getElementById('quizNav').style.display='flex';
+  document.getElementById('quizProgress').style.opacity='1';
   document.getElementById('quizResult').classList.remove('show');
   renderQuestion();
 }
 
-function toggleFaq(btn) { btn.parentElement.classList.toggle('open'); }
+function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
 
-const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 renderQuestion();
 </script>
 </body>
