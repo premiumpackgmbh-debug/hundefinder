@@ -6,7 +6,7 @@
 <title>Welcher Hund passt zu dir? – Der Rassenberater</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF7F2;
@@ -28,6 +28,23 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
 
+  /* SKIP LINK (accessibility) */
+  .skip-link { position: absolute; top: -100px; left: 16px; background: var(--terra); color: var(--white); padding: 10px 20px; border-radius: 8px; font-weight: 700; text-decoration: none; z-index: 9999; transition: top 0.2s; }
+  .skip-link:focus { top: 16px; }
+
+  /* FOCUS STYLES (accessibility) */
+  :focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; border-radius: 4px; }
+  button:focus-visible, a:focus-visible { outline: 3px solid var(--terra); outline-offset: 3px; }
+
+  /* CURSOR (ui-ux-pro-max: cursor-pointer rule) */
+  button, a, [role="button"] { cursor: pointer; }
+
+  /* REDUCED MOTION (ui-ux-pro-max: reduced-motion rule) */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -37,7 +54,7 @@
     height: 64px; display: flex; align-items: center; justify-content: space-between;
   }
   .nav-logo { font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.25rem; color: var(--terra); text-decoration: none; }
-  .nav-cta { background: var(--terra); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .nav-cta { background: var(--terra); color: var(--white); padding: 10px 22px; border-radius: 100px; font-size: 0.875rem; font-weight: 700; text-decoration: none; transition: background 0.2s, transform 0.15s; min-height: 44px; display: inline-flex; align-items: center; }
   .nav-cta:hover { background: var(--terra-dark); transform: translateY(-1px); }
 
   /* HERO */
@@ -138,7 +155,7 @@
   .quiz-q { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.5vw, 1.8rem); font-weight: 700; color: var(--cream); margin-bottom: 8px; line-height: 1.25; }
   .quiz-q-sub { font-size: 0.9rem; color: rgba(250,247,242,0.55); margin-bottom: 28px; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .quiz-opt { background: rgba(250,247,242,0.07); border: 1.5px solid rgba(250,247,242,0.15); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; color: var(--cream); font-size: 0.95rem; font-weight: 500; font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; }
+  .quiz-opt { background: rgba(250,247,242,0.07); border: 1.5px solid rgba(250,247,242,0.15); border-radius: 14px; padding: 16px 18px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px; color: var(--cream); font-size: 0.95rem; font-weight: 500; font-family: 'Plus Jakarta Sans', sans-serif; text-align: left; min-height: 64px; }
   .quiz-opt:hover { background: rgba(196,98,58,0.2); border-color: var(--terra-light); transform: translateY(-1px); }
   .quiz-opt.selected { background: var(--terra); border-color: var(--terra); box-shadow: 0 4px 20px rgba(196,98,58,0.4); }
   .opt-icon { font-size: 1.4rem; flex-shrink: 0; }
@@ -146,7 +163,7 @@
   .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; }
   .quiz-back { background: none; border: none; color: rgba(250,247,242,0.5); font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: color 0.2s; padding: 0; display: flex; align-items: center; gap: 6px; }
   .quiz-back:hover { color: var(--cream); }
-  .quiz-next { background: var(--terra); color: var(--white); border: none; padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; box-shadow: 0 4px 20px rgba(196,98,58,0.4); display: flex; align-items: center; gap: 8px; }
+  .quiz-next { background: var(--terra); color: var(--white); border: none; padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s; box-shadow: 0 4px 20px rgba(196,98,58,0.4); display: flex; align-items: center; gap: 8px; min-height: 48px; }
   .quiz-next:hover { background: var(--terra-dark); transform: translateY(-2px); }
   .quiz-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
@@ -302,16 +319,22 @@
 </head>
 <body>
 
-<nav>
-  <a class="nav-logo" href="#">🐾 HundeFinder</a>
-  <a class="nav-cta" href="#angebot">Ratgeber – 9,90€</a>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<nav role="navigation" aria-label="Hauptnavigation">
+  <a class="nav-logo" href="#" aria-label="HundeFinder - Startseite">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:inline-block;vertical-align:middle;margin-right:6px"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
+    HundeFinder
+  </a>
+  <a class="nav-cta" href="#angebot" aria-label="Ratgeber jetzt kaufen für 9,90 Euro">Ratgeber – 9,90€</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-content">
     <div class="hero-eyebrow">Kostenloser Rassenquiz</div>
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="hero-title">
       Welcher Hund<br>
       passt <em>wirklich</em><br>
       zu dir?
@@ -399,7 +422,7 @@
     </div>
     <div class="quiz-card">
       <div class="quiz-questions" id="quizQuestions"></div>
-      <div class="quiz-result" id="quizResult">
+      <div class="quiz-result" id="quizResult" aria-live="polite" aria-atomic="true">
         <div class="result-card">
           <div class="result-header">
             <div class="result-emoji" id="resultEmoji">🐕</div>
@@ -442,8 +465,8 @@
   <div class="breeds-grid">
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=450&fit=crop&auto=format" alt="Golden Retriever" onerror="this.style.opacity=0">
-        <span class="emoji-fb">🐕</span>
+        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=450&fit=crop&auto=format" alt="Golden Retriever" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
+        <span class="emoji-fb" aria-hidden="true">🐕</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
       <div class="breed-card-body">
@@ -458,7 +481,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=450&fit=crop&auto=format" alt="Französische Bulldogge" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=450&fit=crop&auto=format" alt="Französische Bulldogge" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb">🐩</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
@@ -474,7 +497,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1503256207526-0d5523f31580?w=600&h=450&fit=crop&auto=format" alt="Border Collie" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1503256207526-0d5523f31580?w=600&h=450&fit=crop&auto=format" alt="Border Collie" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb">🐕‍🦺</span>
         <span class="breed-difficulty diff-hard">Erfahren</span>
       </div>
@@ -490,7 +513,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&h=450&fit=crop&auto=format" alt="Deutscher Schäferhund" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&h=450&fit=crop&auto=format" alt="Deutscher Schäferhund" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb">🦮</span>
         <span class="breed-difficulty diff-medium">Fortgeschritten</span>
       </div>
@@ -506,7 +529,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&h=450&fit=crop&auto=format" alt="Beagle" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&h=450&fit=crop&auto=format" alt="Beagle" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb">🐶</span>
         <span class="breed-difficulty diff-easy">Anfänger</span>
       </div>
@@ -522,7 +545,7 @@
     </div>
     <div class="breed-card reveal">
       <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1617895153857-82fe0c43621b?w=600&h=450&fit=crop&auto=format" alt="Siberian Husky" onerror="this.style.opacity=0">
+        <img src="https://images.unsplash.com/photo-1617895153857-82fe0c43621b?w=600&h=450&fit=crop&auto=format" alt="Siberian Husky" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
         <span class="emoji-fb">🐾</span>
         <span class="breed-difficulty diff-hard">Erfahren</span>
       </div>
@@ -683,6 +706,8 @@
   <a class="btn-primary" href="#">Ratgeber jetzt für 9,90€ kaufen →</a>
   <p class="final-cta-small">Sofort-Download · 30 Tage Geld-zurück-Garantie · Einmalzahlung</p>
 </section>
+
+</main>
 
 <footer>
   <a class="nav-logo" href="#">🐾 HundeFinder</a>
