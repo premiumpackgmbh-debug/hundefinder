@@ -171,22 +171,31 @@
   .quiz-result { display: none; }
   .quiz-result.show { display: block; }
   .quiz-questions.hide { display: none; }
-  .result-card { background: var(--cream); border-radius: 24px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.3); }
-  .result-header { background: var(--terra); padding: 28px 36px; display: flex; align-items: center; gap: 16px; }
-  .result-emoji { font-size: 3.5rem; }
-  .result-header-text h3 { font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
-  .result-header-text p { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
-  .result-body { padding: 28px 36px; }
-  .result-match-label { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; color: var(--brown-mid); margin-bottom: 8px; }
-  .result-bar { height: 8px; background: var(--sand); border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
-  .result-bar-fill { height: 100%; background: linear-gradient(90deg, var(--terra), var(--gold)); border-radius: 8px; transition: width 1s cubic-bezier(0.4, 0, 0.2, 1); width: 0; }
-  .result-traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-  .result-trait { background: var(--beige); border: 1px solid var(--sand); padding: 4px 12px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; color: var(--brown-mid); }
-  .result-cta-box { background: var(--beige); border-radius: 16px; padding: 20px; text-align: center; }
-  .result-cta-box p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
-  .result-cta-box strong { color: var(--brown); }
-  .result-retake { background: none; border: none; color: rgba(250,247,242,0.5); font-size: 0.85rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 16px; text-decoration: underline; display: block; text-align: center; }
-  .result-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+  .result-intro { text-align: center; margin-bottom: 20px; }
+  .result-intro h3 { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 900; color: var(--cream); margin-bottom: 4px; }
+  .result-intro p { font-size: 0.85rem; color: rgba(250,247,242,0.5); }
+  .result-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  .result-card { background: var(--cream); border-radius: 18px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+  .result-card.secondary { opacity: 0.9; }
+  .result-rank { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 14px; display: flex; align-items: center; gap: 5px; }
+  .result-rank.rank-1 { background: var(--terra); color: var(--white); }
+  .result-rank.rank-2 { background: var(--sand); color: var(--brown-mid); }
+  .result-header { padding: 14px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--sand); }
+  .result-emoji { font-size: 2rem; flex-shrink: 0; }
+  .result-header-text h4 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--brown); line-height: 1.2; }
+  .result-match-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+  .result-pct { font-size: 0.78rem; font-weight: 700; color: var(--terra); white-space: nowrap; }
+  .result-bar { flex: 1; height: 4px; background: var(--sand); border-radius: 4px; overflow: hidden; }
+  .result-bar-fill { height: 100%; background: linear-gradient(90deg, var(--terra), var(--gold)); border-radius: 4px; transition: width 1s cubic-bezier(0.4,0,0.2,1); width: 0; }
+  .result-body { padding: 14px 16px; }
+  .result-traits { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+  .result-trait { background: var(--beige); border: 1px solid var(--sand); padding: 3px 9px; border-radius: 100px; font-size: 0.73rem; font-weight: 600; color: var(--brown-mid); }
+  .result-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+  .result-cta-box { background: rgba(250,247,242,0.06); border: 1px solid rgba(250,247,242,0.12); border-radius: 14px; padding: 18px; text-align: center; margin-bottom: 14px; }
+  .result-cta-box p { font-size: 0.88rem; color: rgba(250,247,242,0.65); line-height: 1.6; margin-bottom: 14px; }
+  .result-cta-box strong { color: var(--cream); }
+  .result-retake { background: none; border: none; color: rgba(250,247,242,0.35); font-size: 0.82rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: underline; display: block; text-align: center; width: 100%; }
+  @media (max-width: 560px) { .result-cards-grid { grid-template-columns: 1fr; } }
 
   /* BREEDS */
   .breeds-section { background: var(--beige); }
@@ -422,31 +431,7 @@
     </div>
     <div class="quiz-card">
       <div class="quiz-questions" id="quizQuestions"></div>
-      <div class="quiz-result" id="quizResult" aria-live="polite" aria-atomic="true">
-        <div class="result-card">
-          <div class="result-header">
-            <div class="result-emoji" id="resultEmoji">🐕</div>
-            <div class="result-header-text">
-              <h3 id="resultBreed">Golden Retriever</h3>
-              <p>Dein idealer Begleiter</p>
-            </div>
-          </div>
-          <div class="result-body">
-            <div class="result-match-label">
-              <span>Übereinstimmung mit deinem Lebensstil</span>
-              <span id="matchPct">92%</span>
-            </div>
-            <div class="result-bar"><div class="result-bar-fill" id="matchBar"></div></div>
-            <div class="result-traits" id="resultTraits"></div>
-            <p class="result-desc" id="resultDesc"></p>
-            <div class="result-cta-box">
-              <p>Alles über <strong id="resultBreed2">deinen Match</strong> – Charakter, Pflege, Kosten & 57 weitere Rassen im Vergleich?</p>
-              <a class="btn-primary" href="#angebot" style="text-decoration:none">Ratgeber holen – nur 9,90€ →</a>
-            </div>
-            <button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>
-          </div>
-        </div>
-      </div>
+      <div class="quiz-result" id="quizResult" aria-live="polite" aria-atomic="true"></div>
       <div class="quiz-nav" id="quizNav">
         <button class="quiz-back" id="backBtn" onclick="prevQ()" style="visibility:hidden">← Zurück</button>
         <button class="quiz-next" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
@@ -1015,27 +1000,83 @@ function prevQ() {
   if (currentQ > 0) { currentQ--; renderQuestion(); }
 }
 
+function buildWhy(breed, vals) {
+  const activity = vals[0], housing = vals[1], kids = vals[2], xp = vals[3], prio = vals[4];
+  const parts = [];
+  if (breed.scores[activity] >= 2) {
+    const map = { low:'Für deinen entspannten Alltag ist das ideal', med:'Passt gut zu deinem moderaten Aktivitätslevel', high:'Als aktiver Mensch wirst du hier auf deine Kosten kommen', xhigh:'Diese Rasse hält mit deinem extrem aktiven Lebensstil problemlos mit' };
+    parts.push(map[activity] || '');
+  }
+  if (breed.scores[housing] >= 2) {
+    const map = { apt:'und fühlt sich auch in der Wohnung pudelwohl', house:'und gedeiht hervorragend mit Garten', rural:'und liebt das Leben auf dem Land', semi:'und kommt gut mit deiner Wohnsituation zurecht' };
+    parts.push(map[housing] || '');
+  }
+  if (breed.scores[kids] >= 2) {
+    const map = { toddler:'– bekannt für seine Sanftheit mit kleinen Kindern', kids:'– ideal für Familien mit Kindern', teen:'– unkompliziert im Umgang mit Teenagern', nokids:'– perfekt für Paare oder Einzelpersonen' };
+    parts.push(map[kids] || '');
+  }
+  const sentence1 = parts.filter(Boolean).join(' ') + '.';
+  const xpNote = (xp === 'xp0' || xp === 'xp1') && breed.scores[xp] >= 2 ? 'Als Einsteiger wirst du gut mit dieser Rasse zurechtkommen – sie verzeiht Lernfehler.' : (xp === 'xp2' || xp === 'xp3') && breed.scores[xp] >= 2 ? 'Deine Erfahrung kommt dieser Rasse zugute.' : '';
+  return [sentence1, xpNote].filter(Boolean).join(' ');
+}
+
+function renderBreedCard(item, rank, idx) {
+  const b = item.breed;
+  const pct = Math.min(97, Math.round(58 + (item.score / 15) * 39));
+  const vals = [answers[0]?.val, answers[1]?.val, answers[2]?.val, answers[3]?.val, answers[4]?.val];
+  const why = buildWhy(b, vals);
+  return `
+    <div class="result-card ${rank === 2 ? 'secondary' : ''}">
+      <div class="result-rank rank-${rank}">${rank === 1 ? '★ Bester Match' : '✦ Ebenfalls passend'}</div>
+      <div class="result-header">
+        <span class="result-emoji">${b.emoji}</span>
+        <div class="result-header-text">
+          <h4>${b.name}</h4>
+          <div class="result-match-row">
+            <span class="result-pct">${pct}%</span>
+            <div class="result-bar"><div class="result-bar-fill" id="bar${idx}" style="width:0"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="result-body">
+        <div class="result-traits">${b.traits.map(t => `<span class="result-trait">${t}</span>`).join('')}</div>
+        <p class="result-desc">${b.desc}${why ? ' ' + why : ''}</p>
+      </div>
+    </div>`;
+}
+
 function showResult() {
   const vals = [answers[0]?.val, answers[1]?.val, answers[2]?.val, answers[3]?.val, answers[4]?.val];
-  const scored = breeds.map(b => ({
-    breed: b,
-    score: vals.reduce((s, v) => s + (b.scores[v] || 0), 0)
-  })).sort((a, b) => b.score - a.score);
-  const w = scored[0];
-  const pct = Math.min(97, Math.round(58 + (w.score / 15) * 39));
+  const scored = breeds.map(b => ({ breed: b, score: vals.reduce((s, v) => s + (b.scores[v] || 0), 0) }))
+    .sort((a, b) => b.score - a.score);
+  const top2 = scored.slice(0, 2);
 
-  document.getElementById('resultEmoji').textContent = w.breed.emoji;
-  document.getElementById('resultBreed').textContent = w.breed.name;
-  document.getElementById('resultBreed2').textContent = w.breed.name;
-  document.getElementById('matchPct').textContent = pct + '%';
-  document.getElementById('resultDesc').textContent = w.breed.desc;
-  document.getElementById('resultTraits').innerHTML = w.breed.traits.map(t => `<span class="result-trait">${t}</span>`).join('');
+  document.getElementById('quizResult').innerHTML = `
+    <div class="result-intro">
+      <h3>Deine 2 perfekten Matches</h3>
+      <p>Basierend auf deinen Antworten – von 50 Rassen für dich ausgewählt</p>
+    </div>
+    <div class="result-cards-grid">
+      ${renderBreedCard(top2[0], 1, 0)}
+      ${renderBreedCard(top2[1], 2, 1)}
+    </div>
+    <div class="result-cta-box">
+      <p>Alles über <strong>${top2[0].breed.name}</strong> & <strong>${top2[1].breed.name}</strong> – Charakter, Pflege, Kosten & 48 weitere Rassen im Vergleich?</p>
+      <a class="btn-primary" href="#angebot" style="text-decoration:none">Ratgeber holen – nur 9,90€ →</a>
+    </div>
+    <button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>
+  `;
 
   document.getElementById('quizQuestions').classList.add('hide');
   document.getElementById('quizNav').style.display = 'none';
   document.getElementById('quizProgress').style.opacity = '0.4';
   document.getElementById('quizResult').classList.add('show');
-  setTimeout(() => { document.getElementById('matchBar').style.width = pct + '%'; }, 200);
+  setTimeout(() => {
+    const pct0 = Math.min(97, Math.round(58 + (top2[0].score / 15) * 39));
+    const pct1 = Math.min(97, Math.round(58 + (top2[1].score / 15) * 39));
+    document.getElementById('bar0').style.width = pct0 + '%';
+    document.getElementById('bar1').style.width = pct1 + '%';
+  }, 200);
 }
 
 function resetQuiz() {
