@@ -155,13 +155,7 @@
     margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-soft);
     animation: fadeUp 0.5s 0.32s ease both;
   }
-  .hero-avatars { display: flex; }
-  .hero-avatars span { width: 34px; height: 34px; border-radius: 50%; border: 2.5px solid var(--white); background: var(--cream); margin-left: -9px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 800; letter-spacing: 0.02em; color: var(--forest); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-  .hero-avatars .av-1 { background: var(--forest-soft); }
-  .hero-avatars .av-2 { background: var(--gold-bg); color: #7A5C0A; }
-  .hero-avatars .av-3 { background: #EDE8FF; color: #4C1D95; }
-  .hero-avatars .av-4 { background: var(--forest); color: var(--white); }
-  .hero-avatars span:first-child { margin-left: 0; }
+  .hero-trust-icon { width: 34px; height: 34px; border-radius: 50%; background: var(--forest-soft); color: var(--forest); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .hero-trust-text { font-size: 0.85rem; color: var(--ink-muted); }
   .hero-trust-text strong { color: var(--ink); font-variant-numeric: tabular-nums; }
 
@@ -447,20 +441,13 @@
   .offer-cta-main:hover { background: #f5b740; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(244,165,28,0.5); }
   .offer-trust { font-size: 0.78rem; color: rgba(255,255,255,0.3); text-align: center; letter-spacing: 0.02em; margin: 0; }
 
-  /* ── TESTIMONIALS ── */
-  .testimonials-section { background: var(--off-white); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
-  .testi-card { background: var(--white); border: 1px solid var(--border-soft); border-radius: 20px; padding: 26px; transition: transform 0.2s, box-shadow 0.2s; }
-  .testi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(27,67,50,0.08); }
-  .testi-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 14px; letter-spacing: 2px; }
-  .testi-text { font-size: 0.91rem; color: var(--ink-mid); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-  .testi-author { display: flex; align-items: center; gap: 10px; }
-  .testi-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--forest-soft); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.02em; color: var(--forest); flex-shrink: 0; }
-  .testi-avatar--gold { background: var(--gold-bg); color: #7A5C0A; }
-  .testi-avatar--lav { background: #EDE8FF; color: #4C1D95; }
-  .testi-name { font-weight: 700; font-size: 0.88rem; color: var(--ink); }
-  .testi-detail { font-size: 0.76rem; color: var(--ink-muted); margin-top: 2px; }
-  .testi-breed { display: inline-block; background: var(--forest-soft); color: var(--forest); padding: 2px 8px; border-radius: 100px; font-size: 0.7rem; font-weight: 600; margin-top: 4px; }
+  /* ── TRUST / FAKTEN ── */
+  .trust-section { background: var(--off-white); }
+  .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 52px; }
+  .trust-card { background: var(--white); border: 1px solid var(--border-soft); border-radius: 20px; padding: 30px 28px; transition: transform 0.2s, box-shadow 0.2s; }
+  .trust-card:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(27,67,50,0.08); }
+  .trust-card h3 { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; line-height: 1.25; }
+  .trust-card p { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.7; }
 
   /* ── GUARANTEE ── */
   .guarantee-wrap { background: var(--forest-soft); }
@@ -522,7 +509,7 @@
     .fake-ad { transform: none; max-width: 460px; }
     .offer-grid { grid-template-columns: 1fr; }
     .book-visual { margin-bottom: 40px; }
-    .testimonials-grid { grid-template-columns: 1fr; }
+    .trust-grid { grid-template-columns: 1fr; }
     .guarantee-section { flex-direction: column; text-align: center; }
   }
   @media (max-width: 720px) {
@@ -569,11 +556,9 @@
       <a class="btn-ghost" href="#warnsignale">Die 5 Warnsignale ansehen</a>
     </div>
     <div class="hero-trust">
-      <div class="hero-avatars" aria-hidden="true">
-        <span class="av-1">SM</span><span class="av-2">MT</span><span class="av-3">JK</span><span class="av-4">+</span>
-      </div>
+      <div class="hero-trust-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
       <div class="hero-trust-text">
-        <strong>2.847 Menschen</strong> haben ihren Hund schon gefunden
+        <strong>Kostenlos &amp; ohne Anmeldung</strong> – deine Antworten bleiben in deinem Browser
       </div>
     </div>
   </div>
@@ -871,49 +856,28 @@
   </div>
 </section>
 
-<!-- ── TESTIMONIALS ── -->
-<section class="section testimonials-section">
+<!-- ── TRUST / FAKTEN ── -->
+<section class="section trust-section">
   <div class="section-center reveal">
-    <div class="label-tag">Echte Erfahrungen</div>
-    <h2 class="section-title">Was andere sagen</h2>
-    <p class="section-sub">Über 2.800 Menschen haben mit Welpenlotse ihren Hund gefunden – und sicher gekauft.</p>
+    <div class="label-tag">Ehrlichkeit zuerst</div>
+    <h2 class="section-title">Darauf kannst du dich verlassen</h2>
+    <p class="section-sub">Welpenlotse ist neu gestartet. Statt gekaufter Bewertungen bekommst du das, was wirklich zählt: überprüfbare Fakten.</p>
   </div>
-  <div class="testimonials-grid">
-    <div class="testi-card reveal">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">„Ich wollte ursprünglich einen Husky – das Quiz hat mir gezeigt, warum das eine Katastrophe geworden wäre. Jetzt habe ich einen Labrador und es ist die beste Entscheidung meines Lebens.“</div>
-      <div class="testi-author">
-        <div class="testi-avatar">SM</div>
-        <div>
-          <div class="testi-name">Sarah M.</div>
-          <div class="testi-detail">Ersthundehalterin · München</div>
-          <span class="testi-breed">Jetzt: Labrador Retriever</span>
-        </div>
-      </div>
+  <div class="trust-grid">
+    <div class="trust-card reveal">
+      <div class="problem-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></svg></div>
+      <h3>Mit Quellen belegt</h3>
+      <p>Jede harte Angabe im Schutzpaket – Gesetze, Fristen, Pflicht-Gesundheitstests – stützt sich auf VDH, Deutschen Tierschutzbund, Verbraucherzentrale und Gesetzestexte. Die Quellen stehen in jedem Kapitel.</p>
     </div>
-    <div class="testi-card reveal">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">„Endlich ein Ratgeber, der ehrlich ist! Kein Zuckerguss, keine Werbung. Nur klare Fakten. Ich habe ihn direkt an zwei Freunde weiterempfohlen.“</div>
-      <div class="testi-author">
-        <div class="testi-avatar testi-avatar--gold">MT</div>
-        <div>
-          <div class="testi-name">Markus T.</div>
-          <div class="testi-detail">Vater von zwei Kindern · Hamburg</div>
-          <span class="testi-breed">Jetzt: Golden Retriever</span>
-        </div>
-      </div>
+    <div class="trust-card reveal">
+      <div class="problem-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+      <h3>Unabhängig &amp; werbefrei</h3>
+      <p>Wir verkaufen keine Welpen und erhalten keine Provisionen von Züchtern oder Vermittlungsportalen. Keine Werbung, kein Sponsoring – damit der Ratgeber ehrlich bleiben kann.</p>
     </div>
-    <div class="testi-card reveal">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">„Der Anzeigen-Check alleine war das Geld wert. Ich habe dadurch einen Welpen-Schieber erkannt und bin zur richtigen Züchterin gegangen.“</div>
-      <div class="testi-author">
-        <div class="testi-avatar testi-avatar--lav">JK</div>
-        <div>
-          <div class="testi-name">Julia K.</div>
-          <div class="testi-detail">Hundeinteressierte · Berlin</div>
-          <span class="testi-breed">Jetzt: Französische Bulldogge</span>
-        </div>
-      </div>
+    <div class="trust-card reveal">
+      <div class="problem-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+      <h3>Deine Daten bleiben bei dir</h3>
+      <p>Keine Cookies, kein Tracking, keine Anmeldung. Deine Quiz-Antworten werden ausschließlich lokal in deinem Browser verarbeitet – und nie an uns übertragen.</p>
     </div>
   </div>
 </section>
