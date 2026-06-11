@@ -421,7 +421,10 @@
   .book-cover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(244,165,28,0.15) 0%, transparent 60%); pointer-events: none; }
   .book-title { font-family: 'Fraunces', serif; font-size: 1.65rem; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 14px; position: relative; z-index: 1; }
   .book-subtitle { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.55; position: relative; z-index: 1; }
-  .book-dog-icon { font-size: 5rem; display: block; text-align: right; margin-top: 28px; position: relative; z-index: 1; }
+  .book-dog-icon { display: flex; justify-content: flex-end; align-items: flex-end; margin-top: 28px; position: relative; z-index: 1; height: 88px; }
+  .book-dog-icon svg { fill: var(--gold); height: auto; }
+  .bdp-1 { width: 42px; transform: rotate(-20deg) translateY(-26px); opacity: 0.8; }
+  .bdp-2 { width: 60px; transform: rotate(12deg); margin-left: -4px; }
   .offer-price-display { text-align: center; }
   .offer-price-was { font-size: 0.85rem; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: 4px; }
   .offer-price-main { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 900; color: var(--gold); line-height: 1; letter-spacing: -0.04em; }
@@ -667,7 +670,7 @@
           <div class="book-cover">
             <div class="book-title">Welpenkauf-<br><em style="color:var(--gold);font-weight:400">Schutzpaket.</em></div>
             <div class="book-subtitle">5 Teile · 8 Rassen im Detail · 8 Checklisten zum Ausdrucken</div>
-            <span class="book-dog-icon" aria-hidden="true">🐾</span>
+            <span class="book-dog-icon" aria-hidden="true"><svg class="bdp bdp-1" viewBox="0 0 122 126"><ellipse cx="46" cy="22" rx="15.5" ry="20" transform="rotate(-8 46 22)"/><ellipse cx="76" cy="22" rx="15.5" ry="20" transform="rotate(8 76 22)"/><ellipse cx="15" cy="46" rx="12.5" ry="16.5" transform="rotate(-24 15 46)"/><ellipse cx="107" cy="46" rx="12.5" ry="16.5" transform="rotate(24 107 46)"/><path d="M61 124C38 103 23 88 23 70C23 57 32 48 44 48C52 48 58 53 61 62C64 53 70 48 78 48C90 48 99 57 99 70C99 88 84 103 61 124Z"/></svg><svg class="bdp bdp-2" viewBox="0 0 122 126"><ellipse cx="46" cy="22" rx="15.5" ry="20" transform="rotate(-8 46 22)"/><ellipse cx="76" cy="22" rx="15.5" ry="20" transform="rotate(8 76 22)"/><ellipse cx="15" cy="46" rx="12.5" ry="16.5" transform="rotate(-24 15 46)"/><ellipse cx="107" cy="46" rx="12.5" ry="16.5" transform="rotate(24 107 46)"/><path d="M61 124C38 103 23 88 23 70C23 57 32 48 44 48C52 48 58 53 61 62C64 53 70 48 78 48C90 48 99 57 99 70C99 88 84 103 61 124Z"/></svg></span>
           </div>
         </div>
       </a>
