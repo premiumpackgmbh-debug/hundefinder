@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FFFFFF">
+<meta name="description" content="Finde in 5 Minuten heraus, welche Hunderasse wirklich zu dir passt – kostenloses Quiz mit 22 Fragen und 80 Rassen. Plus: der ehrliche Hunderassen-Ratgeber als PDF.">
+<meta property="og:title" content="HundeFinder – Welcher Hund passt zu dir?">
+<meta property="og:description" content="Kostenloses Rassen-Quiz: 22 Fragen, 80 Rassen, ehrliches Ergebnis – finde den Hund, der zu deinem Leben passt.">
+<meta property="og:type" content="website">
 <title>HundeFinder – Welcher Hund passt zu dir?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -301,25 +305,6 @@
   .breed-list li { display: flex; align-items: center; gap: 9px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); font-size: 0.82rem; break-inside: avoid; cursor: default; transition: color 0.18s ease, border-color 0.18s ease; letter-spacing: 0.01em; }
   .breed-list li:hover { color: var(--gold); border-color: rgba(244,165,28,0.2); }
   .bi-em { font-size: 1rem; flex-shrink: 0; opacity: 0.8; }
-  .reel-row { overflow: hidden; margin-bottom: 16px; }
-  .reel-track { display: flex; gap: 14px; width: max-content; animation: reel-fwd 52s linear infinite; will-change: transform; }
-  .reel-track.rev { animation-name: reel-fwd; animation-duration: 68s; animation-delay: -22s; }
-  .reel-track.slow { animation-duration: 88s; animation-delay: -44s; }
-  .reel-outer:hover .reel-track { animation-play-state: paused; }
-  @keyframes reel-fwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .reel-card { width: 168px; height: 212px; border-radius: 18px; overflow: hidden; position: relative; flex-shrink: 0; }
-  .reel-card-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; }
-  .reel-card-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 110% 80% at 28% 12%, rgba(255,255,255,0.13) 0%, transparent 55%); pointer-events: none; }
-  .reel-card:nth-child(5n+1) .reel-card-bg { background: linear-gradient(150deg, #7A2A08 0%, #B84010 50%, #D46018 100%); }
-  .reel-card:nth-child(5n+2) .reel-card-bg { background: linear-gradient(150deg, #0D3320 0%, #1A5C35 50%, #24824A 100%); }
-  .reel-card:nth-child(5n+3) .reel-card-bg { background: linear-gradient(150deg, #101828 0%, #1A2E52 50%, #243E72 100%); }
-  .reel-card:nth-child(5n+4) .reel-card-bg { background: linear-gradient(150deg, #440D2A 0%, #7A1A48 50%, #A42460 100%); }
-  .reel-card:nth-child(5n)   .reel-card-bg { background: linear-gradient(150deg, #0A2E3C 0%, #104E68 50%, #168090 100%); }
-  .reel-img { display: none; }
-  .reel-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 52px 13px 14px; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%); z-index: 3; }
-  .reel-name { color: #fff; font-family: 'Fraunces', serif; font-size: 0.87rem; font-weight: 700; line-height: 1.25; }
-  .reel-tag { display: inline-block; margin-top: 5px; font-size: 0.58rem; color: var(--gold); background: rgba(244,165,28,0.14); border: 1px solid rgba(244,165,28,0.28); border-radius: 100px; padding: 2px 7px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
-
   /* ── PRICE PERSPECTIVE ── */
   .price-persp { background: #0B1C10; padding: 88px 0 80px; }
   .price-persp-inner { max-width: 1100px; margin: 0 auto; padding: 0 clamp(32px,5vw,80px); }
@@ -361,7 +346,7 @@
   .offer-price-display { text-align: center; }
   .offer-price-was { font-size: 0.85rem; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: 4px; }
   .offer-price-main { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 900; color: var(--gold); line-height: 1; letter-spacing: -0.04em; }
-  .offer-price-main sup { font-size: 1.8rem; vertical-align: super; letter-spacing: 0; margin-right: 3px; }
+  .offer-price-main sup { font-size: 1.8rem; vertical-align: super; letter-spacing: 0; margin-left: 6px; }
   .offer-price-type { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
   .offer-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.025em; color: var(--white); margin-bottom: 20px; text-wrap: balance; }
   .offer-headline em { font-style: italic; color: var(--gold); font-weight: 300; }
@@ -407,7 +392,7 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--forest); }
   .faq-item.open .faq-q { color: var(--forest); }
   .faq-a { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
-  .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
+  .faq-item.open .faq-a { max-height: 600px; padding-bottom: 20px; }
 
   /* ── FINAL CTA ── */
   .final-cta { background: var(--forest); padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 80px); text-align: center; position: relative; overflow: hidden; }
@@ -451,7 +436,6 @@
   }
   @media (max-width: 720px) {
     .problem-grid { grid-template-columns: 1fr; }
-    .reel-card { width: 144px; height: 184px; border-radius: 14px; }
     .quiz-options { grid-template-columns: 1fr; }
   }
   @media (max-width: 500px) {
@@ -468,7 +452,7 @@
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg>
     HundeFinder
   </a>
-  <a class="nav-cta" href="#angebot" aria-label="Ratgeber jetzt kaufen für 9,90 Euro">Ratgeber – 9,90€</a>
+  <a class="nav-cta" href="#angebot" aria-label="Ratgeber jetzt kaufen für 9,90 Euro">Ratgeber – 9,90 €</a>
 </nav>
 
 <main id="main">
@@ -476,14 +460,14 @@
 <!-- ── HERO ── -->
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-left">
-    <div class="hero-eyebrow">✦ Kostenloser Rassenquiz</div>
+    <div class="hero-eyebrow">✦ Kostenloses Rassenquiz</div>
     <h1 class="hero-title" id="hero-title">
       Welcher Hund<br>
       passt <em>wirklich</em><br>
       zu dir?
     </h1>
     <p class="hero-sub">
-      Mach den kostenlosen 2-Minuten-Quiz und finde heraus, welche Hunderasse perfekt zu deinem Leben passt –
+      Mach das kostenlose 5-Minuten-Quiz und finde heraus, welche Hunderasse perfekt zu deinem Leben passt –
       <strong>bevor du eine Entscheidung triffst, die 15 Jahre dauert.</strong>
     </p>
     <div class="hero-actions">
@@ -508,20 +492,23 @@
         <div class="hero-result-name">Golden Retriever</div>
         <div class="hero-result-pct">94% Übereinstimmung</div>
         <div class="hero-result-bar"><div class="hero-result-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ── TICKER ── -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Kostenloses Rassenquiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Ratgeber für 9,90 € <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">22 Fragen · 5 Minuten <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">In 5 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Kostenloses Rassenquiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Ratgeber für 9,90 € <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">22 Fragen · 5 Minuten <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">In 5 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
@@ -552,7 +539,7 @@
       <div class="prob-num">03</div>
       <div class="problem-icon" aria-hidden="true">🔎</div>
       <h3>Infoschwemme ohne Antwort</h3>
-      <p>Hunderte Webseiten, widersprüchliche Ratschläge – dabei willst du nur wissen: Welcher Hund ist meiner?</p>
+      <p>Hunderte Webseiten, widersprüchliche Ratschläge – dabei willst du nur wissen: Welcher Hund passt zu mir?</p>
     </div>
   </div>
 </section>
@@ -562,14 +549,14 @@
   <div class="quiz-header">
     <div class="label-tag label-tag-light">Kostenlos · 5 Minuten · 22 Fragen</div>
     <h2 class="section-title section-title-light">Finde deinen perfekten Hund</h2>
-    <p class="section-sub section-sub-light">Beantworte 22 Fragen zu deinem Alltag – wir analysieren aus 80 Rassen dein persönliches Top-Match.</p>
+    <p class="section-sub section-sub-light">Beantworte 22 Fragen zu deinem Alltag – wir ermitteln aus 80 Rassen dein persönliches Top-Match.</p>
   </div>
   <div class="quiz-container">
     <div class="quiz-progress" id="quizProgress">
       <div class="quiz-steps-row" id="quizStepsRow"></div>
       <div class="quiz-progress-meta">
         <span class="quiz-step-category" id="stepCategory">Lebensstil</span>
-        <span class="quiz-step-label" id="stepLabel">Frage 1 / 20</span>
+        <span class="quiz-step-label" id="stepLabel">Frage 1 / 22</span>
       </div>
     </div>
     <div class="quiz-card">
@@ -578,6 +565,9 @@
       <div class="quiz-nav" id="quizNav">
         <button class="quiz-back" id="backBtn" onclick="prevQ()" style="visibility:hidden">← Zurück</button>
         <button class="quiz-next" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ── OFFER ── -->
@@ -592,14 +582,14 @@
         </div>
       </div>
       <div class="offer-price-display">
-        <div class="offer-price-was">statt 29€</div>
-        <div class="offer-price-main"><sup>€</sup>9,90</div>
+        <div class="offer-price-was">statt 29 €</div>
+        <div class="offer-price-main">9,90<sup>€</sup></div>
         <div class="offer-price-type">Einmalig · Sofort-Download · PDF</div>
       </div>
     </div>
     <div class="offer-content reveal">
       <div class="label-tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.15)">Komplettes Wissen, sofort verfügbar</div>
-      <h2 class="offer-headline">Alles was du brauchst,<br>um die <em>richtige</em> Wahl zu treffen.</h2>
+      <h2 class="offer-headline">Alles, was du brauchst,<br>um die <em>richtige</em> Wahl zu treffen.</h2>
       <p class="offer-lead">Dieser Ratgeber spart dir Wochen an Recherche, schützt vor teuren Fehlern und gibt dir die Sicherheit für diese 15-jährige Entscheidung.</p>
       <div class="value-stack">
         <div class="value-item">
@@ -623,9 +613,9 @@
           <div class="value-text"><strong>BONUS: Rassenkarte als PDF</strong> – 80 Rassen auf einen Blick zum Ausdrucken</div>
         </div>
       </div>
-      <div class="offer-urgency">🔥 Einführungsangebot: Nur 9,90€ statt 29€ – noch diese Woche</div>
+      <div class="offer-urgency">🔥 Einführungsangebot: Nur 9,90 € statt 29 € – noch diese Woche</div>
       <a class="offer-cta-main" href="#">Jetzt sofort herunterladen →</a>
-      <p class="offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks · 14-Tage-Rückgabe</p>
+      <p class="offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks</p>
     </div>
   </div>
 </section>
@@ -637,37 +627,37 @@
     <h2 class="price-persp-title">Kostet weniger als zwei Cappuccinos.<br><em>Schützt dich vor Jahren der falschen Entscheidung.</em></h2>
     <div class="pp-grid">
       <div>
-        <div class="pp-col-head">Für 9,90€ bekommst du sonst …</div>
+        <div class="pp-col-head">Für 9,90 € bekommst du sonst …</div>
         <div class="pp-item">
-          <div class="pp-item-price">~8€</div>
+          <div class="pp-item-price">~8 €</div>
           <div class="pp-item-body">
             <div class="pp-item-label">☕ Zwei Cappuccinos in der Stadt</div>
             <div class="pp-item-note">Getrunken, vergessen. In 20 Minuten.</div>
           </div>
         </div>
         <div class="pp-item">
-          <div class="pp-item-price">13,99€</div>
+          <div class="pp-item-price">13,99 €</div>
           <div class="pp-item-body">
             <div class="pp-item-label">📺 Netflix – ein einziger Monat</div>
             <div class="pp-item-note">Für Serien, die du in drei Wochen nicht mehr weißt.</div>
           </div>
         </div>
         <div class="pp-item">
-          <div class="pp-item-price">~7€</div>
+          <div class="pp-item-price">~7 €</div>
           <div class="pp-item-body">
             <div class="pp-item-label">🅿️ Parkgebühr Innenstadt, 2 Stunden</div>
             <div class="pp-item-note">Das Auto steht. Du zahlst. Nichts danach.</div>
           </div>
         </div>
         <div class="pp-item">
-          <div class="pp-item-price">~12€</div>
+          <div class="pp-item-price">~12 €</div>
           <div class="pp-item-body">
             <div class="pp-item-label">🍕 Eine Pizza beim Lieferdienst</div>
             <div class="pp-item-note">Glück für 30 Minuten, dann weg.</div>
           </div>
         </div>
         <div class="pp-item" style="border-bottom:none">
-          <div class="pp-item-price">~10€</div>
+          <div class="pp-item-price">~10 €</div>
           <div class="pp-item-body">
             <div class="pp-item-label">🎰 Drei Rubbellose</div>
             <div class="pp-item-note">Erwartungswert: Enttäuschung.</div>
@@ -680,15 +670,15 @@
           <div class="pp-damage-head">Reale Kosten bei schlechtem Match</div>
           <div class="pp-damage-row">
             <span class="pp-damage-what">Hundeschule wegen Verhaltens­problemen</span>
-            <span class="pp-damage-cost">800–1.500€</span>
+            <span class="pp-damage-cost">800–1.500 €</span>
           </div>
           <div class="pp-damage-row">
             <span class="pp-damage-what">Tier­verhaltens­therapeut (Einzel­stunden)</span>
-            <span class="pp-damage-cost">80–150€/Std</span>
+            <span class="pp-damage-cost">80–150 €/Std.</span>
           </div>
           <div class="pp-damage-row">
             <span class="pp-damage-what">Hund zurückgeben + neuen Hund kaufen</span>
-            <span class="pp-damage-cost">1.500–3.000€</span>
+            <span class="pp-damage-cost">1.500–3.000 €</span>
           </div>
           <div class="pp-damage-row">
             <span class="pp-damage-what">Umzug wegen falscher Größe / Energie</span>
@@ -703,7 +693,7 @@
       </div>
     </div>
     <div class="pp-kicker reveal">
-      <p class="pp-kicker-text">9,90€. Einmal. <strong>Für die richtige Entscheidung der nächsten 15 Jahre.</strong></p>
+      <p class="pp-kicker-text">9,90 €. Einmal. <strong>Für die richtige Entscheidung der nächsten 15 Jahre.</strong></p>
       <p class="pp-kicker-sub">Günstiger als ein Parkticket. Und 10.000× wertvoller.</p>
     </div>
   </div>
@@ -820,19 +810,19 @@
   <div class="testimonials-grid">
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"Ich wollte ursprünglich einen Husky – der Quiz hat mir gezeigt, warum das eine Katastrophe geworden wäre. Jetzt habe ich einen Labrador und es ist der beste Entschluss meines Lebens."</div>
+      <div class="testi-text">"Ich wollte ursprünglich einen Husky – das Quiz hat mir gezeigt, warum das eine Katastrophe geworden wäre. Jetzt habe ich einen Labrador und es ist der beste Entschluss meines Lebens."</div>
       <div class="testi-author">
         <div class="testi-avatar">👩</div>
         <div>
           <div class="testi-name">Sarah M.</div>
-          <div class="testi-detail">Erstmals-Hundebesitzerin · München</div>
+          <div class="testi-detail">Ersthundehalterin · München</div>
           <span class="testi-breed">Jetzt: Labrador Retriever</span>
         </div>
       </div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">"Endlich ein Ratgeber der ehrlich ist! Kein Zuckerguss, keine Werbung. Nur ehrliche Fakten. Ich habe ihn direkt an zwei Freunde weiterempfohlen."</div>
+      <div class="testi-text">"Endlich ein Ratgeber, der ehrlich ist! Kein Zuckerguss, keine Werbung. Nur ehrliche Fakten. Ich habe ihn direkt an zwei Freunde weiterempfohlen."</div>
       <div class="testi-author">
         <div class="testi-avatar">👨</div>
         <div>
@@ -852,6 +842,9 @@
           <div class="testi-detail">Hundeinteressierte · Berlin</div>
           <span class="testi-breed">Jetzt: Französische Bulldogge</span>
         </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ── GUARANTEE ── -->
@@ -869,39 +862,35 @@
 <section class="section faq-section">
   <div class="section-center reveal">
     <div class="label-tag">Häufige Fragen</div>
-    <h2 class="section-title">Alles was du wissen möchtest</h2>
+    <h2 class="section-title">Alles, was du wissen möchtest</h2>
   </div>
   <div class="faq-list">
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Wie erhalte ich den Ratgeber nach dem Kauf?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Wie erhalte ich den Ratgeber nach dem Kauf?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">Du erhältst sofort eine E-Mail mit dem Download-Link. Das PDF kannst du direkt auf Smartphone, Tablet oder Computer lesen – ohne spezielle App. Der Zugriff ist dauerhaft, du kannst ihn jederzeit erneut herunterladen.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Gibt es eine Geld-zurück-Garantie?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Ja. Wenn du innerhalb von 14 Tagen nach dem Kauf nicht zufrieden bist, erstatten wir dir den vollen Betrag – ohne Fragen, ohne Bürokratie. Einfach eine kurze E-Mail genügt. Wir sind überzeugt von dem, was wir anbieten, und das Risiko liegt vollständig bei uns.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Was unterscheidet diesen Ratgeber von kostenlosen Infos im Internet?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Was unterscheidet diesen Ratgeber von kostenlosen Infos im Internet?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">Kostenlose Artikel sind oft von Züchtern gesponsert, beschönigen Schwächen oder wiederholen dieselben Klischees. Dieser Ratgeber nennt auch die Schattenseiten einer Rasse – Gesundheitsprobleme, typische Verhaltensauffälligkeiten, was Erstbesitzer überfordert. Alles an einem Ort, strukturiert und ehrlich – das spart dir Wochen an unzuverlässiger Recherche.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Für wen ist der Ratgeber geeignet?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Für wen ist der Ratgeber geeignet?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">Für alle, die sich ernsthaft mit dem Gedanken tragen, einen Hund zu kaufen – egal ob Erstbesitzer oder erfahrener Hundehalter, der eine neue Rasse kennenlernen möchte. Besonders wertvoll für alle, die nicht wissen, wo sie anfangen sollen, oder die sich zwischen zwei Rassen nicht entscheiden können.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Welche Rassen sind im Ratgeber enthalten?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Welche Rassen sind im Ratgeber enthalten?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">80 der relevantesten Rassen – von Golden Retriever, Labrador und Schäferhund bis zu Spezialrassen wie Malinois, Hovawart, Nova Scotia Duck Tolling Retriever und vielen mehr. Jede Rasse wird mit 14 Merkmalen bewertet: Energie, Trainierbarkeit, Familienhund-Eignung, Pflegeaufwand, Gesundheitsrisiken und mehr.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Muss ich zuerst den Quiz machen?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Nein, der Quiz ist kostenlos und unabhängig. Er gibt dir eine erste Orientierung, welche Rassen zu deinem Leben passen. Der Ratgeber liefert dann die volle Tiefe – Rasseprofil, Kaufprozess, Erziehungsstart, Kosten. Beides zusammen ist die stärkste Kombination.</div>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Muss ich zuerst das Quiz machen?<span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Nein, das Quiz ist kostenlos und unabhängig. Er gibt dir eine erste Orientierung, welche Rassen zu deinem Leben passen. Der Ratgeber liefert dann die volle Tiefe – Rasseprofil, Kaufprozess, Erziehungsstart, Kosten. Beides zusammen ist die stärkste Kombination.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Ich bin kompletter Erstbesitzer – ist das für mich geeignet?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Ich bin kompletter Erstbesitzer – ist das für mich geeignet?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">Genau für dich. Der Ratgeber erklärt nicht nur die Rassen, sondern führt dich auch durch den gesamten Kaufprozess: Wie erkenne ich seriöse Züchter? Was kostet ein Hund wirklich im ersten Jahr? Wie verläuft die Eingewöhnung? Du brauchst kein Vorwissen – nur die Bereitschaft, dich ehrlich vorzubereiten.</div>
     </div>
     <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">Kann ich den Ratgeber auf mehreren Geräten lesen?<span class="faq-arrow">▼</span></button>
+      <button class="faq-q" onclick="toggleFaq(this)" aria-expanded="false">Kann ich den Ratgeber auf mehreren Geräten lesen?<span class="faq-arrow">▼</span></button>
       <div class="faq-a">Ja, unbegrenzt. Das PDF lässt sich auf jedem Gerät öffnen – Smartphone, Tablet, Computer – und auch ausdrucken. Du kannst es dir mit deiner Familie teilen oder auf dem Tablet durchblättern, wenn du beim Züchter bist.</div>
     </div>
   </div>
@@ -911,8 +900,8 @@
 <section class="final-cta">
   <div class="label-tag">Dein Hund wartet auf dich</div>
   <h2 class="section-title">Die richtige Wahl beginnt<br>mit dem richtigen Wissen</h2>
-  <p class="section-sub">Für weniger als ein Hundefutter bekommst du alles, was du brauchst – und triffst die Entscheidung, die dich 15 Jahre glücklich macht.</p>
-  <a class="btn-cta-gold" href="#">Ratgeber jetzt für 9,90€ kaufen →</a>
+  <p class="section-sub">Für weniger als einen Sack Hundefutter bekommst du alles, was du brauchst – und triffst die Entscheidung, die dich 15 Jahre glücklich macht.</p>
+  <a class="btn-cta-gold" href="#">Ratgeber jetzt für 9,90 € kaufen →</a>
   <p class="final-cta-small">Sofort-Download · Einmalzahlung · Kein Abo</p>
 </section>
 
@@ -947,8 +936,8 @@ const questions = [
   ]},
   { category:"Lautstärke", q:"Wie viel Bellen kannst du tolerieren?", sub:"Besonders wichtig bei Wohnungen oder empfindlichen Nachbarn.", opts:[
     { icon:"🤫", text:"Kein Bellen", sub:"Ruhige Rassen sind Pflicht", val:"bark_none" },
-    { icon:"🔉", text:"Wenig Bellen OK", sub:"Gelegentliches Melden ist fine", val:"bark_some" },
-    { icon:"🔊", text:"Moderat ist fine", sub:"Normales Wachhundverhalten", val:"bark_med" },
+    { icon:"🔉", text:"Wenig Bellen OK", sub:"Gelegentliches Melden ist okay", val:"bark_some" },
+    { icon:"🔊", text:"Moderat ist okay", sub:"Normales Wachhundverhalten", val:"bark_med" },
     { icon:"📢", text:"Stört mich nicht", sub:"Bellen ist kein Thema für mich", val:"bark_ok" }
   ]},
   { category:"Familie", multi:true, q:"Mit wem wirst du zusammenleben?", sub:"Mehrfachauswahl möglich.", opts:[
@@ -1121,14 +1110,14 @@ const breeds = [
   { name:"Shiba Inu", emoji:"🦊", attr:{alone:1,space:2,act:2,xp:3,train:3,cost:2,groom:2,kids:2,pets:1,shed:3,drool:1,bark:2,hunt:3,guard:2}, traits:["Unabhängig","Sauber","Würdevoll","Eigenständig"], desc:"Der japanische Katzenartige – wunderschön, unabhängig und kaum zu trainieren." },
   { name:"Chow Chow", emoji:"🦁", attr:{alone:1,space:2,act:2,xp:3,train:3,cost:2,groom:4,kids:1,pets:1,shed:3,drool:2,bark:2,hunt:2,guard:3}, traits:["Reserviert","Eigenwillig","Treu","Würdevoll"], desc:"Der Löwenhund aus China – majestätisch, reserviert und nur für geduldige Halter." },
   { name:"Akita Inu", emoji:"🐕", attr:{alone:1,space:2,act:3,xp:4,train:3,cost:3,groom:2,kids:2,pets:1,shed:3,drool:1,bark:2,hunt:3,guard:4}, traits:["Würdevoll","Loyal","Wachsam","Eigenwillig"], desc:"Die japanische Legende – absolut loyal dem Besitzer, allen anderen gegenüber reserviert." },
-  { name:"Jack Russell Terrier", emoji:"⚡", attr:{alone:2,space:1,act:3,xp:2,train:3,cost:1,groom:1,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Mutig","Klug","Eigenwillig"], desc:"Tiny but mighty – der Jack Russell hat mehr Energie als die meisten Großrassen." },
+  { name:"Jack Russell Terrier", emoji:"⚡", attr:{alone:2,space:1,act:3,xp:2,train:3,cost:1,groom:1,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Mutig","Klug","Eigenwillig"], desc:"Klein, aber oho – der Jack Russell hat mehr Energie als die meisten Großrassen." },
   { name:"West Highland Terrier", emoji:"🤍", attr:{alone:2,space:1,act:2,xp:2,train:3,cost:2,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:3,guard:2}, traits:["Lebhaft","Selbstbewusst","Neugierig","Robust"], desc:"Kleiner weißer Teufel – selbstbewusst, lebhaft und liebenswertes Terrier-Chaos." },
-  { name:"Yorkshire Terrier", emoji:"🎀", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:2,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:2}, traits:["Mutig","Anhänglich","Fashionable","Lebhaft"], desc:"Winzig, aber mit großem Selbstbewusstsein – der Yorkie hasst es, allein zu sein." },
+  { name:"Yorkshire Terrier", emoji:"🎀", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:2,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:2}, traits:["Mutig","Anhänglich","Glamourös","Lebhaft"], desc:"Winzig, aber mit großem Selbstbewusstsein – der Yorkie hasst es, allein zu sein." },
   { name:"Chihuahua", emoji:"🫙", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:1,groom:1,kids:1,pets:2,shed:1,drool:1,bark:3,hunt:1,guard:2}, traits:["Anhänglich","Mutig","Lebendig","Treuer Begleiter"], desc:"Kleinster Hund, größtes Herz – extrem anhänglich und überraschend bellfreudig." },
   { name:"Pomeranian (Spitz)", emoji:"🧡", attr:{alone:3,space:1,act:2,xp:2,train:2,cost:2,groom:3,kids:2,pets:2,shed:3,drool:1,bark:4,hunt:1,guard:2}, traits:["Lebhaft","Flauschig","Alert","Verspielt"], desc:"Der fluffige Alarm – wunderschön anzusehen, aber ein echter Bellkünstler." },
   { name:"Hovawart", emoji:"🐕", attr:{alone:2,space:3,act:3,xp:3,train:3,cost:2,groom:2,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:2,guard:3}, traits:["Treu","Wachsam","Vielseitig","Selbstbewusst"], desc:"Der unterschätzte deutsche Begleithund – treu, wachsam und sehr selbstbewusst." },
   { name:"Eurasier", emoji:"🌟", attr:{alone:3,space:2,act:2,xp:1,train:2,cost:2,groom:3,kids:3,pets:3,shed:3,drool:1,bark:2,hunt:2,guard:2}, traits:["Ruhig","Familienorientiert","Sanft","Ausgeglichen"], desc:"Der stille Familienhund – ausgeglichen, nicht bellfreudig und sehr familienliebend." },
-  { name:"Vizsla", emoji:"🍂", attr:{alone:4,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:2,hunt:4,guard:2}, traits:["Sportlich","Klebeband-Hund","Ausdauernd","Sanft"], desc:"Der ungarische Jagdhund klebt buchstäblich an seinem Menschen – nie allein lassen!" },
+  { name:"Vizsla", emoji:"🍂", attr:{alone:4,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:2,hunt:4,guard:2}, traits:["Sportlich","Sehr anhänglich","Ausdauernd","Sanft"], desc:"Der ungarische Jagdhund klebt buchstäblich an seinem Menschen – nie allein lassen!" },
   { name:"Weimaraner", emoji:"🐕", attr:{alone:2,space:3,act:4,xp:3,train:3,cost:2,groom:1,kids:3,pets:2,shed:2,drool:2,bark:2,hunt:4,guard:3}, traits:["Elegant","Ausdauernd","Jagdtrieb","Loyal"], desc:"Der silberne Graf – elegant, schnell und braucht täglich intensiven Auslauf." },
   { name:"Dalmatiner", emoji:"🐾", attr:{alone:2,space:2,act:4,xp:3,train:3,cost:2,groom:1,kids:3,pets:2,shed:3,drool:1,bark:2,hunt:3,guard:2}, traits:["Ausdauernd","Eigenständig","Sportlich","Lebhaft"], desc:"Mehr als nur Punkte – der Dalmatiner ist eine echte Ausdauermaschine." },
   { name:"Irischer Setter", emoji:"🍂", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Fröhlich","Ausdauernd","Verspielt","Freundlich"], desc:"Rothaarige Schönheit mit ewig jugendlichem Herzen – braucht Raum und Bewegung." },
@@ -1147,8 +1136,8 @@ const breeds = [
   { name:"Cane Corso", emoji:"🐾", attr:{alone:2,space:3,act:3,xp:4,train:4,cost:3,groom:1,kids:2,pets:1,shed:2,drool:4,bark:2,hunt:2,guard:4}, traits:["Schutzbereit","Loyal","Selbstbewusst","Imposant"], desc:"Der italienische Mastiff – absolut loyal seinem Rudel gegenüber, mit starkem Schutztrieb. Ausschließlich für sehr erfahrene Halter mit klarer Führungsstärke." },
   { name:"Belgischer Schäferhund (Malinois)", emoji:"🐕", attr:{alone:2,space:3,act:4,xp:4,train:4,cost:2,groom:1,kids:2,pets:2,shed:3,drool:1,bark:3,hunt:3,guard:4}, traits:["Hochenergetisch","Fokussiert","Loyal","Schutztrieb"], desc:"Der bevorzugte Hund von Polizei und Militär weltweit – unglaubliche Energie und Intelligenz, braucht täglich intensive Beschäftigung und eine erfahrene Hand." },
   { name:"Australian Cattle Dog", emoji:"🐄", attr:{alone:2,space:3,act:4,xp:3,train:3,cost:2,groom:1,kids:2,pets:2,shed:2,drool:1,bark:3,hunt:3,guard:3}, traits:["Energiegeladen","Intelligent","Loyal","Ausdauernd"], desc:"Der australische Treibhund – extrem ausdauernd, intelligent und braucht täglich intensive Beschäftigung oder er erfindet sich welche." },
-  { name:"Basenji", emoji:"🦌", attr:{alone:2,space:2,act:3,xp:3,train:4,cost:2,groom:1,kids:2,pets:2,shed:1,drool:1,bark:1,hunt:4,guard:2}, traits:["Lautlos","Unabhängig","Katzenartig","Reinlich"], desc:"Der belllose Hund aus Afrika – reinlich wie eine Katze, mit einem eigenwilligen Charakter der wenig Konventionen kennt." },
-  { name:"Basset Hound", emoji:"🐕", attr:{alone:2,space:2,act:1,xp:2,train:3,cost:3,groom:1,kids:3,pets:3,shed:3,drool:3,bark:3,hunt:3,guard:1}, traits:["Gemütlich","Eigenwillig","Gesellig","Nasenstark"], desc:"Die lebende Nasen-Maschine – phlegmatisch zu Hause, unaufhaltbar wenn er eine Spur aufnimmt." },
+  { name:"Basenji", emoji:"🦌", attr:{alone:2,space:2,act:3,xp:3,train:4,cost:2,groom:1,kids:2,pets:2,shed:1,drool:1,bark:1,hunt:4,guard:2}, traits:["Lautlos","Unabhängig","Katzenartig","Reinlich"], desc:"Der belllose Hund aus Afrika – reinlich wie eine Katze, mit einem eigenwilligen Charakter, der wenig Konventionen kennt." },
+  { name:"Basset Hound", emoji:"🐕", attr:{alone:2,space:2,act:1,xp:2,train:3,cost:3,groom:1,kids:3,pets:3,shed:3,drool:3,bark:3,hunt:3,guard:1}, traits:["Gemütlich","Eigenwillig","Gesellig","Nasenstark"], desc:"Die lebende Nasen-Maschine – phlegmatisch zu Hause, unaufhaltbar, wenn er eine Spur aufnimmt." },
   { name:"Boston Terrier", emoji:"🎩", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:3,groom:1,kids:3,pets:3,shed:2,drool:1,bark:2,hunt:1,guard:2}, traits:["Lebhaft","Stadtgeeignet","Freundlich","Verspielt"], desc:"Der amerikanische Stadtbegleiter – kompakt, freundlich und perfekt für die Wohnung." },
   { name:"Bull Terrier", emoji:"🥚", attr:{alone:2,space:2,act:3,xp:3,train:3,cost:3,groom:1,kids:3,pets:1,shed:2,drool:1,bark:2,hunt:2,guard:3}, traits:["Energiegeladen","Loyal","Eigenwillig","Robust"], desc:"Der Ei-Kopf – muskulös, loyal und voller Energie, braucht konsequente Erziehung und klare Grenzen." },
   { name:"Cockapoo", emoji:"🐾", attr:{alone:3,space:1,act:2,xp:1,train:1,cost:3,groom:3,kids:4,pets:4,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Sozial","Allergenarm","Verspielt","Gelehrig"], desc:"Der perfekte Familien-Hybrid – freundlich, allergenreduziert und für fast jeden Lebensstil geeignet." },
@@ -1157,13 +1146,13 @@ const breeds = [
   { name:"Flat Coated Retriever", emoji:"🐕", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:3,groom:2,kids:4,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Ewig jung","Enthusiastisch","Sozial","Verspielt"], desc:"Der Peter Pan unter den Retrievern – bleibt sein ganzes Leben verspielt und braucht täglich viel Bewegung." },
   { name:"Foxterrier", emoji:"🦊", attr:{alone:2,space:2,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Lebhaft","Mutig","Neugierig","Verspielt"], desc:"Der quirlige Terrier – voller Energie, Mut und Neugier, mit einem unerschütterlichen Jagdtrieb." },
   { name:"Irish Wolfhound", emoji:"🐺", attr:{alone:3,space:4,act:3,xp:2,train:2,cost:4,groom:2,kids:4,pets:3,shed:2,drool:1,bark:1,hunt:3,guard:2}, traits:["Sanft","Ruhig","Würdevoll","Loyal"], desc:"Der größte Hund der Welt mit dem sanftesten Herzen – majestätisch, ruhig und leider kurzlebig." },
-  { name:"Keeshond", emoji:"⭐", attr:{alone:3,space:2,act:2,xp:1,train:2,cost:2,groom:3,kids:4,pets:4,shed:4,drool:1,bark:3,hunt:1,guard:2}, traits:["Freundlich","Verspielt","Sozial","Aufgeweckt"], desc:"Der lächelnde Niederländer – ein flauschiger, fröhlicher Familienbegleiter der gerne Alarm schlägt." },
-  { name:"Leonberger", emoji:"🦁", attr:{alone:2,space:3,act:3,xp:2,train:2,cost:4,groom:3,kids:4,pets:3,shed:4,drool:3,bark:2,hunt:1,guard:3}, traits:["Sanft","Majestätisch","Loyal","Familienfreundlich"], desc:"Der Löwenhund aus Leonberg – sanft wie ein Teddybär, aber mit einer Mähne die täglich gebürstet werden will." },
+  { name:"Keeshond", emoji:"⭐", attr:{alone:3,space:2,act:2,xp:1,train:2,cost:2,groom:3,kids:4,pets:4,shed:4,drool:1,bark:3,hunt:1,guard:2}, traits:["Freundlich","Verspielt","Sozial","Aufgeweckt"], desc:"Der lächelnde Niederländer – ein flauschiger, fröhlicher Familienbegleiter, der gerne Alarm schlägt." },
+  { name:"Leonberger", emoji:"🦁", attr:{alone:2,space:3,act:3,xp:2,train:2,cost:4,groom:3,kids:4,pets:3,shed:4,drool:3,bark:2,hunt:1,guard:3}, traits:["Sanft","Majestätisch","Loyal","Familienfreundlich"], desc:"Der Löwenhund aus Leonberg – sanft wie ein Teddybär, aber mit einer Mähne, die täglich gebürstet werden will." },
   { name:"Mops", emoji:"🐷", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:4,groom:1,kids:3,pets:3,shed:3,drool:2,bark:2,hunt:1,guard:1}, traits:["Verspielt","Anhänglich","Clownhaft","Verschmust"], desc:"Die kleine Komiker-Rasse – liebt Menschen über alles, schnarcht dafür aber laut und hat oft Gesundheitsprobleme." },
   { name:"Neufundländer", emoji:"🐻", attr:{alone:2,space:4,act:2,xp:2,train:2,cost:4,groom:3,kids:4,pets:4,shed:4,drool:4,bark:1,hunt:1,guard:2}, traits:["Sanft","Geduldig","Kindernanny","Wasserliebend"], desc:"Die Kindernanny auf vier Beinen – der Neufundländer ist unendlich geduldig, liebt Wasser und ist der sanfteste Riese überhaupt." },
-  { name:"Nova Scotia Duck Tolling Retriever", emoji:"🦆", attr:{alone:3,space:2,act:4,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Verspielt","Clever","Ausdauernd"], desc:"Der kleinste Retriever – täuschend energiegeladen, hochintelligent und mit einem einzigartigen Schrei der Vögel anlockt." },
+  { name:"Nova Scotia Duck Tolling Retriever", emoji:"🦆", attr:{alone:3,space:2,act:4,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Verspielt","Clever","Ausdauernd"], desc:"Der kleinste Retriever – täuschend energiegeladen, hochintelligent und mit einem einzigartigen Schrei, der Vögel anlockt." },
   { name:"Parson Russell Terrier", emoji:"⚡", attr:{alone:2,space:2,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Mutig","Energiegeladen","Klug","Temperamentvoll"], desc:"Der etwas feinere Jack Russell – genauso mutig und energiegeladen, mit einem unersättlichen Jagdtrieb." },
-  { name:"Pointer", emoji:"🎯", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:4,guard:1}, traits:["Athletisch","Ausdauernd","Freundlich","Jagdbegeistert"], desc:"Die lebendige Jagdmaschine – elegant, ausdauernd und braucht täglich intensiven Auslauf um glücklich zu sein." },
+  { name:"Pointer", emoji:"🎯", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:4,guard:1}, traits:["Athletisch","Ausdauernd","Freundlich","Jagdbegeistert"], desc:"Die lebendige Jagdmaschine – elegant, ausdauernd und braucht täglich intensiven Auslauf, um glücklich zu sein." },
   { name:"Pekingese", emoji:"👑", attr:{alone:3,space:1,act:1,xp:2,train:3,cost:3,groom:3,kids:1,pets:2,shed:3,drool:1,bark:2,hunt:1,guard:2}, traits:["Würdevoll","Eigenwillig","Anhänglich","Selbstbewusst"], desc:"Der ehemalige chinesische Kaiserpalasthund – betrachtet sich noch immer als Royalty und behandelt Training als optionale Freizeitbeschäftigung." },
   { name:"Puli", emoji:"🎭", attr:{alone:2,space:2,act:3,xp:3,train:3,cost:2,groom:4,kids:3,pets:3,shed:1,drool:1,bark:3,hunt:2,guard:3}, traits:["Selbstbewusst","Agil","Loyal","Einzigartig"], desc:"Der ungarische Hund mit Rastalocken – unter dem einzigartigen Kordelfell verbirgt sich ein agiler, intelligenter Hirtenhund." },
   { name:"Schipperke", emoji:"🚢", attr:{alone:2,space:1,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:2,shed:3,drool:1,bark:3,hunt:3,guard:3}, traits:["Neugierig","Lebhaft","Wachsam","Selbstständig"], desc:"Der kleine schwarze Teufel – neugierig, unerschrocken und immer auf der Suche nach dem nächsten Abenteuer." },
@@ -1451,10 +1440,6 @@ function loadBreedPhotos(top5){
 }
 
 
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.reel-track').forEach(function(t){t.innerHTML+=t.innerHTML;});
-});
-
 function showResult(){
   var scored=breeds.map(function(b){return{breed:b,score:scoreBreed(b)};});
   scored.sort(function(a,b){return b.score-a.score;});
@@ -1470,7 +1455,7 @@ function showResult(){
   h+='<div class="result-intro"><h3>Deine Top-5 Matches</h3><p>Aus 80 Rassen – basierend auf deinen 22 Antworten</p></div>';
   h+='<div class="result-top3">';for(var i=0;i<Math.min(3,top5.length);i++)h+=renderBreedCard(top5[i],i+1);h+='</div>';
   if(top5.length>3){h+='<div class="result-more"><div class="result-more-header">Weitere Matches</div><div class="result-more-list">';for(var j=3;j<top5.length;j++)h+=renderBreedCard(top5[j],j+1);h+='</div></div>';}
-  h+='<div class="result-cta-box"><p><strong>Mehr zur Rasse wissen?</strong></p><p>Im Ratgeber: alle 80 Rassen tiefgehend erklärt, Kaufleitfaden & Kostenübersicht.</p><a href="#angebot" class="btn-gold">Ratgeber für 9,90€ →</a><button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button></div>';
+  h+='<div class="result-cta-box"><p><strong>Du willst mehr über deine Rasse wissen?</strong></p><p>Im Ratgeber: alle 80 Rassen tiefgehend erklärt, Kaufleitfaden & Kostenübersicht.</p><a href="#angebot" class="btn-gold">Ratgeber für 9,90 € →</a><button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button></div>';
   if(bottom3.length>0){h+='<div class="result-nope"><h4>Nicht empfohlen für dich</h4><div class="nope-list">'+bottom3.map(function(x){return renderNopeCard(x);}).join('')+'</div></div>';}
   document.getElementById('quizResult').innerHTML=h;
   loadBreedPhotos(top5);
@@ -1530,7 +1515,7 @@ function nextQ(){
 }
 function prevQ(){if(currentQ>0){currentQ--;renderQuestion();}}
 function resetQuiz(){currentQ=0;answers={};document.getElementById('quizNav').style.display='flex';renderQuestion();}
-function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
+function toggleFaq(btn){var open=btn.parentElement.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));}
 
 const obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
