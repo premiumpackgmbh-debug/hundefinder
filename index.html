@@ -126,7 +126,7 @@
   .hero-trust-text strong { color: var(--ink); font-variant-numeric: tabular-nums; }
 
   .hero-right { position: relative; overflow: hidden; }
-  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+  .hero-right img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; transition: opacity 0.6s ease; }
   .hero-right::before {
     content: ''; position: absolute; inset: 0; z-index: 1;
     background: linear-gradient(to right, rgba(255,255,255,0.15) 0%, transparent 25%),
@@ -188,14 +188,18 @@
   .quiz-header { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
   .quiz-header .section-sub { max-width: 520px; margin: 0 auto; color: rgba(255,255,255,0.65); }
   .quiz-container { max-width: 700px; margin: 0 auto; position: relative; z-index: 1; }
-  .quiz-progress { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; }
+  .quiz-progress { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
+  .quiz-steps-row { display: flex; gap: 3px; margin-bottom: 8px; }
   .quiz-step { flex: 1; height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; transition: background 0.4s; }
   .quiz-step.active { background: var(--gold); }
   .quiz-step.done { background: rgba(244,165,28,0.5); }
-  .quiz-step-label { font-size: 0.75rem; color: rgba(255,255,255,0.45); white-space: nowrap; margin-left: 4px; }
+  .quiz-progress-meta { display: flex; justify-content: space-between; align-items: center; }
+  .quiz-step-category { font-size: 0.72rem; font-weight: 700; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; text-transform: uppercase; }
+  .quiz-step-label { font-size: 0.72rem; color: rgba(255,255,255,0.35); }
   .quiz-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: clamp(28px, 4vw, 48px); backdrop-filter: blur(8px); }
   .quiz-q { font-family: 'Fraunces', serif; font-size: clamp(1.3rem, 2.4vw, 1.85rem); font-weight: 700; color: var(--white); margin-bottom: 8px; line-height: 1.2; }
   .quiz-q-sub { font-size: 0.88rem; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+  .multi-badge { display: inline-flex; align-items: center; gap: 4px; background: rgba(244,165,28,0.18); color: var(--gold); border: 1px solid rgba(244,165,28,0.35); border-radius: 4px; padding: 2px 7px; font-size: 0.7rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.02em; vertical-align: middle; }
   .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .quiz-opt {
     background: rgba(255,255,255,0.06); border: 1.5px solid rgba(255,255,255,0.12);
@@ -222,15 +226,12 @@
   .result-intro { text-align: center; margin-bottom: 20px; }
   .result-intro h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; font-weight: 900; color: var(--white); margin-bottom: 4px; }
   .result-intro p { font-size: 0.82rem; color: rgba(255,255,255,0.45); }
-  .result-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
   .result-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.15); }
-  .result-card.secondary { opacity: 0.9; }
   .result-rank { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 7px 14px; display: flex; align-items: center; gap: 5px; }
-  .result-rank.rank-1 { background: var(--forest); color: var(--white); }
-  .result-rank.rank-2 { background: var(--cream); color: var(--ink-mid); }
-  .result-header { padding: 14px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-soft); }
-  .result-emoji { font-size: 1.9rem; flex-shrink: 0; }
-  .result-header-text h4 { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+  .result-header { padding: 12px 14px; display: flex; align-items: center; gap: 13px; border-bottom: 1px solid var(--border-soft); }
+  .result-emoji { font-size: 1.65rem; flex-shrink: 0; }
+  .result-header-text { flex: 1; min-width: 0; }
+  .result-header-text h4 { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
   .result-match-row { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
   .result-pct { font-size: 0.75rem; font-weight: 700; color: var(--forest); white-space: nowrap; }
   .result-bar { flex: 1; height: 4px; background: var(--cream); border-radius: 4px; overflow: hidden; }
@@ -245,64 +246,136 @@
   .result-cta-box .btn-gold { background: var(--gold); color: var(--ink); padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: background 0.2s; }
   .result-cta-box .btn-gold:hover { background: #f5b740; }
   .result-retake { background: none; border: none; color: rgba(255,255,255,0.3); font-size: 0.8rem; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; text-decoration: underline; display: block; text-align: center; width: 100%; margin-top: 4px; }
-  @media (max-width: 560px) { .result-cards-grid { grid-template-columns: 1fr; } }
 
-  /* ── BREEDS ── */
-  .breeds-section { background: var(--off-white); }
-  .breeds-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 52px; }
-  .breeds-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .breed-card { background: var(--white); border-radius: 18px; overflow: hidden; border: 1px solid var(--border-soft); transition: transform 0.22s, box-shadow 0.22s; }
-  .breed-card:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(27,67,50,0.12); }
-  .breed-card-img { aspect-ratio: 4/3; position: relative; overflow: hidden; background: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 4rem; }
-  .breed-card-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: transform 0.4s ease; }
-  .breed-card:hover .breed-card-img img { transform: scale(1.06); }
-  .breed-card-img .emoji-fb { position: relative; z-index: 1; }
-  .breed-card-img::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 40%; background: linear-gradient(to top, rgba(27,67,50,0.25) 0%, transparent 100%); z-index: 3; pointer-events: none; }
-  .breed-difficulty { position: absolute; top: 10px; right: 10px; z-index: 4; padding: 4px 10px; border-radius: 100px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-  .diff-easy { background: var(--forest-soft); color: var(--forest); }
-  .diff-medium { background: #FFF3CD; color: #8B6914; }
-  .diff-hard { background: #FFE8E3; color: var(--coral); }
-  .breed-card-body { padding: 18px 20px; }
-  .breed-name { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
-  .breed-desc { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.55; margin-bottom: 14px; }
-  .breed-stats { display: flex; gap: 16px; padding-top: 14px; border-top: 1px solid var(--border-soft); }
-  .breed-stat { font-size: 0.73rem; color: var(--ink-muted); display: flex; flex-direction: column; }
-  .breed-stat strong { color: var(--ink); font-size: 0.82rem; order: 2; font-weight: 600; }
+  .result-top3 { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+  .result-card--top .result-rank { background: var(--gold); color: var(--ink); }
+  .result-card--sec .result-rank { background: var(--forest); color: var(--white); }
+  .result-rank.rank-3 { background: var(--cream); color: var(--ink-mid); }
+  .result-quickstats { display: flex; gap: 5px; flex-wrap: wrap; padding: 8px 16px; border-bottom: 1px solid var(--border-soft); }
+  .result-stat-pill { font-size: 0.68rem; padding: 3px 9px; border-radius: 100px; font-weight: 600; white-space: nowrap; }
+  .result-stat-pill.act  { background: var(--forest-soft); color: var(--forest); }
+  .result-stat-pill.cost { background: var(--gold-bg); color: #7A5C0A; }
+  .result-stat-pill.groom{ background: #EDE8FF; color: #4C1D95; }
+  .result-stat-pill.ok   { background: #D1FAE5; color: #065F46; }
+  .result-stat-pill.warn { background: #FEF3C7; color: #92400E; }
+  .result-challenges { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .result-challenges-label { font-size: 0.7rem; font-weight: 700; color: var(--ink-mid); }
+  .result-challenge-tag { font-size: 0.68rem; padding: 2px 7px; background: #FEE2E2; color: #991B1B; border-radius: 100px; }
+  .result-more { margin-bottom: 18px; }
+  .result-more-header { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+  .result-more-list { display: flex; flex-direction: column; gap: 8px; }
+  .result-more-list .result-card { opacity: 0.85; }
+  .result-warnings { background: rgba(244,165,28,0.1); border: 1px solid rgba(244,165,28,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 14px; }
+  .result-warnings h4 { font-size: 0.78rem; font-weight: 700; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .result-warnings p { font-size: 0.8rem; color: rgba(255,255,255,0.62); line-height: 1.5; margin: 4px 0; }
+  .result-nope { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .result-nope h4 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+  .result-photo-wrap { position: relative; width: 66px; height: 72px; flex-shrink: 0; border-radius: 12px; overflow: hidden; background: linear-gradient(135deg, var(--forest-soft) 0%, #d5e8dc 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(27,67,50,0.13); }
+  .result-card--top .result-photo-wrap { width: 74px; height: 80px; border-radius: 13px; box-shadow: 0 0 0 2.5px var(--gold), 0 4px 18px rgba(244,165,28,0.22); }
+  .result-card--sec .result-photo-wrap { box-shadow: 0 0 0 2px var(--forest), 0 3px 12px rgba(27,67,50,0.18); }
+  .result-photo-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 15%; z-index: 2; opacity: 0; transition: opacity 0.4s ease; }
+  .result-photo-img.loaded { opacity: 1; }
+  .result-photo-wrap .result-emoji { position: relative; z-index: 1; font-size: 1.7rem; line-height: 1; }
+  .nope-list { display: flex; flex-direction: column; gap: 7px; }
+  .nope-card { display: flex; align-items: center; gap: 10px; padding: 9px 13px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 9px; }
+  .nope-emoji { font-size: 1.3rem; flex-shrink: 0; }
+  .nope-info { flex: 1; min-width: 0; }
+  .nope-info strong { font-size: 0.85rem; color: rgba(255,255,255,0.65); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .nope-reason { font-size: 0.72rem; color: rgba(255,255,255,0.32); margin-top: 1px; }
+  .nope-pct { font-size: 0.7rem; font-weight: 700; color: rgba(255,80,80,0.55); white-space: nowrap; flex-shrink: 0; }
+
+  /* ── BREEDS REEL ── */
+  .breeds-section { background: var(--forest); overflow: hidden; padding: 88px 0 0; }
+  .reel-header { max-width: 1280px; margin: 0 auto; padding: 0 clamp(32px, 5vw, 80px) 64px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 48px; }
+  .reel-eyebrow { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 18px; opacity: 0.85; }
+  .reel-title { font-family: 'Fraunces', serif; font-size: clamp(2.6rem, 4.5vw, 4rem); font-weight: 900; color: var(--white); line-height: 1.02; letter-spacing: -0.025em; }
+  .reel-title span { color: var(--gold); font-style: italic; font-weight: 300; }
+  .reel-sub { font-size: 0.87rem; color: rgba(255,255,255,0.38); max-width: 400px; line-height: 1.75; margin-top: 20px; }
+  .reel-stats-row { display: flex; gap: 0; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; overflow: hidden; }
+  .reel-stat { text-align: center; padding: 20px 32px; position: relative; }
+  .reel-stat + .reel-stat { border-left: 1px solid rgba(255,255,255,0.1); }
+  .reel-stat-num { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 900; color: var(--gold); line-height: 1; display: block; }
+  .reel-stat-label { font-size: 0.62rem; color: rgba(255,255,255,0.28); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 6px; display: block; }
+  .breed-index { padding: 0 clamp(32px,5vw,80px) 96px; max-width: 1280px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 52px; }
+  .breed-list { list-style: none; margin: 0; padding: 0; columns: 5; column-gap: 40px; }
+  .breed-list li { display: flex; align-items: center; gap: 9px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); font-size: 0.82rem; break-inside: avoid; cursor: default; transition: color 0.18s ease, border-color 0.18s ease; letter-spacing: 0.01em; }
+  .breed-list li:hover { color: var(--gold); border-color: rgba(244,165,28,0.2); }
+  .bi-em { font-size: 1rem; flex-shrink: 0; opacity: 0.8; }
+  .reel-row { overflow: hidden; margin-bottom: 16px; }
+  .reel-track { display: flex; gap: 14px; width: max-content; animation: reel-fwd 52s linear infinite; will-change: transform; }
+  .reel-track.rev { animation-name: reel-fwd; animation-duration: 68s; animation-delay: -22s; }
+  .reel-track.slow { animation-duration: 88s; animation-delay: -44s; }
+  .reel-outer:hover .reel-track { animation-play-state: paused; }
+  @keyframes reel-fwd { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .reel-card { width: 168px; height: 212px; border-radius: 18px; overflow: hidden; position: relative; flex-shrink: 0; }
+  .reel-card-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 4.5rem; }
+  .reel-card-bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 110% 80% at 28% 12%, rgba(255,255,255,0.13) 0%, transparent 55%); pointer-events: none; }
+  .reel-card:nth-child(5n+1) .reel-card-bg { background: linear-gradient(150deg, #7A2A08 0%, #B84010 50%, #D46018 100%); }
+  .reel-card:nth-child(5n+2) .reel-card-bg { background: linear-gradient(150deg, #0D3320 0%, #1A5C35 50%, #24824A 100%); }
+  .reel-card:nth-child(5n+3) .reel-card-bg { background: linear-gradient(150deg, #101828 0%, #1A2E52 50%, #243E72 100%); }
+  .reel-card:nth-child(5n+4) .reel-card-bg { background: linear-gradient(150deg, #440D2A 0%, #7A1A48 50%, #A42460 100%); }
+  .reel-card:nth-child(5n)   .reel-card-bg { background: linear-gradient(150deg, #0A2E3C 0%, #104E68 50%, #168090 100%); }
+  .reel-img { display: none; }
+  .reel-card-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 52px 13px 14px; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%); z-index: 3; }
+  .reel-name { color: #fff; font-family: 'Fraunces', serif; font-size: 0.87rem; font-weight: 700; line-height: 1.25; }
+  .reel-tag { display: inline-block; margin-top: 5px; font-size: 0.58rem; color: var(--gold); background: rgba(244,165,28,0.14); border: 1px solid rgba(244,165,28,0.28); border-radius: 100px; padding: 2px 7px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+
+  /* ── PRICE PERSPECTIVE ── */
+  .price-persp { background: #0B1C10; padding: 88px 0 80px; }
+  .price-persp-inner { max-width: 1100px; margin: 0 auto; padding: 0 clamp(32px,5vw,80px); }
+  .price-persp-eyebrow { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); margin-bottom: 14px; opacity: 0.85; }
+  .price-persp-title { font-family: 'Fraunces', serif; font-size: clamp(2rem,3.5vw,3rem); font-weight: 900; color: #fff; line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 56px; }
+  .price-persp-title em { color: var(--gold); font-style: italic; font-weight: 300; }
+  .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .pp-col-head { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+  .pp-item { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .pp-item-price { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 900; color: rgba(255,255,255,0.22); flex-shrink: 0; width: 60px; padding-top: 2px; }
+  .pp-item-body { flex: 1; }
+  .pp-item-label { font-size: 0.88rem; color: rgba(255,255,255,0.6); margin-bottom: 3px; }
+  .pp-item-note { font-size: 0.73rem; color: rgba(255,255,255,0.25); line-height: 1.5; }
+  .pp-damage { background: rgba(244,165,28,0.06); border: 1px solid rgba(244,165,28,0.18); border-radius: 18px; padding: 28px 32px; }
+  .pp-damage-head { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 20px; }
+  .pp-damage-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .pp-damage-row:last-of-type { border-bottom: none; margin-bottom: 20px; }
+  .pp-damage-what { font-size: 0.84rem; color: rgba(255,255,255,0.55); }
+  .pp-damage-cost { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 900; color: #e05555; flex-shrink: 0; }
+  .pp-damage-note { font-size: 0.75rem; color: rgba(255,255,255,0.28); line-height: 1.6; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.07); font-style: italic; }
+  .pp-kicker { margin-top: 56px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; }
+  .pp-kicker-text { font-family: 'Fraunces', serif; font-size: clamp(1.3rem,2.2vw,1.85rem); font-weight: 900; color: #fff; line-height: 1.3; }
+  .pp-kicker-text strong { color: var(--gold); }
+  .pp-kicker-sub { font-size: 0.85rem; color: rgba(255,255,255,0.35); margin-top: 10px; }
+  @media (max-width: 720px) { .pp-grid { grid-template-columns: 1fr; } }
 
   /* ── OFFER ── */
-  .offer-section { background: var(--white); }
-  .offer-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
-  .book-visual { position: relative; display: flex; justify-content: center; }
-  .book-3d { position: relative; width: 270px; }
-  .book-cover {
-    background: linear-gradient(145deg, var(--forest) 0%, #0F2D1F 100%);
-    border-radius: 6px 16px 16px 6px; padding: 36px 30px; position: relative; overflow: hidden;
-    box-shadow: 0 32px 64px rgba(27,67,50,0.3), inset -6px 0 18px rgba(0,0,0,0.2), 8px 8px 0 rgba(27,67,50,0.25);
-  }
-  .book-cover::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: rgba(0,0,0,0.3); }
-  .book-cover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(244,165,28,0.12) 0%, transparent 60%); pointer-events: none; }
-  .book-title { font-family: 'Fraunces', serif; font-size: 1.5rem; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 12px; position: relative; z-index: 1; }
-  .book-subtitle { font-size: 0.78rem; color: rgba(255,255,255,0.6); line-height: 1.55; position: relative; z-index: 1; }
-  .book-dog-icon { font-size: 4.5rem; display: block; text-align: right; margin-top: 20px; position: relative; z-index: 1; }
-  .book-badge-price { position: absolute; top: -18px; right: -18px; width: 74px; height: 74px; background: var(--gold); border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: 900; color: var(--ink); box-shadow: 0 4px 20px rgba(244,165,28,0.5); z-index: 10; }
-  .book-badge-price .price { font-size: 1.3rem; line-height: 1; }
-  .book-badge-price .currency { font-size: 0.65rem; }
-  .book-badge-price .was { font-size: 0.6rem; text-decoration: line-through; opacity: 0.55; font-weight: 600; }
-  .offer-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); margin-bottom: 20px; text-wrap: balance; }
-  .offer-headline em { font-style: italic; color: var(--forest); font-weight: 300; }
-  .offer-lead { font-size: 0.97rem; color: var(--ink-muted); line-height: 1.75; margin-bottom: 28px; }
+  .offer-section { background: linear-gradient(160deg, #081A0F 0%, #1B4332 55%, #0A1F15 100%); position: relative; overflow: hidden; }
+  .offer-section::before { content: ''; position: absolute; top: -80px; right: 8%; width: 700px; height: 500px; background: radial-gradient(ellipse, rgba(244,165,28,0.1) 0%, transparent 60%); pointer-events: none; }
+  .offer-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .book-visual { position: relative; display: flex; flex-direction: column; align-items: center; gap: 36px; }
+  .book-3d { position: relative; width: 300px; }
+  .book-cover { background: linear-gradient(145deg, #2A5E40 0%, #0F2D1F 100%); border-radius: 6px 18px 18px 6px; padding: 44px 36px; position: relative; overflow: hidden; box-shadow: 0 48px 80px rgba(0,0,0,0.5), inset -8px 0 20px rgba(0,0,0,0.3), 12px 12px 0 rgba(0,0,0,0.35); }
+  .book-cover::before { content: ''; position: absolute; top: 0; left: 0; width: 8px; height: 100%; background: rgba(0,0,0,0.4); }
+  .book-cover::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 80% 20%, rgba(244,165,28,0.15) 0%, transparent 60%); pointer-events: none; }
+  .book-title { font-family: 'Fraunces', serif; font-size: 1.65rem; font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 14px; position: relative; z-index: 1; }
+  .book-subtitle { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.55; position: relative; z-index: 1; }
+  .book-dog-icon { font-size: 5rem; display: block; text-align: right; margin-top: 28px; position: relative; z-index: 1; }
+  .offer-price-display { text-align: center; }
+  .offer-price-was { font-size: 0.85rem; color: rgba(255,255,255,0.35); text-decoration: line-through; margin-bottom: 4px; }
+  .offer-price-main { font-family: 'Fraunces', serif; font-size: 4.5rem; font-weight: 900; color: var(--gold); line-height: 1; letter-spacing: -0.04em; }
+  .offer-price-main sup { font-size: 1.8rem; vertical-align: super; letter-spacing: 0; margin-right: 3px; }
+  .offer-price-type { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-top: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .offer-headline { font-family: 'Fraunces', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.025em; color: var(--white); margin-bottom: 20px; text-wrap: balance; }
+  .offer-headline em { font-style: italic; color: var(--gold); font-weight: 300; }
+  .offer-lead { font-size: 0.97rem; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 28px; }
   .value-stack { margin-bottom: 28px; }
-  .value-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-soft); }
+  .value-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
   .value-item:last-child { border-bottom: none; }
-  .value-check { width: 22px; height: 22px; background: var(--forest-soft); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 0.65rem; color: var(--forest); font-weight: 900; }
-  .value-text { font-size: 0.88rem; color: var(--ink-muted); line-height: 1.55; }
-  .value-text strong { color: var(--ink); }
-  .offer-urgency { background: #FFF8E7; border: 1px solid #FFE299; border-radius: 10px; padding: 12px 16px; font-size: 0.84rem; color: #7A5C0A; font-weight: 600; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
-  .offer-cta-row { display: flex; flex-direction: column; gap: 12px; }
-  .btn-cta-big { background: var(--forest); color: var(--white); border: none; padding: 18px 36px; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 6px 24px rgba(27,67,50,0.3); text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-  .btn-cta-big:hover { background: var(--forest-2); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(27,67,50,0.4); }
-  .offer-guarantee { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--ink-muted); }
-  .offer-guarantee::before { content: '🛡️'; font-size: 1rem; }
+  .value-check { width: 22px; height: 22px; background: rgba(244,165,28,0.15); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; font-size: 0.65rem; color: var(--gold); font-weight: 900; }
+  .value-text { font-size: 0.88rem; color: rgba(255,255,255,0.55); line-height: 1.55; }
+  .value-text strong { color: var(--white); }
+  .offer-urgency { background: rgba(244,165,28,0.1); border: 1px solid rgba(244,165,28,0.25); border-radius: 10px; padding: 12px 16px; font-size: 0.84rem; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+  .offer-cta-main { display: block; width: 100%; text-align: center; background: var(--gold); color: var(--ink); border: none; padding: 20px 36px; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif; transition: background 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 8px 32px rgba(244,165,28,0.4); text-decoration: none; margin-bottom: 14px; }
+  .offer-cta-main:hover { background: #f5b740; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(244,165,28,0.5); }
+  .offer-trust { font-size: 0.78rem; color: rgba(255,255,255,0.3); text-align: center; letter-spacing: 0.02em; margin: 0; }
 
   /* ── TESTIMONIALS ── */
   .testimonials-section { background: var(--off-white); }
@@ -334,7 +407,7 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--forest); }
   .faq-item.open .faq-q { color: var(--forest); }
   .faq-a { font-size: 0.9rem; color: var(--ink-muted); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
-  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+  .faq-item.open .faq-a { max-height: 400px; padding-bottom: 20px; }
 
   /* ── FINAL CTA ── */
   .final-cta { background: var(--forest); padding: clamp(72px, 10vw, 120px) clamp(24px, 6vw, 80px); text-align: center; position: relative; overflow: hidden; }
@@ -356,6 +429,9 @@
 
   /* ── ANIMATIONS ── */
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes qSlideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  .quiz-q { animation: qSlideIn 0.22s ease; }
+  .quiz-options { animation: qSlideIn 0.28s ease; }
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .reveal.visible { opacity: 1; transform: none; }
 
@@ -364,7 +440,10 @@
     .hero { grid-template-columns: 1fr; }
     .hero-right { height: 55vw; min-height: 280px; }
     .hero-right::before { background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, transparent 20%); }
-    .breeds-intro { grid-template-columns: 1fr; gap: 20px; }
+    .reel-header { grid-template-columns: 1fr; gap: 28px; }
+    .reel-stats-row { width: fit-content; }
+    .reel-stat { padding: 16px 24px; }
+    .breed-list { columns: 3; }
     .offer-grid { grid-template-columns: 1fr; }
     .book-visual { margin-bottom: 40px; }
     .testimonials-grid { grid-template-columns: 1fr; }
@@ -372,11 +451,11 @@
   }
   @media (max-width: 720px) {
     .problem-grid { grid-template-columns: 1fr; }
-    .breeds-grid { grid-template-columns: 1fr 1fr; }
+    .reel-card { width: 144px; height: 184px; border-radius: 14px; }
     .quiz-options { grid-template-columns: 1fr; }
   }
   @media (max-width: 500px) {
-    .breeds-grid { grid-template-columns: 1fr; }
+    .breed-list { columns: 2; }
   }
 </style>
 </head>
@@ -421,7 +500,7 @@
     </div>
   </div>
   <div class="hero-right">
-    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&h=900&fit=crop&auto=format" alt="Glücklicher Golden Retriever" width="1200" height="900" fetchpriority="high" onerror="this.style.opacity=0">
+    <img id="hero-img" src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&h=900&fit=crop&auto=format" alt="Glücklicher Golden Retriever" width="1200" height="900" fetchpriority="high" onerror="this.style.opacity=0">
     <div class="hero-result-card">
       <div class="hero-result-emoji" aria-hidden="true">🐕</div>
       <div>
@@ -429,26 +508,23 @@
         <div class="hero-result-name">Golden Retriever</div>
         <div class="hero-result-pct">94% Übereinstimmung</div>
         <div class="hero-result-bar"><div class="hero-result-bar-fill"></div></div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ── TICKER ── -->
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
-    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">50 Rassen im Quiz <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">22 Fragen · 5 Minuten <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">In 5 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Kostenloser Rassenquiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Ratgeber für 9,90€ <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">30 Tage Garantie <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">In 2 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">22 Fragen · 5 Minuten <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">In 5 Minuten dein Ergebnis <span class="ticker-sep">✦</span></span>
   </div>
 </div>
 
@@ -484,18 +560,17 @@
 <!-- ── QUIZ ── -->
 <section class="quiz-section" id="quiz">
   <div class="quiz-header">
-    <div class="label-tag label-tag-light">Kostenlos · 2 Minuten · 5 Fragen</div>
+    <div class="label-tag label-tag-light">Kostenlos · 5 Minuten · 22 Fragen</div>
     <h2 class="section-title section-title-light">Finde deinen perfekten Hund</h2>
-    <p class="section-sub section-sub-light">Beantworte ehrlich – wir suchen aus 50 Rassen das perfekte Match für deinen Alltag.</p>
+    <p class="section-sub section-sub-light">Beantworte 22 Fragen zu deinem Alltag – wir analysieren aus 80 Rassen dein persönliches Top-Match.</p>
   </div>
   <div class="quiz-container">
     <div class="quiz-progress" id="quizProgress">
-      <div class="quiz-step done" id="step0"></div>
-      <div class="quiz-step" id="step1"></div>
-      <div class="quiz-step" id="step2"></div>
-      <div class="quiz-step" id="step3"></div>
-      <div class="quiz-step" id="step4"></div>
-      <span class="quiz-step-label" id="stepLabel">Frage 1 / 5</span>
+      <div class="quiz-steps-row" id="quizStepsRow"></div>
+      <div class="quiz-progress-meta">
+        <span class="quiz-step-category" id="stepCategory">Lebensstil</span>
+        <span class="quiz-step-label" id="stepLabel">Frage 1 / 20</span>
+      </div>
     </div>
     <div class="quiz-card">
       <div class="quiz-questions" id="quizQuestions"></div>
@@ -503,120 +578,6 @@
       <div class="quiz-nav" id="quizNav">
         <button class="quiz-back" id="backBtn" onclick="prevQ()" style="visibility:hidden">← Zurück</button>
         <button class="quiz-next" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── BREEDS ── -->
-<section class="section breeds-section" id="rassen">
-  <div class="breeds-intro">
-    <div class="reveal">
-      <div class="label-tag">58 Rassen erklärt</div>
-      <h2 class="section-title">Ein Blick ins Buch</h2>
-    </div>
-    <div class="reveal">
-      <p class="section-sub">Von der Stadtdogge bis zum Bauernhofhund – jede Rasse ehrlich und vollständig erklärt. Kein Zuckerguss, keine Werbung.</p>
-    </div>
-  </div>
-  <div class="breeds-grid">
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=450&fit=crop&auto=format" alt="Golden Retriever" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🐕</span>
-        <span class="breed-difficulty diff-easy">Anfänger</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Golden Retriever</div>
-        <div class="breed-desc">Der perfekte Familienhund – geduldig, lernwillig und unglaublich liebenswert.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Mittel</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Groß</strong>Größe</div>
-          <div class="breed-stat"><strong>Ja</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=600&h=450&fit=crop&auto=format" alt="Französische Bulldogge" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🐩</span>
-        <span class="breed-difficulty diff-easy">Anfänger</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Französische Bulldogge</div>
-        <div class="breed-desc">Kompakt, charmant, zufrieden mit wenig Bewegung – ideal für die Wohnung.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Niedrig</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Klein</strong>Größe</div>
-          <div class="breed-stat"><strong>Ja</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1503256207526-0d5523f31580?w=600&h=450&fit=crop&auto=format" alt="Border Collie" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🐕‍🦺</span>
-        <span class="breed-difficulty diff-hard">Erfahren</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Border Collie</div>
-        <div class="breed-desc">Hochintelligent, energiegeladen – braucht täglich mentale Herausforderung.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Sehr hoch</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Mittel</strong>Größe</div>
-          <div class="breed-stat"><strong>Bedingt</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?w=600&h=450&fit=crop&auto=format" alt="Deutscher Schäferhund" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🦮</span>
-        <span class="breed-difficulty diff-medium">Fortgeschritten</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Deutscher Schäferhund</div>
-        <div class="breed-desc">Treu, intelligent, schutzbewusst – braucht klare Führung und gibt dafür alles.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Hoch</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Groß</strong>Größe</div>
-          <div class="breed-stat"><strong>Ja</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?w=600&h=450&fit=crop&auto=format" alt="Beagle" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🐶</span>
-        <span class="breed-difficulty diff-easy">Anfänger</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Beagle</div>
-        <div class="breed-desc">Neugierig, verspielt, ausgesprochen familiär – ein echter Allrounder.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Mittel</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Mittel</strong>Größe</div>
-          <div class="breed-stat"><strong>Sehr gut</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-    <div class="breed-card reveal">
-      <div class="breed-card-img">
-        <img src="https://images.unsplash.com/photo-1617895153857-82fe0c43621b?w=600&h=450&fit=crop&auto=format" alt="Siberian Husky" loading="lazy" width="600" height="450" onerror="this.style.opacity=0">
-        <span class="emoji-fb" aria-hidden="true">🐾</span>
-        <span class="breed-difficulty diff-hard">Erfahren</span>
-      </div>
-      <div class="breed-card-body">
-        <div class="breed-name">Siberian Husky</div>
-        <div class="breed-desc">Dramatisch, unabhängig, wunderschön – nichts für Anfänger, alles für Abenteurer.</div>
-        <div class="breed-stats">
-          <div class="breed-stat"><strong>Extrem</strong>Aktivität</div>
-          <div class="breed-stat"><strong>Groß</strong>Größe</div>
-          <div class="breed-stat"><strong>Bedingt</strong>Kindertauglich</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ── OFFER ── -->
@@ -626,24 +587,24 @@
       <div class="book-3d">
         <div class="book-cover">
           <div class="book-title">Der komplette Hunderassen-Ratgeber</div>
-          <div class="book-subtitle">58 Rassen · Kaufberatung · Pflege & Erziehung</div>
+          <div class="book-subtitle">80 Rassen · Kaufberatung · Pflege & Erziehung</div>
           <span class="book-dog-icon" aria-hidden="true">🐾</span>
         </div>
-        <div class="book-badge-price">
-          <div class="currency">€</div>
-          <div class="price">9,90</div>
-          <div class="was">29€</div>
-        </div>
+      </div>
+      <div class="offer-price-display">
+        <div class="offer-price-was">statt 29€</div>
+        <div class="offer-price-main"><sup>€</sup>9,90</div>
+        <div class="offer-price-type">Einmalig · Sofort-Download · PDF</div>
       </div>
     </div>
     <div class="offer-content reveal">
-      <div class="label-tag">Komplettes Wissen, sofort verfügbar</div>
-      <h2 class="offer-headline">Alles was du brauchst,<br>um die <em>richtige</em> Wahl zu treffen</h2>
+      <div class="label-tag" style="color:rgba(255,255,255,0.5);border-color:rgba(255,255,255,0.15)">Komplettes Wissen, sofort verfügbar</div>
+      <h2 class="offer-headline">Alles was du brauchst,<br>um die <em>richtige</em> Wahl zu treffen.</h2>
       <p class="offer-lead">Dieser Ratgeber spart dir Wochen an Recherche, schützt vor teuren Fehlern und gibt dir die Sicherheit für diese 15-jährige Entscheidung.</p>
       <div class="value-stack">
         <div class="value-item">
           <div class="value-check">✓</div>
-          <div class="value-text"><strong>58 Rassen in der Tiefe erklärt</strong> – Charakter, Alltag, typische Probleme und versteckte Eigenheiten</div>
+          <div class="value-text"><strong>80 Rassen in der Tiefe erklärt</strong> – Charakter, Alltag, typische Probleme und versteckte Eigenheiten</div>
         </div>
         <div class="value-item">
           <div class="value-check">✓</div>
@@ -659,17 +620,195 @@
         </div>
         <div class="value-item">
           <div class="value-check">✓</div>
-          <div class="value-text"><strong>BONUS: Rassenkarte als PDF</strong> – 58 Rassen auf einen Blick zum Ausdrucken</div>
+          <div class="value-text"><strong>BONUS: Rassenkarte als PDF</strong> – 80 Rassen auf einen Blick zum Ausdrucken</div>
         </div>
       </div>
       <div class="offer-urgency">🔥 Einführungsangebot: Nur 9,90€ statt 29€ – noch diese Woche</div>
-      <div class="offer-cta-row">
-        <a class="btn-cta-big" href="#">Jetzt sofort herunterladen →</a>
-        <div class="offer-guarantee">30-Tage-Geld-zurück-Garantie – ohne Wenn und Aber</div>
-      </div>
+      <a class="offer-cta-main" href="#">Jetzt sofort herunterladen →</a>
+      <p class="offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks · 14-Tage-Rückgabe</p>
     </div>
   </div>
 </section>
+
+<!-- ── PRICE PERSPECTIVE ── -->
+<section class="price-persp">
+  <div class="price-persp-inner">
+    <div class="price-persp-eyebrow">Kurz in Perspektive</div>
+    <h2 class="price-persp-title">Kostet weniger als zwei Cappuccinos.<br><em>Schützt dich vor Jahren der falschen Entscheidung.</em></h2>
+    <div class="pp-grid">
+      <div>
+        <div class="pp-col-head">Für 9,90€ bekommst du sonst …</div>
+        <div class="pp-item">
+          <div class="pp-item-price">~8€</div>
+          <div class="pp-item-body">
+            <div class="pp-item-label">☕ Zwei Cappuccinos in der Stadt</div>
+            <div class="pp-item-note">Getrunken, vergessen. In 20 Minuten.</div>
+          </div>
+        </div>
+        <div class="pp-item">
+          <div class="pp-item-price">13,99€</div>
+          <div class="pp-item-body">
+            <div class="pp-item-label">📺 Netflix – ein einziger Monat</div>
+            <div class="pp-item-note">Für Serien, die du in drei Wochen nicht mehr weißt.</div>
+          </div>
+        </div>
+        <div class="pp-item">
+          <div class="pp-item-price">~7€</div>
+          <div class="pp-item-body">
+            <div class="pp-item-label">🅿️ Parkgebühr Innenstadt, 2 Stunden</div>
+            <div class="pp-item-note">Das Auto steht. Du zahlst. Nichts danach.</div>
+          </div>
+        </div>
+        <div class="pp-item">
+          <div class="pp-item-price">~12€</div>
+          <div class="pp-item-body">
+            <div class="pp-item-label">🍕 Eine Pizza beim Lieferdienst</div>
+            <div class="pp-item-note">Glück für 30 Minuten, dann weg.</div>
+          </div>
+        </div>
+        <div class="pp-item" style="border-bottom:none">
+          <div class="pp-item-price">~10€</div>
+          <div class="pp-item-body">
+            <div class="pp-item-label">🎰 Drei Rubbellose</div>
+            <div class="pp-item-note">Erwartungswert: Enttäuschung.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="pp-col-head">Was die falsche Rasse wirklich kostet</div>
+        <div class="pp-damage">
+          <div class="pp-damage-head">Reale Kosten bei schlechtem Match</div>
+          <div class="pp-damage-row">
+            <span class="pp-damage-what">Hundeschule wegen Verhaltens­problemen</span>
+            <span class="pp-damage-cost">800–1.500€</span>
+          </div>
+          <div class="pp-damage-row">
+            <span class="pp-damage-what">Tier­verhaltens­therapeut (Einzel­stunden)</span>
+            <span class="pp-damage-cost">80–150€/Std</span>
+          </div>
+          <div class="pp-damage-row">
+            <span class="pp-damage-what">Hund zurückgeben + neuen Hund kaufen</span>
+            <span class="pp-damage-cost">1.500–3.000€</span>
+          </div>
+          <div class="pp-damage-row">
+            <span class="pp-damage-what">Umzug wegen falscher Größe / Energie</span>
+            <span class="pp-damage-cost">unbezahlbar</span>
+          </div>
+          <div class="pp-damage-row">
+            <span class="pp-damage-what">15 Jahre mit dem falschen Begleiter</span>
+            <span class="pp-damage-cost">unbezahlbar</span>
+          </div>
+          <div class="pp-damage-note">Diese Situationen passieren. Täglich. Fast immer bei Menschen, die sich nicht vorbereitet haben – nicht weil sie es nicht wollten, sondern weil niemand sie ehrlich beraten hat.</div>
+        </div>
+      </div>
+    </div>
+    <div class="pp-kicker reveal">
+      <p class="pp-kicker-text">9,90€. Einmal. <strong>Für die richtige Entscheidung der nächsten 15 Jahre.</strong></p>
+      <p class="pp-kicker-sub">Günstiger als ein Parkticket. Und 10.000× wertvoller.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BREEDS REEL ── -->
+<section class="breeds-section" id="rassen">
+  <div class="reel-header">
+    <div>
+      <div class="reel-eyebrow">80 Rassen · 14 Merkmale · Kein Zuckerguss</div>
+      <h2 class="reel-title">Jede Rasse.<br><span>Ehrlich erklärt.</span></h2>
+      <p class="reel-sub">Von der Stadtdogge bis zum Berghund – alles was du wirklich wissen musst, bevor du dich entscheidest.</p>
+    </div>
+    <div class="reel-stats-row">
+      <div class="reel-stat"><span class="reel-stat-num">80</span><span class="reel-stat-label">Rassen</span></div>
+      <div class="reel-stat"><span class="reel-stat-num">14</span><span class="reel-stat-label">Merkmale</span></div>
+      <div class="reel-stat"><span class="reel-stat-num">240+</span><span class="reel-stat-label">Seiten</span></div>
+    </div>
+  </div>
+  <div class="breed-index">
+    <ul class="breed-list">
+      <li><span class="bi-em">🐕</span>Golden Retriever</li>
+      <li><span class="bi-em">🦮</span>Labrador Retriever</li>
+      <li><span class="bi-em">🐺</span>Deutscher Schäferhund</li>
+      <li><span class="bi-em">🐾</span>Französische Bulldogge</li>
+      <li><span class="bi-em">🐶</span>Englische Bulldogge</li>
+      <li><span class="bi-em">🐕</span>Beagle</li>
+      <li><span class="bi-em">🌭</span>Dackel</li>
+      <li><span class="bi-em">🤍</span>Malteser</li>
+      <li><span class="bi-em">🐩</span>Shih Tzu</li>
+      <li><span class="bi-em">💕</span>Cavalier King Charles Spaniel</li>
+      <li><span class="bi-em">🐩</span>Pudel (Standard)</li>
+      <li><span class="bi-em">🐩</span>Zwergpudel</li>
+      <li><span class="bi-em">🐕</span>Border Collie</li>
+      <li><span class="bi-em">🐕</span>Australian Shepherd</li>
+      <li><span class="bi-em">🐺</span>Siberian Husky</li>
+      <li><span class="bi-em">🐺</span>Alaskan Malamute</li>
+      <li><span class="bi-em">🐕</span>Dobermann</li>
+      <li><span class="bi-em">🐕</span>Rottweiler</li>
+      <li><span class="bi-em">🥊</span>Boxer</li>
+      <li><span class="bi-em">🐘</span>Deutsche Dogge</li>
+      <li><span class="bi-em">🐕</span>Berner Sennenhund</li>
+      <li><span class="bi-em">🐕</span>Labradoodle</li>
+      <li><span class="bi-em">🐕</span>Corgi (Pembroke)</li>
+      <li><span class="bi-em">🦊</span>Shiba Inu</li>
+      <li><span class="bi-em">🦁</span>Chow Chow</li>
+      <li><span class="bi-em">🐕</span>Akita Inu</li>
+      <li><span class="bi-em">⚡</span>Jack Russell Terrier</li>
+      <li><span class="bi-em">🤍</span>West Highland Terrier</li>
+      <li><span class="bi-em">🎀</span>Yorkshire Terrier</li>
+      <li><span class="bi-em">🫙</span>Chihuahua</li>
+      <li><span class="bi-em">🧡</span>Pomeranian (Spitz)</li>
+      <li><span class="bi-em">🐕</span>Hovawart</li>
+      <li><span class="bi-em">🌟</span>Eurasier</li>
+      <li><span class="bi-em">🍂</span>Vizsla</li>
+      <li><span class="bi-em">🐕</span>Weimaraner</li>
+      <li><span class="bi-em">🐾</span>Dalmatiner</li>
+      <li><span class="bi-em">🍂</span>Irischer Setter</li>
+      <li><span class="bi-em">❄️</span>Samojede</li>
+      <li><span class="bi-em">🐕</span>Bernedoodle</li>
+      <li><span class="bi-em">🏃</span>Greyhound</li>
+      <li><span class="bi-em">🐕</span>Whippet</li>
+      <li><span class="bi-em">🐕</span>Großer Münsterländer</li>
+      <li><span class="bi-em">🐕</span>Kleiner Münsterländer</li>
+      <li><span class="bi-em">🍄</span>Lagotto Romagnolo</li>
+      <li><span class="bi-em">🐾</span>Bolonka Zwetna</li>
+      <li><span class="bi-em">🔮</span>Zwergpinscher</li>
+      <li><span class="bi-em">🦋</span>Papillon</li>
+      <li><span class="bi-em">🌺</span>Havaneser</li>
+      <li><span class="bi-em">🦁</span>Rhodesian Ridgeback</li>
+      <li><span class="bi-em">🐾</span>Cane Corso</li>
+      <li><span class="bi-em">🐕</span>Belgischer Schäferhund (Malinois)</li>
+      <li><span class="bi-em">🐄</span>Australian Cattle Dog</li>
+      <li><span class="bi-em">🦌</span>Basenji</li>
+      <li><span class="bi-em">🐕</span>Basset Hound</li>
+      <li><span class="bi-em">🎩</span>Boston Terrier</li>
+      <li><span class="bi-em">🥚</span>Bull Terrier</li>
+      <li><span class="bi-em">🐾</span>Cockapoo</li>
+      <li><span class="bi-em">🐕</span>Cocker Spaniel</li>
+      <li><span class="bi-em">🌿</span>English Springer Spaniel</li>
+      <li><span class="bi-em">🐕</span>Flat Coated Retriever</li>
+      <li><span class="bi-em">🦊</span>Foxterrier</li>
+      <li><span class="bi-em">🐺</span>Irish Wolfhound</li>
+      <li><span class="bi-em">⭐</span>Keeshond</li>
+      <li><span class="bi-em">🦁</span>Leonberger</li>
+      <li><span class="bi-em">🐷</span>Mops</li>
+      <li><span class="bi-em">🐻</span>Neufundländer</li>
+      <li><span class="bi-em">🦆</span>Nova Scotia Duck Tolling Retriever</li>
+      <li><span class="bi-em">⚡</span>Parson Russell Terrier</li>
+      <li><span class="bi-em">🎯</span>Pointer</li>
+      <li><span class="bi-em">👑</span>Pekingese</li>
+      <li><span class="bi-em">🎭</span>Puli</li>
+      <li><span class="bi-em">🚢</span>Schipperke</li>
+      <li><span class="bi-em">🧔</span>Schnauzer</li>
+      <li><span class="bi-em">🧔</span>Zwergschnauzer</li>
+      <li><span class="bi-em">🧔</span>Riesenschnauzer</li>
+      <li><span class="bi-em">🏴</span>Scottish Terrier</li>
+      <li><span class="bi-em">💪</span>Staffordshire Bull Terrier</li>
+      <li><span class="bi-em">🐕</span>American Staffordshire Terrier</li>
+      <li><span class="bi-em">🏔️</span>Tibet Terrier</li>
+      <li><span class="bi-em">☁️</span>Bichon Frisé</li>
+    </ul>
+  </div>
+</section>
+
 
 <!-- ── TESTIMONIALS ── -->
 <section class="section testimonials-section">
@@ -713,9 +852,6 @@
           <div class="testi-detail">Hundeinteressierte · Berlin</div>
           <span class="testi-breed">Jetzt: Französische Bulldogge</span>
         </div>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ── GUARANTEE ── -->
@@ -723,8 +859,8 @@
   <div class="guarantee-section reveal">
     <div class="guarantee-icon" aria-hidden="true">🛡️</div>
     <div>
-      <div class="guarantee-title">30 Tage – Volle Geld-zurück-Garantie</div>
-      <div class="guarantee-text">Du erhältst sofort nach dem Kauf Zugang zum kompletten Ratgeber. Wenn du innerhalb von 30 Tagen nicht zufrieden bist – aus irgendeinem Grund – erstatten wir dir den vollen Preis. Kein Formular, keine Fragen. Einfach eine E-Mail.</div>
+      <div class="guarantee-title">Sofort-Download nach Kauf</div>
+      <div class="guarantee-text">Du erhältst direkt nach dem Kauf den vollständigen Zugang zum Ratgeber – keine Wartezeit, kein Versand.</div>
     </div>
   </div>
 </div>
@@ -738,19 +874,35 @@
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Wie erhalte ich den Ratgeber nach dem Kauf?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Du erhältst sofort eine E-Mail mit dem Download-Link. Das PDF kannst du direkt auf Smartphone, Tablet oder Computer lesen – ohne spezielle App.</div>
+      <div class="faq-a">Du erhältst sofort eine E-Mail mit dem Download-Link. Das PDF kannst du direkt auf Smartphone, Tablet oder Computer lesen – ohne spezielle App. Der Zugriff ist dauerhaft, du kannst ihn jederzeit erneut herunterladen.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Gibt es eine Geld-zurück-Garantie?<span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Ja. Wenn du innerhalb von 14 Tagen nach dem Kauf nicht zufrieden bist, erstatten wir dir den vollen Betrag – ohne Fragen, ohne Bürokratie. Einfach eine kurze E-Mail genügt. Wir sind überzeugt von dem, was wir anbieten, und das Risiko liegt vollständig bei uns.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Was unterscheidet diesen Ratgeber von kostenlosen Infos im Internet?<span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Kostenlose Artikel sind oft von Züchtern gesponsert, beschönigen Schwächen oder wiederholen dieselben Klischees. Dieser Ratgeber nennt auch die Schattenseiten einer Rasse – Gesundheitsprobleme, typische Verhaltensauffälligkeiten, was Erstbesitzer überfordert. Alles an einem Ort, strukturiert und ehrlich – das spart dir Wochen an unzuverlässiger Recherche.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Für wen ist der Ratgeber geeignet?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Für alle, die sich ernsthaft mit dem Gedanken tragen, einen Hund zu kaufen – egal ob Erstbesitzer oder erfahrener Hundehalter, der eine neue Rasse kennenlernen möchte.</div>
+      <div class="faq-a">Für alle, die sich ernsthaft mit dem Gedanken tragen, einen Hund zu kaufen – egal ob Erstbesitzer oder erfahrener Hundehalter, der eine neue Rasse kennenlernen möchte. Besonders wertvoll für alle, die nicht wissen, wo sie anfangen sollen, oder die sich zwischen zwei Rassen nicht entscheiden können.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Welche Rassen sind im Ratgeber enthalten?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">58 der beliebtesten Rassen – von Golden Retriever und Labrador bis zu Spezialrassen wie Schnauzer, Dalmatianer, Hovawart und vielen mehr.</div>
+      <div class="faq-a">80 der relevantesten Rassen – von Golden Retriever, Labrador und Schäferhund bis zu Spezialrassen wie Malinois, Hovawart, Nova Scotia Duck Tolling Retriever und vielen mehr. Jede Rasse wird mit 14 Merkmalen bewertet: Energie, Trainierbarkeit, Familienhund-Eignung, Pflegeaufwand, Gesundheitsrisiken und mehr.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">Muss ich zuerst den Quiz machen?<span class="faq-arrow">▼</span></button>
-      <div class="faq-a">Nein, der Quiz ist kostenlos und unabhängig. Er gibt dir eine erste Orientierung. Der Ratgeber liefert dann die volle Tiefe zu jeder Rasse und zum Kaufprozess.</div>
+      <div class="faq-a">Nein, der Quiz ist kostenlos und unabhängig. Er gibt dir eine erste Orientierung, welche Rassen zu deinem Leben passen. Der Ratgeber liefert dann die volle Tiefe – Rasseprofil, Kaufprozess, Erziehungsstart, Kosten. Beides zusammen ist die stärkste Kombination.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Ich bin kompletter Erstbesitzer – ist das für mich geeignet?<span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Genau für dich. Der Ratgeber erklärt nicht nur die Rassen, sondern führt dich auch durch den gesamten Kaufprozess: Wie erkenne ich seriöse Züchter? Was kostet ein Hund wirklich im ersten Jahr? Wie verläuft die Eingewöhnung? Du brauchst kein Vorwissen – nur die Bereitschaft, dich ehrlich vorzubereiten.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">Kann ich den Ratgeber auf mehreren Geräten lesen?<span class="faq-arrow">▼</span></button>
+      <div class="faq-a">Ja, unbegrenzt. Das PDF lässt sich auf jedem Gerät öffnen – Smartphone, Tablet, Computer – und auch ausdrucken. Du kannst es dir mit deiner Familie teilen oder auf dem Tablet durchblättern, wenn du beim Züchter bist.</div>
     </div>
   </div>
 </section>
@@ -761,7 +913,7 @@
   <h2 class="section-title">Die richtige Wahl beginnt<br>mit dem richtigen Wissen</h2>
   <p class="section-sub">Für weniger als ein Hundefutter bekommst du alles, was du brauchst – und triffst die Entscheidung, die dich 15 Jahre glücklich macht.</p>
   <a class="btn-cta-gold" href="#">Ratgeber jetzt für 9,90€ kaufen →</a>
-  <p class="final-cta-small">Sofort-Download · 30 Tage Geld-zurück-Garantie · Einmalzahlung</p>
+  <p class="final-cta-small">Sofort-Download · Einmalzahlung · Kein Abo</p>
 </section>
 
 </main>
@@ -781,189 +933,607 @@
 
 <script>
 const questions = [
-  { q: "Wie aktiv ist dein Alltag?", sub: "Denke an einen typischen Tag – nicht an deinen aktivsten.", opts: [
-    { icon: "🛋️", text: "Eher entspannt", sub: "Ich genieße Ruhe", val: "low" },
-    { icon: "🚶", text: "Moderat aktiv", sub: "Spaziergänge, kein Sport", val: "med" },
-    { icon: "🏃", text: "Sehr aktiv", sub: "Sport & Outdoor täglich", val: "high" },
-    { icon: "⚡", text: "Extrem aktiv", sub: "Wandern, Joggen, Abenteuer", val: "xhigh" }
+  { category:"Wohnsituation", q:"Wo wohnst du aktuell?", sub:"Deine Wohnsituation bestimmt, welche Hunderassen infrage kommen.", opts:[
+    { icon:"🏢", text:"Wohnung ohne Garten", sub:"Innenstadt / urban", val:"apt" },
+    { icon:"🌆", text:"Wohnung mit Balkon", sub:"Stadtlage", val:"apt_bal" },
+    { icon:"🏠", text:"Haus mit kleinem Garten", sub:"Vorstadt / Stadtrand", val:"house" },
+    { icon:"🌳", text:"Haus mit großem Garten", sub:"Land / viel Platz", val:"rural" }
   ]},
-  { q: "Wo wohnst du?", sub: "Deine Wohnsituation bestimmt viel.", opts: [
-    { icon: "🏢", text: "Wohnung ohne Garten", sub: "Innenstadt oder urban", val: "apt" },
-    { icon: "🏡", text: "Haus mit Garten", sub: "Eigener Außenbereich", val: "house" },
-    { icon: "🌳", text: "Auf dem Land", sub: "Viel Platz & Natur", val: "rural" },
-    { icon: "🏘️", text: "Reihenhaus / DHH", sub: "Kleiner Garten", val: "semi" }
+  { category:"Haaren & Speichel", q:"Wie empfindlich bist du gegenüber Hundehaaren und Speichel?", sub:"Manche Rassen haaren extrem stark – sei hier ehrlich mit dir.", opts:[
+    { icon:"🚫", text:"Null Toleranz", sub:"Allergie oder starke Abneigung", val:"shed_none" },
+    { icon:"🧹", text:"Lieber wenig", sub:"Gelegentliche Haare noch OK", val:"shed_low" },
+    { icon:"🧽", text:"Kann damit leben", sub:"Staubsaugen 2–3x pro Woche", val:"shed_ok" },
+    { icon:"🤷", text:"Egal", sub:"Haare gehören dazu", val:"shed_all" }
   ]},
-  { q: "Lebst du mit Kindern zusammen?", sub: "Ehrlichkeit zählt – auch geplante Kinder.", opts: [
-    { icon: "👶", text: "Ja, kleine Kinder", sub: "Unter 6 Jahren", val: "toddler" },
-    { icon: "🧒", text: "Ja, ältere Kinder", sub: "6 bis 14 Jahre", val: "kids" },
-    { icon: "🧑", text: "Teenager im Haushalt", sub: "Ab 14 Jahren", val: "teen" },
-    { icon: "🙋", text: "Nein, keine Kinder", sub: "Allein oder Paar", val: "nokids" }
+  { category:"Lautstärke", q:"Wie viel Bellen kannst du tolerieren?", sub:"Besonders wichtig bei Wohnungen oder empfindlichen Nachbarn.", opts:[
+    { icon:"🤫", text:"Kein Bellen", sub:"Ruhige Rassen sind Pflicht", val:"bark_none" },
+    { icon:"🔉", text:"Wenig Bellen OK", sub:"Gelegentliches Melden ist fine", val:"bark_some" },
+    { icon:"🔊", text:"Moderat ist fine", sub:"Normales Wachhundverhalten", val:"bark_med" },
+    { icon:"📢", text:"Stört mich nicht", sub:"Bellen ist kein Thema für mich", val:"bark_ok" }
   ]},
-  { q: "Wie viel Erfahrung hast du mit Hunden?", sub: "Sei ehrlich – es geht um deinen zukünftigen Hund.", opts: [
-    { icon: "🐣", text: "Keine Erfahrung", sub: "Mein erster Hund", val: "xp0" },
-    { icon: "🐥", text: "Wenig Erfahrung", sub: "Als Kind Hund gehabt", val: "xp1" },
-    { icon: "🐦", text: "Gute Erfahrung", sub: "Eigenen Hund gehabt", val: "xp2" },
-    { icon: "🦅", text: "Viel Erfahrung", sub: "Mehrere Hunde trainiert", val: "xp3" }
+  { category:"Familie", multi:true, q:"Mit wem wirst du zusammenleben?", sub:"Mehrfachauswahl möglich.", opts:[
+    { icon:"🧑", text:"Alleine / als Paar", sub:"Keine Kinder, keine anderen Tiere", val:"solo" },
+    { icon:"👶", text:"Mit Kindern (unter 12)", sub:"Kleinkinder, Schulkinder", val:"kids" },
+    { icon:"🧒", text:"Mit Teenagern (12+)", sub:"Ältere Kinder, Jugendliche", val:"teens" },
+    { icon:"🐈", text:"Mit anderen Tieren", sub:"Katzen, andere Hunde etc.", val:"pets" }
   ]},
-  { q: "Was ist dir am wichtigsten?", sub: "Deine ehrliche Priorität.", opts: [
-    { icon: "🤗", text: "Treuer Schmusebegleiter", sub: "Gemütlichkeit & Nähe", val: "cuddle" },
-    { icon: "🏃", text: "Sportlicher Partner", sub: "Joggen, Wandern, Agility", val: "sport" },
-    { icon: "🛡️", text: "Schutz & Sicherheit", sub: "Wachsamer Hund", val: "guard" },
-    { icon: "🎾", text: "Spielkamerad", sub: "Verspielt & witzig", val: "play" }
+  { category:"Soziales Umfeld", q:"Wie ist dein soziales Umfeld zu Hause?", sub:"Beeinflusst, wie sozialverträglich dein Hund sein muss.", opts:[
+    { icon:"🎉", text:"Viele Besucher", sub:"Parties, Gäste, lebendiges Umfeld", val:"social_lots" },
+    { icon:"👥", text:"Regelmäßig Besuch", sub:"Familie und Freunde kommen oft", val:"social_some" },
+    { icon:"🚪", text:"Kaum Besuch", sub:"Meistens nur ich", val:"social_few" },
+    { icon:"🔒", text:"Sehr privat", sub:"Fast nie jemand da", val:"social_none" }
+  ]},
+  { category:"Alltag", q:"Wie sieht dein typischer Werktag aus?", sub:"Bestimmt, wie viel Zeit dein Hund wirklich mit dir verbringt.", opts:[
+    { icon:"🏠", text:"Hauptsächlich zu Hause", sub:"Home Office / selbstständig", val:"work_home" },
+    { icon:"⏰", text:"Teilzeit oder Hybrid", sub:"2–3 Tage im Büro pro Woche", val:"work_part" },
+    { icon:"🏢", text:"Vollzeit im Büro", sub:"5 Tage, 8+ Stunden täglich weg", val:"work_full" },
+    { icon:"🌀", text:"Schicht / unregelmäßig", sub:"Wechselnde Zeiten, schwer planbar", val:"work_shift" }
+  ]},
+  { category:"Alleinzeit", q:"Wie lange würde dein Hund voraussichtlich täglich allein sein?", sub:"Überlege deinen typischen Alltag realistisch – Arbeit, Erledigungen, Freizeit.", opts:[
+    { icon:"🏠", text:"Kaum allein", sub:"Max. 2 Stunden täglich", val:"rarely" },
+    { icon:"⏰", text:"4–6 Stunden", sub:"Halbtags weg", val:"some" },
+    { icon:"🏢", text:"6–8 Stunden", sub:"Vollzeit arbeitend", val:"many" },
+    { icon:"🌙", text:"Mehr als 8 Stunden", sub:"Lange Abwesenheiten geplant", val:"lots" }
+  ]},
+  { category:"Aktivität", q:"Wie aktiv bist du wirklich?", sub:"Denke an einen normalen Alltag – nicht an deinen aktivsten Tag.", opts:[
+    { icon:"🛋️", text:"Eher entspannt", sub:"Kurze Spaziergänge reichen", val:"low" },
+    { icon:"🚶", text:"Moderat aktiv", sub:"30–60 Min. täglich", val:"med" },
+    { icon:"🏃", text:"Sehr aktiv", sub:"1–2h Sport oder Wandern täglich", val:"high" },
+    { icon:"⚡", text:"Extrem aktiv", sub:"Joggen, Radfahren, Ausdauer", val:"xhigh" }
+  ]},
+  { category:"Aktivitätstyp", multi:true, q:"Was möchtest du hauptsächlich mit deinem Hund machen?", sub:"Mehrfachauswahl möglich.", opts:[
+    { icon:"🌿", text:"Entspannte Spaziergänge", sub:"Natur genießen, ruhiges Tempo", val:"act_walk" },
+    { icon:"🎾", text:"Spielen & Toben", sub:"Fetch, Tauziehen, Garten", val:"act_play" },
+    { icon:"🏃", text:"Sport & Ausdauer", sub:"Joggen, Radfahren, Wandern", val:"act_sport" },
+    { icon:"🏆", text:"Hundesport & Training", sub:"Agility, Obedience, Fährtenarbeit", val:"act_train" }
+  ]},
+  { category:"Reisen", q:"Wie oft bist du längere Zeit weg oder verreist (ohne Hund)?", sub:"Häufige Abwesenheiten erfordern flexible Hunde oder eine gute Betreuungslösung.", opts:[
+    { icon:"🏡", text:"Kaum / nie", sub:"Ich bin fast immer zu Hause", val:"travel_never" },
+    { icon:"🎒", text:"Paar Mal im Jahr", sub:"Urlaub, gelegentliche Kurztrips", val:"travel_rare" },
+    { icon:"✈️", text:"Monatlich", sub:"Regelmäßige Reisen, Geschäftsreisen", val:"travel_often" },
+    { icon:"🌍", text:"Sehr häufig", sub:"Fast jede Woche mehrere Tage weg", val:"travel_frequent" }
+  ]},
+  { category:"Zeitbudget", q:"Wie viele Stunden täglich hast du wirklich für deinen Hund?", sub:"Gassi, Spielen, Training, Beschäftigung – alles zusammengerechnet.", opts:[
+    { icon:"⏳", text:"1–2 Stunden", sub:"Ich habe wenig Zeit", val:"low" },
+    { icon:"🕐", text:"2–3 Stunden", sub:"Normaler Alltag", val:"med" },
+    { icon:"🕓", text:"3–5 Stunden", sub:"Ich kann viel Zeit investieren", val:"high" },
+    { icon:"🏕️", text:"5+ Stunden", sub:"Hund ist mein Hauptprojekt", val:"xhigh" }
+  ]},
+  { category:"Hundegröße", q:"Welche Körpergröße schwebt dir vor?", sub:"Größere Hunde brauchen mehr Platz, Futter und kosten mehr beim Tierarzt.", opts:[
+    { icon:"🐭", text:"Klein (unter 10 kg)", sub:"Schoßhund bis Kleinhund", val:"size_small" },
+    { icon:"🐕", text:"Mittel (10–25 kg)", sub:"Kompakt und handlich", val:"size_medium" },
+    { icon:"🦮", text:"Groß (25–45 kg)", sub:"Klassische Familiengröße", val:"size_large" },
+    { icon:"🐘", text:"Egal – Charakter zählt", sub:"Keine Größenpräferenz", val:"size_any" }
+  ]},
+  { category:"Erfahrung", q:"Wie viel Erfahrung hast du mit Hunden?", sub:"Ehrlichkeit schützt dich vor Rassen, die dich überfordern könnten.", opts:[
+    { icon:"🌱", text:"Kein Hund bisher", sub:"Kompletter Neueinsteiger", val:"none" },
+    { icon:"📚", text:"Grundkenntnisse", sub:"Familienhund in der Kindheit", val:"basic" },
+    { icon:"🐕", text:"Eigener Hund", sub:"Bereits einen Hund besessen", val:"owned" },
+    { icon:"🏆", text:"Erfahrener Hundehalter", sub:"Mehrere Hunde, Trainingserfahrung", val:"expert" }
+  ]},
+  { category:"Training", q:"Wie viel Zeit möchtest du täglich ins Training investieren?", sub:"Sei ehrlich – manche Rassen brauchen täglich intensive Führung, andere kommen mit wenig aus.", opts:[
+    { icon:"⏱️", text:"Minimal (5–10 Min.)", sub:"Grundkommandos reichen mir", val:"low" },
+    { icon:"📅", text:"Regelmäßig (20–30 Min.)", sub:"Ich trainiere täglich kurz", val:"reg" },
+    { icon:"🎯", text:"Intensiv (45–60 Min.)", sub:"Hundesport, Tricks, Aufgaben", val:"high" },
+    { icon:"🥇", text:"Profi-Level (1h+)", sub:"Ausbildung, Leistungssport", val:"pro" }
+  ]},
+  { category:"Beschäftigung", multi:true, q:"Wie möchtest du deinen Hund hauptsächlich beschäftigen?", sub:"Mehrfachauswahl möglich.", opts:[
+    { icon:"🚶", text:"Hauptsächlich Gassi gehen", sub:"Bewegung steht im Vordergrund", val:"occ_walk" },
+    { icon:"🎾", text:"Spielen & soziale Interaktion", sub:"Spaß und gemeinsame Zeit", val:"occ_play" },
+    { icon:"🏅", text:"Hundesport (Agility, Fährte …)", sub:"Teamwork und Leistung", val:"occ_sport" },
+    { icon:"🧩", text:"Nasenarbeit & Tricks", sub:"Mentale Herausforderung bevorzugt", val:"occ_brain" }
+  ]},
+  { category:"Budget", q:"Was ist dein monatliches Budget für deinen Hund?", sub:"Inkl. Futter, Tierarzt, Pflege, Zubehör und unerwartete Kosten.", opts:[
+    { icon:"💶", text:"Bis 150 €", sub:"Sehr knappes Budget", val:"tight" },
+    { icon:"💰", text:"150–300 €", sub:"Normales Budget", val:"medium" },
+    { icon:"💳", text:"300–500 €", sub:"Komfortables Budget", val:"comfort" },
+    { icon:"🏦", text:"500 € +", sub:"Kein Problem mit den Kosten", val:"open" }
+  ]},
+  { category:"Fellpflege", q:"Wie viel Aufwand möchtest du für die Fellpflege?", sub:"Langes Fell, Friseurbesuche und tägliches Bürsten kosten Zeit & Geld.", opts:[
+    { icon:"✂️", text:"So wenig wie möglich", sub:"Kurzes, pflegeleichtes Fell", val:"min" },
+    { icon:"🪮", text:"Paar Mal pro Woche", sub:"Gelegentliches Bürsten OK", val:"some" },
+    { icon:"💅", text:"Täglich bürsten", sub:"Ich kümmere mich gerne ums Fell", val:"daily" },
+    { icon:"🐩", text:"Profipflege alle 6–8 Wo.", sub:"Trim, Friseur, Aufwand kein Problem", val:"pro" }
+  ]},
+  { category:"No-Go", multi:true, q:"Was sind deine absoluten K.O.-Kriterien?", sub:"Mehrfachauswahl möglich – alle gewählten Faktoren schließen unpassende Rassen aus.", opts:[
+    { icon:"🌪️", text:"Starkes Haaren", sub:"Haare auf Möbeln & Kleidung", val:"nogo_shed" },
+    { icon:"📢", text:"Viel Bellen", sub:"Nachbarn, Wohnung, Lärm", val:"nogo_bark" },
+    { icon:"⚡", text:"Extrem viel Energie", sub:"Nie zur Ruhe kommen", val:"nogo_energy" },
+    { icon:"🐇", text:"Hoher Jagdtrieb", sub:"Katzen, Kleintiere, Leine", val:"nogo_drive" }
+  ]},
+  { category:"Trade-off", q:"Du kannst nur eines haben – was ist dir wichtiger?", sub:"Kein Hund hat alles. Wähle dein wichtigstes Kriterium.", opts:[
+    { icon:"👨‍👩‍👧", text:"Sehr familienfreundlich", sub:"Auch wenn er viel Auslauf braucht", val:"tradeoff_family" },
+    { icon:"🛋️", text:"Wenig Auslaufbedarf", sub:"Auch wenn er etwas zurückhaltend ist", val:"tradeoff_lazy" },
+    { icon:"🎓", text:"Leicht erziehbar", sub:"Auch wenn er mehr haart", val:"tradeoff_easy" },
+    { icon:"🤗", text:"Sehr anhänglich", sub:"Auch wenn er schwerer zu führen ist", val:"tradeoff_cuddle" }
+  ]},
+  { category:"Charakter", multi:true, q:"Welchen Charakter wünschst du dir?", sub:"Mehrfachauswahl möglich.", opts:[
+    { icon:"❤️", text:"Treuer Begleiter", sub:"Immer an meiner Seite, sehr verbunden", val:"loyal" },
+    { icon:"⚽", text:"Sportpartner", sub:"Fit, ausdauernd, action-liebend", val:"sport" },
+    { icon:"😊", text:"Freundlicher Familienhund", sub:"Offen, sozial, liebt alle Menschen", val:"social" },
+    { icon:"🛡️", text:"Beschützer", sub:"Wachsam, aufmerksam, selbstbewusst", val:"guard" }
+  ]},
+  { category:"Realitätscheck", q:"Wie konsequent bist du – auch wenn du müde oder gestresst bist?", sub:"Manche Rassen brauchen täglich klare Führung. Hier zählt Ehrlichkeit, nicht Idealvorstellung.", opts:[
+    { icon:"🏆", text:"Sehr konsequent", sub:"Regeln gelten immer, auch am schlechtesten Tag", val:"rc_high" },
+    { icon:"✅", text:"Meistens konsequent", sub:"Kleine Ausnahmen, aber wirklich selten", val:"rc_med" },
+    { icon:"😴", text:"Tagesformabhängig", sub:"Wenn ich müde bin, drücke ich ein Auge zu", val:"rc_low" },
+    { icon:"🤷", text:"Eher nachgiebig", sub:"Strenge Konsequenz ist nicht mein Ding", val:"rc_none" }
+  ]},
+  { category:"Realitätscheck", q:"Dein Hund zerstört etwas zum dritten Mal. Wie reagierst du?", sub:"Ehrliche Antwort schützt dich vor einer Rasse, die dich dauerhaft frustriert.", opts:[
+    { icon:"🧘", text:"Ich bleibe entspannt", sub:"Rückschläge gehören dazu – ich passe mein Training an", val:"pat_zen" },
+    { icon:"😤", text:"Ich werde kurz ungeduldig", sub:"Fange mich aber schnell wieder", val:"pat_med" },
+    { icon:"😠", text:"Das stresst mich stark", sub:"Ich brauche einen unkomplizierten Hund", val:"pat_low" },
+    { icon:"🚀", text:"Ich verdopple den Einsatz", sub:"Herausforderungen motivieren mich", val:"pat_high" }
   ]}
 ];
 
+const breedSizes={
+  "Golden Retriever":3,"Labrador Retriever":3,"Deutscher Schäferhund":3,
+  "Französische Bulldogge":2,"Englische Bulldogge":2,"Beagle":2,"Dackel":1,
+  "Malteser":1,"Shih Tzu":1,"Cavalier King Charles Spaniel":1,
+  "Pudel (Standard)":3,"Zwergpudel":1,"Border Collie":2,"Australian Shepherd":3,
+  "Siberian Husky":3,"Alaskan Malamute":4,"Dobermann":3,"Rottweiler":4,
+  "Boxer":3,"Deutsche Dogge":4,"Berner Sennenhund":4,"Labradoodle":3,
+  "Corgi (Pembroke)":2,"Shiba Inu":2,"Chow Chow":3,"Akita Inu":3,
+  "Jack Russell Terrier":1,"West Highland Terrier":1,"Yorkshire Terrier":1,
+  "Chihuahua":1,"Pomeranian (Spitz)":1,"Hovawart":3,"Eurasier":2,
+  "Vizsla":3,"Weimaraner":3,"Dalmatiner":3,"Irischer Setter":3,
+  "Samojede":3,"Bernedoodle":3,"Greyhound":3,"Whippet":2,
+  "Großer Münsterländer":3,"Kleiner Münsterländer":2,"Lagotto Romagnolo":2,
+  "Bolonka Zwetna":1,"Zwergpinscher":1,"Papillon":1,"Havaneser":1,
+  "Rhodesian Ridgeback":3,
+  "Cane Corso":4,
+  "Belgischer Schäferhund (Malinois)":3,
+  "Australian Cattle Dog":2,"Basenji":2,"Basset Hound":3,"Boston Terrier":1,
+  "Bull Terrier":3,"Cockapoo":1,"Cocker Spaniel":2,"English Springer Spaniel":2,
+  "Flat Coated Retriever":3,"Foxterrier":1,"Irish Wolfhound":4,"Keeshond":2,
+  "Leonberger":4,"Mops":1,"Neufundländer":4,"Nova Scotia Duck Tolling Retriever":2,
+  "Parson Russell Terrier":1,"Pointer":3,"Pekingese":1,"Puli":2,"Schipperke":1,
+  "Schnauzer":2,"Zwergschnauzer":1,"Riesenschnauzer":3,"Scottish Terrier":1,
+  "Staffordshire Bull Terrier":2,"American Staffordshire Terrier":3,
+  "Tibet Terrier":2,"Bichon Frisé":1
+};
+
 const breeds = [
-  { name: "Golden Retriever", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 }, traits: ["Familienfreundlich","Geduldig","Lernwillig","Verspielt"], desc: "Der Golden Retriever ist der ideale Allrounder – liebevoll, geduldig mit Kindern und leicht zu erziehen. Perfekt für Familien und Erstbesitzer." },
-  { name: "Labrador Retriever", emoji: "🐶", scores: { low:2, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:2, guard:1, play:3 }, traits: ["Begeistert","Treu","Robust","Kinderlieb"], desc: "Der Labrador ist ein absoluter Lebenskünstler – anpassungsfähig, fröhlich und für fast jede Lebenssituation geeignet." },
-  { name: "Französische Bulldogge", emoji: "🐩", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Stadttauglich","Ruhig","Anhänglich","Charmant"], desc: "Charmant, entspannt und begeistert vom Sofa – die Französische Bulldogge ist gemacht für das Stadtleben." },
-  { name: "Border Collie", emoji: "🐕‍🦺", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Hochintelligent","Energiegeladen","Fokussiert","Lernbegeistert"], desc: "Für aktive, erfahrene Hundehalter: Der Border Collie braucht täglich geistige und körperliche Auslastung – gibt dafür alles zurück." },
-  { name: "Beagle", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:3, toddler:3, kids:3, teen:2, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Verspielt","Neugierig","Familiär","Robust"], desc: "Der Beagle ist ein fröhlicher Familienbegleiter – lebhaft, neugierig und ausgesprochen kinderfreundlich." },
-  { name: "Siberian Husky", emoji: "🐾", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Abenteuerlustig","Unabhängig","Energiegeladen","Dramatisch"], desc: "Wunderschön, eigensinnig und für echte Abenteurer. Der Husky ist nichts für Anfänger – belohnt aber jeden Einsatz." },
-  { name: "Dackel", emoji: "🐕", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:2, play:2 }, traits: ["Charakter-Hund","Mutig","Anpassungsfähig","Treu"], desc: "Mit großem Charakter im kleinen Körper: Der Dackel ist selbstbewusst, liebt seine Familie und passt überall rein." },
-  { name: "Deutscher Schäferhund", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:3, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 }, traits: ["Schutztrieb","Intelligent","Treu","Arbeitsfreudig"], desc: "Der Deutsche Schäferhund ist einer der vielseitigsten Hunde – treu, klug, schutzbewusst. Braucht eine konsequente Hand." },
-  { name: "Pudel", emoji: "🐩", scores: { low:1, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Hochintelligent","Hypoallergen","Vielseitig","Verspielt"], desc: "Der Pudel ist einer der klügsten Hunde der Welt – hypoallergen, lernbegeistert und für fast jeden Lebensstil geeignet." },
-  { name: "Englische Bulldogge", emoji: "🐶", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:2, play:2 }, traits: ["Entspannt","Loyal","Stadttauglich","Gemütlich"], desc: "Die Englische Bulldogge ist ein echter Sofakönig – gemütlich, loyal und perfekt für entspannte Stadtbewohner." },
-  { name: "Rottweiler", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:1 }, traits: ["Schutztrieb","Selbstbewusst","Treu","Kraftvoll"], desc: "Der Rottweiler ist ein selbstbewusster Schutz- und Familienhund. Braucht erfahrene, konsequente Führung." },
-  { name: "Yorkshire Terrier", emoji: "🐕", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Kompakt","Mutig","Anhänglich","Pflegeleicht"], desc: "Klein aber oho: Der Yorkshire Terrier ist ein mutiger Begleiter, ideal für die Wohnung und für Menschen die einen treuen Minibegleiter suchen." },
-  { name: "Boxer", emoji: "🐕", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:2, play:3 }, traits: ["Verspielt","Treu","Kinderlieb","Energiegeladen"], desc: "Der Boxer ist ein ewiges Kind – verspielt, liebevoll und ein fantastischer Familienhund für aktive Haushalte." },
-  { name: "Dobermann", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:3, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 }, traits: ["Schutztrieb","Athletisch","Intelligent","Loyal"], desc: "Der Dobermann ist ein eleganter Arbeitshund – athletisch, hochintelligent und ein unvergleichlicher Schutzbegleiter für erfahrene Halter." },
-  { name: "Cavalier King Charles Spaniel", emoji: "🐶", scores: { low:3, med:3, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:3, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Sanft","Kinderlieb","Anhänglich","Pflegeleicht"], desc: "Der Cavalier ist pure Wärme – sanft, anhänglich und der perfekte Schmusebegleiter für jede Lebenssituation." },
-  { name: "Shih Tzu", emoji: "🐩", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:2, xp3:2, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Entspannt","Anhänglich","Stadtgeeignet","Charmant"], desc: "Der Shih Tzu ist ein charmanter Stadthund – ruhig, anhänglich und pflegeleicht im Alltag." },
-  { name: "Chihuahua", emoji: "🐕", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:1 }, traits: ["Treu","Mutig","Kompakt","Temperamentvoll"], desc: "Der Chihuahua ist ein großer Hund im kleinsten Körper – treu bis auf die Knochen, aber nichts für kleine Kinder." },
-  { name: "Malteser", emoji: "🐩", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Elegant","Sanft","Anhänglich","Hypoallergen"], desc: "Der Malteser ist ein eleganter kleiner Begleiter – sanft, hypoallergen und ideal für ruhige Haushalte." },
-  { name: "Australischer Schäferhund", emoji: "🐕‍🦺", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:2, play:3 }, traits: ["Hochintelligent","Sportlich","Lernwillig","Energiegeladen"], desc: "Der Australische Schäferhund ist ein brillanter Sportpartner – bunt, klug und für aktive Hundesportler gemacht." },
-  { name: "Berner Sennenhund", emoji: "🦮", scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 }, traits: ["Sanftmütig","Familiär","Treu","Imposant"], desc: "Der Berner Sennenhund ist ein sanfter Riese – treu, kinderlieb und ein beeindruckender Familienhund für Haus und Garten." },
-  { name: "Weimaraner", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Elegant","Ausdauernd","Jagdtrieb","Sportlich"], desc: "Der Weimaraner ist ein eleganter Jagd- und Sporthund – ideal für aktive Menschen mit viel Zeit im Freien." },
-  { name: "Dalmatiner", emoji: "🐶", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:3 }, traits: ["Ausdauernd","Verspielt","Einzigartig","Sportlich"], desc: "Der Dalmatiner ist ein unverwechselbarer Sportler – ausdauernd, lebhaft und braucht täglich viel Bewegung." },
-  { name: "Cocker Spaniel", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:3, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Fröhlich","Sanft","Verspielt","Familiär"], desc: "Der Cocker Spaniel ist ein fröhlicher Alltagsbegleiter – ausgeglichen, verspielt und wunderbar mit Kindern." },
-  { name: "Havaneser", emoji: "🐩", scores: { low:3, med:2, high:1, xhigh:0, apt:3, house:3, rural:2, semi:3, toddler:2, kids:3, teen:3, nokids:3, xp0:3, xp1:3, xp2:3, xp3:3, cuddle:3, sport:0, guard:0, play:2 }, traits: ["Lebhaft","Anhänglich","Stadtgeeignet","Sozial"], desc: "Der Havaneser ist ein fröhlicher kleiner Stadtbegleiter – anhänglich, sozial und für Erstbesitzer ideal." },
-  { name: "Jack Russell Terrier", emoji: "🐕", scores: { low:0, med:2, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:1, sport:2, guard:1, play:3 }, traits: ["Temperamentvoll","Mutig","Neugierig","Ausdauernd"], desc: "Der Jack Russell ist ein dynamisches Kraftpaket – temperamentvoll, neugierig und braucht viel Beschäftigung." },
-  { name: "Spitz / Pomeranian", emoji: "🐕", scores: { low:3, med:2, high:0, xhigh:0, apt:3, house:2, rural:1, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:0, guard:1, play:2 }, traits: ["Flauschig","Lebhaft","Treu","Stadtgeeignet"], desc: "Der Spitz ist ein flauschiger Minibegleiter – lebendig, treu und der perfekte Stadtbegleiter für ruhige Haushalte." },
-  { name: "Schnauzer", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 }, traits: ["Robust","Wachsam","Vielseitig","Charakterstark"], desc: "Der Schnauzer ist ein vielseitiger Alltagsbegleiter mit Charakter – robust, wachsam und für viele Lebenssituationen geeignet." },
-  { name: "Irischer Setter", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:0, play:3 }, traits: ["Lebhaft","Fröhlich","Sportlich","Familiär"], desc: "Der Irische Setter ist ein feuriger Sportler – wunderschön, fröhlich und braucht täglich ausgedehnte Bewegung." },
-  { name: "Whippet", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:2 }, traits: ["Sanft","Elegant","Anpassungsfähig","Schnell"], desc: "Der Whippet ist ein eleganter Widerspruch – schnellster Hund auf der Couch und im Sprint. Sanft, anpassungsfähig und pflegeleicht." },
-  { name: "Samojede", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:3, guard:1, play:2 }, traits: ["Lächelnd","Freundlich","Ausdauernd","Flauschig"], desc: "Der Samojede lächelt buchstäblich – ein freundlicher, flauschiger Nordlandhund für aktive Menschen." },
-  { name: "Alaskan Malamute", emoji: "🐾", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Kraftvoll","Ausdauernd","Unabhängig","Imposant"], desc: "Der Malamute ist ein echter Kraftprotz – für extreme Outdoor-Aktivitäten und sehr erfahrene Hundehalter." },
-  { name: "Chow Chow", emoji: "🐶", scores: { low:2, med:2, high:1, xhigh:0, apt:2, house:3, rural:2, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:0, guard:2, play:0 }, traits: ["Würdevoll","Unabhängig","Wachsam","Loyal"], desc: "Der Chow Chow ist ein würdevoller Einzelgänger – tief loyal zu seiner Person, aber nichts für Kinder oder Anfänger." },
-  { name: "Akita", emoji: "🦮", scores: { low:1, med:2, high:2, xhigh:1, apt:0, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:2, sport:1, guard:3, play:1 }, traits: ["Würdevoll","Loyal","Schutztrieb","Selbstbewusst"], desc: "Der Akita ist ein japanischer Würdenträger – absolut loyal zu seiner Familie, aber nur für sehr erfahrene Halter geeignet." },
-  { name: "Shiba Inu", emoji: "🐕", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:2, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:1, guard:1, play:2 }, traits: ["Unabhängig","Reinlich","Charakterstark","Kompakt"], desc: "Der Shiba Inu ist Japans beliebtester Hund – charakterstark, reinlich wie eine Katze, aber braucht erfahrene Führung." },
-  { name: "West Highland Terrier", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:1, play:2 }, traits: ["Selbstbewusst","Robust","Mutig","Fröhlich"], desc: "Der Westie ist ein selbstbewusster kleiner Terrier – robust, pflegeleicht und voller Lebensfreude." },
-  { name: "Rhodesian Ridgeback", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:2, sport:3, guard:3, play:1 }, traits: ["Athletisch","Selbstbewusst","Schutztrieb","Ausdauernd"], desc: "Der Rhodesian Ridgeback ist ein südafrikanischer Löwenjäger – athletisch, selbstbewusst und für erfahrene Sportler." },
-  { name: "Irischer Wolfshund", emoji: "🦮", scores: { low:1, med:2, high:2, xhigh:3, apt:0, house:2, rural:3, semi:0, toddler:1, kids:2, teen:3, nokids:2, xp0:1, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:1, play:2 }, traits: ["Sanfter Riese","Ruhig","Treu","Imposant"], desc: "Der Irische Wolfshund ist der größte Hund der Welt – sanft, ruhig und ein beeindruckender Begleiter mit viel Platzanspruch." },
-  { name: "Hovawart", emoji: "🐕‍🦺", scores: { low:0, med:2, high:3, xhigh:2, apt:0, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:3, play:2 }, traits: ["Wachsam","Familiär","Treu","Arbeitsfreudig"], desc: "Der Hovawart ist ein zuverlässiger Familienwächter – treu, schutzbewusst und für aktive Familien auf dem Land ideal." },
-  { name: "Leonberger", emoji: "🦮", scores: { low:1, med:2, high:3, xhigh:2, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:2, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:2, play:2 }, traits: ["Sanftmütig","Imposant","Familiär","Treu"], desc: "Der Leonberger ist ein majestätischer Löwenhund – sanftmütig, kinderlieb und braucht viel Platz und Pflege." },
-  { name: "Neufundländer", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:0, house:2, rural:3, semi:1, toddler:3, kids:3, teen:3, nokids:2, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:1, guard:1, play:2 }, traits: ["Sanftmütig","Wasserhund","Kinderlieb","Treu"], desc: "Der Neufundländer ist der sanfteste Riese – ein geborener Rettungshund und absolut kinderlieb. Braucht viel Platz." },
-  { name: "Belgischer Schäferhund (Malinois)", emoji: "🦮", scores: { low:0, med:0, high:2, xhigh:3, apt:0, house:1, rural:3, semi:0, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:1, xp3:3, cuddle:1, sport:3, guard:3, play:2 }, traits: ["Arbeitstier","Hochintelligent","Sportlich","Schutztrieb"], desc: "Der Malinois ist kein Haustier – er ist ein Profi. Nur für sehr erfahrene Hundesportler und Arbeitsführer geeignet." },
-  { name: "Deutsch Kurzhaar", emoji: "🐕", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Vielseitig","Ausdauernd","Jagdtrieb","Sportlich"], desc: "Der Deutsch Kurzhaar ist der universelle Jagdhund – vielseitig, ausdauernd und ideal für aktive Jäger und Sportler." },
-  { name: "Vizsla", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:2, kids:3, teen:3, nokids:3, xp0:1, xp1:2, xp2:3, xp3:3, cuddle:2, sport:3, guard:1, play:3 }, traits: ["Anhänglich","Sportlich","Sanft","Energiegeladen"], desc: "Der Vizsla ist der goldene Sportkamerad – unglaublich anhänglich, aktiv und für sportliche Familien gemacht." },
-  { name: "Staffordshire Bullterrier", emoji: "🐶", scores: { low:1, med:3, high:3, xhigh:2, apt:1, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:2, sport:2, guard:2, play:3 }, traits: ["Mutig","Verspielt","Treu","Kraftvoll"], desc: "Der Staffy ist ein verkannter Liebhaber – verspielt, treu und mit der richtigen Führung ein fantastischer Familienhund." },
-  { name: "Greyhound", emoji: "🐕", scores: { low:3, med:2, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:1, kids:2, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:3, sport:2, guard:0, play:1 }, traits: ["Sanft","Schnell","Entspannt","Elegant"], desc: "Der Greyhound ist der schnellste Sofabegleiter der Welt – draußen ein Blitz, drinnen ein Kuscheltier." },
-  { name: "Basenji", emoji: "🐕", scores: { low:1, med:2, high:2, xhigh:2, apt:2, house:3, rural:3, semi:2, toddler:0, kids:1, teen:2, nokids:3, xp0:0, xp1:0, xp2:2, xp3:3, cuddle:1, sport:2, guard:1, play:2 }, traits: ["Unabhängig","Katzenartig","Lautlos","Charakterstark"], desc: "Der Basenji bellt nicht – ein uralter afrikanischer Jagdhund, unabhängig wie eine Katze und nur für erfahrene Halter." },
-  { name: "Eurasier", emoji: "🐶", scores: { low:2, med:3, high:2, xhigh:1, apt:1, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:1, guard:2, play:2 }, traits: ["Ausgeglichen","Familiär","Treu","Ruhig"], desc: "Der Eurasier ist ein ausgeglichener Familienhund – ruhig, treu und perfekt für Familien die einen harmonischen Begleiter suchen." },
-  { name: "Lagotto Romagnolo", emoji: "🐩", scores: { low:2, med:3, high:2, xhigh:1, apt:2, house:3, rural:3, semi:2, toddler:2, kids:3, teen:3, nokids:3, xp0:2, xp1:2, xp2:3, xp3:3, cuddle:2, sport:2, guard:1, play:3 }, traits: ["Verspielt","Intelligent","Lernwillig","Hypoallergen"], desc: "Der Lagotto ist Italiens Trüffeljäger – intelligent, lernbegeistert, hypoallergen und ein toller Alltagsbegleiter." },
-  { name: "Großer Münsterländer", emoji: "🦮", scores: { low:0, med:1, high:3, xhigh:3, apt:0, house:2, rural:3, semi:1, toddler:1, kids:2, teen:3, nokids:3, xp0:0, xp1:1, xp2:2, xp3:3, cuddle:1, sport:3, guard:1, play:2 }, traits: ["Ausdauernd","Jagdtrieb","Sportlich","Vielseitig"], desc: "Der Große Münsterländer ist ein klassischer Jagd- und Sporthund – ausdauernd, klug und für aktive Outdoor-Menschen." }
+  { name:"Golden Retriever", emoji:"🐕", attr:{alone:3,space:2,act:3,xp:1,train:1,cost:2,groom:2,kids:4,pets:3,shed:3,drool:1,bark:2,hunt:2,guard:1}, traits:["Familienfreundlich","Geduldig","Lernwillig","Verspielt"], desc:"Der ideale Allrounder für aktive Familien." },
+  { name:"Labrador Retriever", emoji:"🦮", attr:{alone:2,space:2,act:3,xp:1,train:1,cost:2,groom:2,kids:4,pets:4,shed:3,drool:1,bark:2,hunt:2,guard:1}, traits:["Freundlich","Unkompliziert","Sportlich","Sozial"], desc:"Einer der beliebtesten Hunde weltweit – gutmütig und unkompliziert." },
+  { name:"Deutscher Schäferhund", emoji:"🐺", attr:{alone:2,space:2,act:3,xp:3,train:3,cost:2,groom:2,kids:3,pets:2,shed:4,drool:1,bark:3,hunt:2,guard:4}, traits:["Treu","Intelligent","Schutztrieb","Vielseitig"], desc:"Treu und schutztriebig – ideal für erfahrene Halter mit Führungsanspruch." },
+  { name:"Französische Bulldogge", emoji:"🐾", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:3,groom:1,kids:3,pets:3,shed:2,drool:2,bark:2,hunt:1,guard:1}, traits:["Verspielt","Ruhig","Stadtgeeignet","Anhänglich"], desc:"Die perfekte Stadtwohnung-Rasse – entspannt, verspielt und gesellig." },
+  { name:"Englische Bulldogge", emoji:"🐶", attr:{alone:2,space:1,act:1,xp:1,train:2,cost:4,groom:1,kids:3,pets:2,shed:2,drool:4,bark:1,hunt:1,guard:2}, traits:["Gutmütig","Faul","Charmant","Würdevoll"], desc:"Die phlegmatische britische Ikone – ruhig, liebenswert und pflegeleicht." },
+  { name:"Beagle", emoji:"🐕", attr:{alone:2,space:2,act:2,xp:2,train:3,cost:2,groom:1,kids:3,pets:3,shed:2,drool:1,bark:4,hunt:4,guard:1}, traits:["Neugierig","Gesellig","Eigenwillig","Ausdauernd"], desc:"Charmant und eigenwillig – seine Nase führt ihn in immer neue Abenteuer." },
+  { name:"Dackel", emoji:"🌭", attr:{alone:2,space:1,act:2,xp:2,train:3,cost:2,groom:1,kids:2,pets:2,shed:2,drool:1,bark:3,hunt:3,guard:2}, traits:["Mutig","Eigenwillig","Anhänglich","Wachsam"], desc:"Klein, aber sehr mutig – der Dackel ist einer der hartnäckigsten Hunde überhaupt." },
+  { name:"Malteser", emoji:"🤍", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:2,groom:3,kids:2,pets:3,shed:1,drool:1,bark:3,hunt:1,guard:1}, traits:["Zart","Anhänglich","Lebhaft","Sanft"], desc:"Der elegante Schoßhund – feinfühlig, anhänglich und immer dabei." },
+  { name:"Shih Tzu", emoji:"🐩", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:2,groom:4,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Freundlich","Ruhig","Verschmust","Wohnungshund"], desc:"Der royale Begleiter – selbstbewusst, herzlich und sehr pflegebedürftig." },
+  { name:"Cavalier King Charles Spaniel", emoji:"💕", attr:{alone:4,space:1,act:2,xp:1,train:1,cost:4,groom:2,kids:4,pets:4,shed:2,drool:1,bark:2,hunt:1,guard:1}, traits:["Sanft","Gesellig","Anhänglich","Kinderlieb"], desc:"Das perfekte Kuscheltier – liebt Menschen grenzenlos, sollte nie allein sein." },
+  { name:"Pudel (Standard)", emoji:"🐩", attr:{alone:3,space:2,act:3,xp:1,train:1,cost:2,groom:4,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:2,guard:1}, traits:["Intelligent","Lernfreudig","Fröhlich","Sportlich"], desc:"Einer der intelligentesten Hunde – vielseitig, robust und kaum allergen." },
+  { name:"Zwergpudel", emoji:"🐩", attr:{alone:3,space:1,act:2,xp:1,train:1,cost:2,groom:4,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Klug","Verspielt","Sozial","Stadttauglich"], desc:"Die kleinere Pudelvariante – genauso klug, ideal für die Wohnung." },
+  { name:"Border Collie", emoji:"🐕", attr:{alone:3,space:3,act:4,xp:3,train:4,cost:2,groom:2,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:3,guard:2}, traits:["Hochintelligent","Ausdauernd","Fokussiert","Lernbegierig"], desc:"Der klügste Hund der Welt – braucht intensive Beschäftigung und einen erfahrenen Halter." },
+  { name:"Australian Shepherd", emoji:"🐕", attr:{alone:3,space:3,act:4,xp:3,train:4,cost:2,groom:3,kids:3,pets:2,shed:3,drool:1,bark:2,hunt:2,guard:2}, traits:["Energiegeladen","Lernwillig","Loyal","Hüteinstinkt"], desc:"Hochaktiver Arbeitshund – braucht einen Job und viel Bewegung täglich." },
+  { name:"Siberian Husky", emoji:"🐺", attr:{alone:3,space:3,act:4,xp:3,train:3,cost:2,groom:3,kids:3,pets:2,shed:4,drool:1,bark:4,hunt:3,guard:1}, traits:["Unabhängig","Ausdauernd","Dramatisch","Gesellig"], desc:"Der Freigeist – laut, stur und braucht extrem viel Auslauf täglich." },
+  { name:"Alaskan Malamute", emoji:"🐺", attr:{alone:2,space:3,act:4,xp:4,train:3,cost:3,groom:3,kids:2,pets:2,shed:4,drool:1,bark:3,hunt:3,guard:2}, traits:["Mächtig","Eigenwillig","Ausdauernd","Eigenständig"], desc:"Arktischer Schlittenhund – imposant, sehr eigenwillig und für echte Profis." },
+  { name:"Dobermann", emoji:"🐕", attr:{alone:3,space:2,act:3,xp:3,train:3,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:2,hunt:2,guard:4}, traits:["Loyal","Schutzbereit","Intelligent","Elegant"], desc:"Eleganter Schutz- und Begleithund – loyal bis ans Lebensende, braucht klare Führung." },
+  { name:"Rottweiler", emoji:"🐕", attr:{alone:2,space:2,act:3,xp:4,train:3,cost:3,groom:1,kids:3,pets:2,shed:2,drool:3,bark:2,hunt:2,guard:4}, traits:["Selbstbewusst","Treu","Schutztrieb","Kräftig"], desc:"Einer der besten Schutzhunde – selbstbewusst, treu und für erfahrene Halter." },
+  { name:"Boxer", emoji:"🥊", attr:{alone:3,space:2,act:3,xp:2,train:2,cost:2,groom:1,kids:4,pets:3,shed:2,drool:3,bark:2,hunt:2,guard:3}, traits:["Verspielt","Lebhaft","Treu","Kinderlieb"], desc:"Ewig jung im Herzen – der Boxer ist verspielt, treu und liebt seine Familie." },
+  { name:"Deutsche Dogge", emoji:"🐘", attr:{alone:2,space:3,act:2,xp:3,train:2,cost:4,groom:1,kids:3,pets:2,shed:2,drool:3,bark:1,hunt:2,guard:3}, traits:["Sanftmütig","Ruhig","Imposant","Loyal"], desc:"Der sanfte Riese – trotz imposanter Größe sehr ruhig, aber teuer in der Haltung." },
+  { name:"Berner Sennenhund", emoji:"🐕", attr:{alone:3,space:3,act:2,xp:1,train:2,cost:3,groom:3,kids:4,pets:3,shed:4,drool:2,bark:2,hunt:2,guard:2}, traits:["Sanft","Familienfreundlich","Treu","Ruhig"], desc:"Der treue Schweizer Riese – kindgeeignet, ruhig und leider kurzlebig." },
+  { name:"Labradoodle", emoji:"🐕", attr:{alone:3,space:2,act:3,xp:1,train:1,cost:3,groom:3,kids:4,pets:3,shed:1,drool:1,bark:2,hunt:2,guard:1}, traits:["Freundlich","Sozial","Lernwillig","Allergenarm"], desc:"Der beliebte Familien-Hybrid – freundlich, allergenreduziert und sehr gesellig." },
+  { name:"Corgi (Pembroke)", emoji:"🐕", attr:{alone:2,space:2,act:3,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:3,drool:1,bark:3,hunt:2,guard:2}, traits:["Mutig","Clever","Lebhaft","Treu"], desc:"Großer Hund in kleinem Körper – smart, energiegeladen und bellfreudig." },
+  { name:"Shiba Inu", emoji:"🦊", attr:{alone:1,space:2,act:2,xp:3,train:3,cost:2,groom:2,kids:2,pets:1,shed:3,drool:1,bark:2,hunt:3,guard:2}, traits:["Unabhängig","Sauber","Würdevoll","Eigenständig"], desc:"Der japanische Katzenartige – wunderschön, unabhängig und kaum zu trainieren." },
+  { name:"Chow Chow", emoji:"🦁", attr:{alone:1,space:2,act:2,xp:3,train:3,cost:2,groom:4,kids:1,pets:1,shed:3,drool:2,bark:2,hunt:2,guard:3}, traits:["Reserviert","Eigenwillig","Treu","Würdevoll"], desc:"Der Löwenhund aus China – majestätisch, reserviert und nur für geduldige Halter." },
+  { name:"Akita Inu", emoji:"🐕", attr:{alone:1,space:2,act:3,xp:4,train:3,cost:3,groom:2,kids:2,pets:1,shed:3,drool:1,bark:2,hunt:3,guard:4}, traits:["Würdevoll","Loyal","Wachsam","Eigenwillig"], desc:"Die japanische Legende – absolut loyal dem Besitzer, allen anderen gegenüber reserviert." },
+  { name:"Jack Russell Terrier", emoji:"⚡", attr:{alone:2,space:1,act:3,xp:2,train:3,cost:1,groom:1,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Mutig","Klug","Eigenwillig"], desc:"Tiny but mighty – der Jack Russell hat mehr Energie als die meisten Großrassen." },
+  { name:"West Highland Terrier", emoji:"🤍", attr:{alone:2,space:1,act:2,xp:2,train:3,cost:2,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:3,guard:2}, traits:["Lebhaft","Selbstbewusst","Neugierig","Robust"], desc:"Kleiner weißer Teufel – selbstbewusst, lebhaft und liebenswertes Terrier-Chaos." },
+  { name:"Yorkshire Terrier", emoji:"🎀", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:2,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:2}, traits:["Mutig","Anhänglich","Fashionable","Lebhaft"], desc:"Winzig, aber mit großem Selbstbewusstsein – der Yorkie hasst es, allein zu sein." },
+  { name:"Chihuahua", emoji:"🫙", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:1,groom:1,kids:1,pets:2,shed:1,drool:1,bark:3,hunt:1,guard:2}, traits:["Anhänglich","Mutig","Lebendig","Treuer Begleiter"], desc:"Kleinster Hund, größtes Herz – extrem anhänglich und überraschend bellfreudig." },
+  { name:"Pomeranian (Spitz)", emoji:"🧡", attr:{alone:3,space:1,act:2,xp:2,train:2,cost:2,groom:3,kids:2,pets:2,shed:3,drool:1,bark:4,hunt:1,guard:2}, traits:["Lebhaft","Flauschig","Alert","Verspielt"], desc:"Der fluffige Alarm – wunderschön anzusehen, aber ein echter Bellkünstler." },
+  { name:"Hovawart", emoji:"🐕", attr:{alone:2,space:3,act:3,xp:3,train:3,cost:2,groom:2,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:2,guard:3}, traits:["Treu","Wachsam","Vielseitig","Selbstbewusst"], desc:"Der unterschätzte deutsche Begleithund – treu, wachsam und sehr selbstbewusst." },
+  { name:"Eurasier", emoji:"🌟", attr:{alone:3,space:2,act:2,xp:1,train:2,cost:2,groom:3,kids:3,pets:3,shed:3,drool:1,bark:2,hunt:2,guard:2}, traits:["Ruhig","Familienorientiert","Sanft","Ausgeglichen"], desc:"Der stille Familienhund – ausgeglichen, nicht bellfreudig und sehr familienliebend." },
+  { name:"Vizsla", emoji:"🍂", attr:{alone:4,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:2,hunt:4,guard:2}, traits:["Sportlich","Klebeband-Hund","Ausdauernd","Sanft"], desc:"Der ungarische Jagdhund klebt buchstäblich an seinem Menschen – nie allein lassen!" },
+  { name:"Weimaraner", emoji:"🐕", attr:{alone:2,space:3,act:4,xp:3,train:3,cost:2,groom:1,kids:3,pets:2,shed:2,drool:2,bark:2,hunt:4,guard:3}, traits:["Elegant","Ausdauernd","Jagdtrieb","Loyal"], desc:"Der silberne Graf – elegant, schnell und braucht täglich intensiven Auslauf." },
+  { name:"Dalmatiner", emoji:"🐾", attr:{alone:2,space:2,act:4,xp:3,train:3,cost:2,groom:1,kids:3,pets:2,shed:3,drool:1,bark:2,hunt:3,guard:2}, traits:["Ausdauernd","Eigenständig","Sportlich","Lebhaft"], desc:"Mehr als nur Punkte – der Dalmatiner ist eine echte Ausdauermaschine." },
+  { name:"Irischer Setter", emoji:"🍂", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Fröhlich","Ausdauernd","Verspielt","Freundlich"], desc:"Rothaarige Schönheit mit ewig jugendlichem Herzen – braucht Raum und Bewegung." },
+  { name:"Samojede", emoji:"❄️", attr:{alone:3,space:3,act:3,xp:2,train:2,cost:3,groom:4,kids:4,pets:3,shed:4,drool:1,bark:3,hunt:2,guard:2}, traits:["Freundlich","Flauschig","Sozial","Aufgeweckt"], desc:"Das lächelnde Schneewunder – freundlich zu allen, aber ein absolutes Fellmonster." },
+  { name:"Bernedoodle", emoji:"🐕", attr:{alone:3,space:2,act:2,xp:1,train:1,cost:4,groom:3,kids:4,pets:3,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Sanft","Allergenarm","Familienfreundlich","Treu"], desc:"Berner Herz mit Pudel-Verstand – gesellig, allergenreduziert und leicht zu trainieren." },
+  { name:"Greyhound", emoji:"🏃", attr:{alone:2,space:2,act:2,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:1,hunt:4,guard:1}, traits:["Ruhig","Schlank","Schnell","Sanft"], desc:"Der gemütlichste Sprinter – zu Hause überraschend ruhig, draußen blitzschnell." },
+  { name:"Whippet", emoji:"🐕", attr:{alone:2,space:2,act:2,xp:1,train:2,cost:2,groom:1,kids:3,pets:2,shed:1,drool:1,bark:1,hunt:4,guard:1}, traits:["Zart","Schnell","Ruhig","Sensibel"], desc:"Der Windhund für die Wohnung – sensibel, ruhig und draußen kaum einzuholen." },
+  { name:"Großer Münsterländer", emoji:"🐕", attr:{alone:3,space:3,act:4,xp:3,train:2,cost:2,groom:2,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:4,guard:2}, traits:["Ausdauernd","Jagdfreudig","Treu","Robust"], desc:"Für aktive Jäger und Sportler – unglaubliche Ausdauer und starker Jagdtrieb." },
+  { name:"Kleiner Münsterländer", emoji:"🐕", attr:{alone:2,space:2,act:3,xp:2,train:2,cost:2,groom:2,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Vielseitig","Gelehrig","Ausdauernd","Jagdfreudig"], desc:"Vielseitiger Jagd- und Familienbegleiter mit hohem Bewegungsdrang." },
+  { name:"Lagotto Romagnolo", emoji:"🍄", attr:{alone:3,space:2,act:3,xp:2,train:2,cost:2,groom:3,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:2,guard:1}, traits:["Klug","Nasenstark","Freundlich","Lernfreudig"], desc:"Der Trüffelspürhund – intelligent, arbeitsfreudig und optimal für Nasenarbeit." },
+  { name:"Bolonka Zwetna", emoji:"🐾", attr:{alone:4,space:1,act:1,xp:1,train:2,cost:2,groom:3,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Anhänglich","Sanft","Wohnungshund","Gesellig"], desc:"Der russische Schoßhund – liebt Menschen grenzenlos, hasst das Alleinsein." },
+  { name:"Zwergpinscher", emoji:"🔮", attr:{alone:2,space:1,act:2,xp:2,train:3,cost:1,groom:1,kids:1,pets:1,shed:1,drool:1,bark:4,hunt:3,guard:3}, traits:["Wachsam","Mutig","Lebendig","Temperamentvoll"], desc:"Teufelskerl im Taschenformat – mutig, wachsam und ein echter Lautsprecher." },
+  { name:"Papillon", emoji:"🦋", attr:{alone:3,space:1,act:2,xp:1,train:1,cost:2,groom:2,kids:2,pets:3,shed:1,drool:1,bark:2,hunt:2,guard:1}, traits:["Klug","Agil","Elegant","Treu"], desc:"Der Schmetterlingsohren-Champion – einer der klügsten Kleinhunde überhaupt." },
+  { name:"Havaneser", emoji:"🌺", attr:{alone:4,space:1,act:2,xp:1,train:1,cost:2,groom:3,kids:3,pets:3,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Fröhlich","Anhänglich","Sozial","Verspielt"], desc:"Der kubanische Charmeur – fröhlich, anhänglich und braucht viel Gesellschaft." },
+  { name:"Rhodesian Ridgeback", emoji:"🦁", attr:{alone:2,space:3,act:3,xp:3,train:3,cost:2,groom:1,kids:2,pets:2,shed:2,drool:1,bark:2,hunt:3,guard:4}, traits:["Athletisch","Selbstbewusst","Ausdauernd","Loyal"], desc:"Der südafrikanische Löwenjäger – athletisch, selbstbewusst und für erfahrene Sportler." },
+  { name:"Cane Corso", emoji:"🐾", attr:{alone:2,space:3,act:3,xp:4,train:4,cost:3,groom:1,kids:2,pets:1,shed:2,drool:4,bark:2,hunt:2,guard:4}, traits:["Schutzbereit","Loyal","Selbstbewusst","Imposant"], desc:"Der italienische Mastiff – absolut loyal seinem Rudel gegenüber, mit starkem Schutztrieb. Ausschließlich für sehr erfahrene Halter mit klarer Führungsstärke." },
+  { name:"Belgischer Schäferhund (Malinois)", emoji:"🐕", attr:{alone:2,space:3,act:4,xp:4,train:4,cost:2,groom:1,kids:2,pets:2,shed:3,drool:1,bark:3,hunt:3,guard:4}, traits:["Hochenergetisch","Fokussiert","Loyal","Schutztrieb"], desc:"Der bevorzugte Hund von Polizei und Militär weltweit – unglaubliche Energie und Intelligenz, braucht täglich intensive Beschäftigung und eine erfahrene Hand." },
+  { name:"Australian Cattle Dog", emoji:"🐄", attr:{alone:2,space:3,act:4,xp:3,train:3,cost:2,groom:1,kids:2,pets:2,shed:2,drool:1,bark:3,hunt:3,guard:3}, traits:["Energiegeladen","Intelligent","Loyal","Ausdauernd"], desc:"Der australische Treibhund – extrem ausdauernd, intelligent und braucht täglich intensive Beschäftigung oder er erfindet sich welche." },
+  { name:"Basenji", emoji:"🦌", attr:{alone:2,space:2,act:3,xp:3,train:4,cost:2,groom:1,kids:2,pets:2,shed:1,drool:1,bark:1,hunt:4,guard:2}, traits:["Lautlos","Unabhängig","Katzenartig","Reinlich"], desc:"Der belllose Hund aus Afrika – reinlich wie eine Katze, mit einem eigenwilligen Charakter der wenig Konventionen kennt." },
+  { name:"Basset Hound", emoji:"🐕", attr:{alone:2,space:2,act:1,xp:2,train:3,cost:3,groom:1,kids:3,pets:3,shed:3,drool:3,bark:3,hunt:3,guard:1}, traits:["Gemütlich","Eigenwillig","Gesellig","Nasenstark"], desc:"Die lebende Nasen-Maschine – phlegmatisch zu Hause, unaufhaltbar wenn er eine Spur aufnimmt." },
+  { name:"Boston Terrier", emoji:"🎩", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:3,groom:1,kids:3,pets:3,shed:2,drool:1,bark:2,hunt:1,guard:2}, traits:["Lebhaft","Stadtgeeignet","Freundlich","Verspielt"], desc:"Der amerikanische Stadtbegleiter – kompakt, freundlich und perfekt für die Wohnung." },
+  { name:"Bull Terrier", emoji:"🥚", attr:{alone:2,space:2,act:3,xp:3,train:3,cost:3,groom:1,kids:3,pets:1,shed:2,drool:1,bark:2,hunt:2,guard:3}, traits:["Energiegeladen","Loyal","Eigenwillig","Robust"], desc:"Der Ei-Kopf – muskulös, loyal und voller Energie, braucht konsequente Erziehung und klare Grenzen." },
+  { name:"Cockapoo", emoji:"🐾", attr:{alone:3,space:1,act:2,xp:1,train:1,cost:3,groom:3,kids:4,pets:4,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Sozial","Allergenarm","Verspielt","Gelehrig"], desc:"Der perfekte Familien-Hybrid – freundlich, allergenreduziert und für fast jeden Lebensstil geeignet." },
+  { name:"Cocker Spaniel", emoji:"🐕", attr:{alone:3,space:2,act:3,xp:1,train:2,cost:3,groom:3,kids:4,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Sanft","Verspielt","Liebevoll","Aufgeweckt"], desc:"Der charmante Engländer – sanft, verspielt und mit einem seidigen Fell, das regelmäßige Pflege braucht." },
+  { name:"English Springer Spaniel", emoji:"🌿", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:2,kids:4,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Energiegeladen","Freundlich","Ausdauernd","Verspielt"], desc:"Der englische Freudenspringer – unerschöpflich, freundlich und für aktive Familien wie gemacht." },
+  { name:"Flat Coated Retriever", emoji:"🐕", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:3,groom:2,kids:4,pets:3,shed:2,drool:1,bark:2,hunt:3,guard:1}, traits:["Ewig jung","Enthusiastisch","Sozial","Verspielt"], desc:"Der Peter Pan unter den Retrievern – bleibt sein ganzes Leben verspielt und braucht täglich viel Bewegung." },
+  { name:"Foxterrier", emoji:"🦊", attr:{alone:2,space:2,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Lebhaft","Mutig","Neugierig","Verspielt"], desc:"Der quirlige Terrier – voller Energie, Mut und Neugier, mit einem unerschütterlichen Jagdtrieb." },
+  { name:"Irish Wolfhound", emoji:"🐺", attr:{alone:3,space:4,act:3,xp:2,train:2,cost:4,groom:2,kids:4,pets:3,shed:2,drool:1,bark:1,hunt:3,guard:2}, traits:["Sanft","Ruhig","Würdevoll","Loyal"], desc:"Der größte Hund der Welt mit dem sanftesten Herzen – majestätisch, ruhig und leider kurzlebig." },
+  { name:"Keeshond", emoji:"⭐", attr:{alone:3,space:2,act:2,xp:1,train:2,cost:2,groom:3,kids:4,pets:4,shed:4,drool:1,bark:3,hunt:1,guard:2}, traits:["Freundlich","Verspielt","Sozial","Aufgeweckt"], desc:"Der lächelnde Niederländer – ein flauschiger, fröhlicher Familienbegleiter der gerne Alarm schlägt." },
+  { name:"Leonberger", emoji:"🦁", attr:{alone:2,space:3,act:3,xp:2,train:2,cost:4,groom:3,kids:4,pets:3,shed:4,drool:3,bark:2,hunt:1,guard:3}, traits:["Sanft","Majestätisch","Loyal","Familienfreundlich"], desc:"Der Löwenhund aus Leonberg – sanft wie ein Teddybär, aber mit einer Mähne die täglich gebürstet werden will." },
+  { name:"Mops", emoji:"🐷", attr:{alone:3,space:1,act:1,xp:1,train:2,cost:4,groom:1,kids:3,pets:3,shed:3,drool:2,bark:2,hunt:1,guard:1}, traits:["Verspielt","Anhänglich","Clownhaft","Verschmust"], desc:"Die kleine Komiker-Rasse – liebt Menschen über alles, schnarcht dafür aber laut und hat oft Gesundheitsprobleme." },
+  { name:"Neufundländer", emoji:"🐻", attr:{alone:2,space:4,act:2,xp:2,train:2,cost:4,groom:3,kids:4,pets:4,shed:4,drool:4,bark:1,hunt:1,guard:2}, traits:["Sanft","Geduldig","Kindernanny","Wasserliebend"], desc:"Die Kindernanny auf vier Beinen – der Neufundländer ist unendlich geduldig, liebt Wasser und ist der sanfteste Riese überhaupt." },
+  { name:"Nova Scotia Duck Tolling Retriever", emoji:"🦆", attr:{alone:3,space:2,act:4,xp:2,train:2,cost:2,groom:2,kids:3,pets:3,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Energiegeladen","Verspielt","Clever","Ausdauernd"], desc:"Der kleinste Retriever – täuschend energiegeladen, hochintelligent und mit einem einzigartigen Schrei der Vögel anlockt." },
+  { name:"Parson Russell Terrier", emoji:"⚡", attr:{alone:2,space:2,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:1,shed:2,drool:1,bark:3,hunt:4,guard:2}, traits:["Mutig","Energiegeladen","Klug","Temperamentvoll"], desc:"Der etwas feinere Jack Russell – genauso mutig und energiegeladen, mit einem unersättlichen Jagdtrieb." },
+  { name:"Pointer", emoji:"🎯", attr:{alone:3,space:3,act:4,xp:2,train:2,cost:2,groom:1,kids:3,pets:2,shed:2,drool:1,bark:2,hunt:4,guard:1}, traits:["Athletisch","Ausdauernd","Freundlich","Jagdbegeistert"], desc:"Die lebendige Jagdmaschine – elegant, ausdauernd und braucht täglich intensiven Auslauf um glücklich zu sein." },
+  { name:"Pekingese", emoji:"👑", attr:{alone:3,space:1,act:1,xp:2,train:3,cost:3,groom:3,kids:1,pets:2,shed:3,drool:1,bark:2,hunt:1,guard:2}, traits:["Würdevoll","Eigenwillig","Anhänglich","Selbstbewusst"], desc:"Der ehemalige chinesische Kaiserpalasthund – betrachtet sich noch immer als Royalty und behandelt Training als optionale Freizeitbeschäftigung." },
+  { name:"Puli", emoji:"🎭", attr:{alone:2,space:2,act:3,xp:3,train:3,cost:2,groom:4,kids:3,pets:3,shed:1,drool:1,bark:3,hunt:2,guard:3}, traits:["Selbstbewusst","Agil","Loyal","Einzigartig"], desc:"Der ungarische Hund mit Rastalocken – unter dem einzigartigen Kordelfell verbirgt sich ein agiler, intelligenter Hirtenhund." },
+  { name:"Schipperke", emoji:"🚢", attr:{alone:2,space:1,act:3,xp:2,train:3,cost:2,groom:2,kids:2,pets:2,shed:3,drool:1,bark:3,hunt:3,guard:3}, traits:["Neugierig","Lebhaft","Wachsam","Selbstständig"], desc:"Der kleine schwarze Teufel – neugierig, unerschrocken und immer auf der Suche nach dem nächsten Abenteuer." },
+  { name:"Schnauzer", emoji:"🧔", attr:{alone:3,space:2,act:3,xp:2,train:2,cost:2,groom:3,kids:3,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:3}, traits:["Klug","Wachsam","Loyal","Aktiv"], desc:"Der deutsche Allrounder mit Bart – intelligent, robust und ein verlässlicher Wächter für die ganze Familie." },
+  { name:"Zwergschnauzer", emoji:"🧔", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:2,groom:3,kids:3,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:2}, traits:["Klug","Lebhaft","Wachsam","Stadttauglich"], desc:"Der Schnauzer in der Handtaschenversion – genauso klug und wachsam wie sein großer Bruder, aber perfekt für die Wohnung." },
+  { name:"Riesenschnauzer", emoji:"🧔", attr:{alone:2,space:3,act:4,xp:4,train:3,cost:3,groom:3,kids:2,pets:2,shed:1,drool:1,bark:3,hunt:2,guard:4}, traits:["Dominant","Intelligent","Schutztrieb","Ausdauernd"], desc:"Der Schnauzer auf Großformat – kraftvoll, selbstbewusst und braucht eine sehr erfahrene Hand mit klarer Führung." },
+  { name:"Scottish Terrier", emoji:"🏴", attr:{alone:3,space:1,act:2,xp:2,train:3,cost:3,groom:3,kids:1,pets:2,shed:1,drool:1,bark:2,hunt:3,guard:3}, traits:["Würdevoll","Eigenwillig","Mutig","Loyal"], desc:"Der schottische Patriot – unerschütterlich selbstbewusst, loyal seinem Menschen gegenüber und allergisch gegen Befehle." },
+  { name:"Staffordshire Bull Terrier", emoji:"💪", attr:{alone:3,space:2,act:3,xp:2,train:2,cost:2,groom:1,kids:4,pets:2,shed:2,drool:2,bark:2,hunt:2,guard:2}, traits:["Familienfreundlich","Mutig","Verspielt","Loyal"], desc:"Der missverstandene Gentleman – als Kindernanny bekannt, extrem liebevoll zur Familie, braucht aber klare Grenzen." },
+  { name:"American Staffordshire Terrier", emoji:"🐕", attr:{alone:2,space:3,act:3,xp:3,train:3,cost:3,groom:1,kids:3,pets:1,shed:2,drool:2,bark:2,hunt:2,guard:3}, traits:["Kraftvoll","Loyal","Mutig","Ausdauernd"], desc:"Der amerikanische Staffordshire – kraftvoll, loyal und zuverlässig für erfahrene Halter mit konsequenter Erziehung." },
+  { name:"Tibet Terrier", emoji:"🏔️", attr:{alone:3,space:2,act:2,xp:2,train:2,cost:2,groom:3,kids:3,pets:3,shed:2,drool:1,bark:3,hunt:2,guard:2}, traits:["Sanft","Verspielt","Loyal","Anpassungsfähig"], desc:"Der tibetische Glücksbringer – ein vielseitiger Begleithund mit langem Fell und einem aufmerksamen, sanften Wesen." },
+  { name:"Bichon Frisé", emoji:"☁️", attr:{alone:3,space:1,act:2,xp:1,train:2,cost:3,groom:4,kids:4,pets:4,shed:1,drool:1,bark:2,hunt:1,guard:1}, traits:["Fröhlich","Sozial","Allergenarm","Verspielt"], desc:"Die kleine fluffige Freudenbombe – fröhlich, allergenfreundlich und liebt es, im Mittelpunkt zu stehen." }
 ];
 
-let currentQ = 0, answers = {};
+let currentQ=0, answers={};
+const aloneMap={rarely:4,some:3,many:2,lots:1};
+const spaceMap={apt:1,apt_bal:2,house:3,rural:4};
+const actMap={low:1,med:2,high:3,xhigh:4};
+const xpMap={none:1,basic:2,owned:3,expert:4};
+const trainMap={low:1,reg:2,high:3,pro:4};
+const costMap={tight:1,medium:2,comfort:3,open:4};
+const groomMap={min:1,some:2,daily:3,pro:4};
+const timeMap={low:1,med:2,high:3,xhigh:4};
 
-function renderQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('quizQuestions').innerHTML = `
-    <div class="quiz-q">${q.q}</div>
-    <div class="quiz-q-sub">${q.sub}</div>
-    <div class="quiz-options">
-      ${q.opts.map((o,i) => `
-        <button class="quiz-opt${answers[currentQ]?.idx===i?' selected':''}" onclick="selectOpt(${i},'${o.val}')">
-          <span class="opt-icon">${o.icon}</span>
-          <span>${o.text}<span class="opt-sub">${o.sub}</span></span>
-        </button>`).join('')}
-    </div>`;
-  for (let i=0;i<5;i++) document.getElementById('step'+i).className='quiz-step'+(i<currentQ?' done':i===currentQ?' active':'');
-  document.getElementById('stepLabel').textContent=`Frage ${currentQ+1} / 5`;
-  document.getElementById('backBtn').style.visibility=currentQ>0?'visible':'hidden';
-  document.getElementById('nextBtn').disabled=answers[currentQ]===undefined;
-  document.getElementById('nextBtn').textContent=currentQ===4?'Ergebnis anzeigen ✨':'Weiter →';
+function gm(q){return(answers[q]&&answers[q].vals)?answers[q].vals:(answers[q]&&answers[q].val)?[answers[q].val]:[];}
+
+function scoreBreed(breed){
+  var a=breed.attr,score=0,max=0,excl=1.0;
+  var g=function(q){return answers[q]?answers[q].val:null;};
+  function need(bn,uh,w){if(uh==null)return;max+=10*w;if(bn<=uh){score+=10*w;}else{var gap=bn-uh;score+=Math.max(0,10-gap*3.5)*w;}}
+  // Q0: Wohnsituation
+  need(a.space,spaceMap[g(0)],2);
+  // Q1: Haaren/Speichel-Toleranz
+  var shedTolMap={shed_none:1,shed_low:2,shed_ok:3,shed_all:4};
+  var maxShed=shedTolMap[g(1)];
+  if(maxShed!=null){max+=10;if(a.shed<=maxShed)score+=10;else score+=Math.max(0,10-(a.shed-maxShed)*4);}
+  if(g(1)==='shed_none'&&a.drool>=3)excl*=0.3;
+  // Q2: Lautstärke-Toleranz
+  var barkTolMap={bark_none:1,bark_some:2,bark_med:3,bark_ok:4};
+  var maxBark=barkTolMap[g(2)];
+  if(maxBark!=null){max+=10;if(a.bark<=maxBark)score+=10;else score+=Math.max(0,10-(a.bark-maxBark)*4);}
+  // Q3: Familie (MULTI) — worst-case constraint über alle gewählten Optionen
+  var famVals=gm(3);
+  if(famVals.length>0){
+    max+=20;
+    if(famVals.indexOf('solo')>=0&&famVals.length===1){score+=20;}
+    else{
+      var famPts=10;
+      if(famVals.indexOf('kids')>=0)famPts=Math.min(famPts,a.kids*2.5);
+      if(famVals.indexOf('teens')>=0)famPts=Math.min(famPts,Math.max(5,a.kids*2));
+      if(famVals.indexOf('pets')>=0)famPts=Math.min(famPts,a.pets*2.5);
+      score+=famPts*2;
+    }
+  }
+  // Q4: Soziales Umfeld
+  var soc=g(4);
+  if(soc==='social_lots'){max+=8;score+=Math.min(8,(a.kids+a.pets)/2*2);}
+  else if(soc==='social_some'){max+=5;score+=Math.min(5,(a.kids+a.pets)/2*1.25);}
+  else if(soc!=null){max+=4;score+=4;}
+  // Q5: Arbeitssituation (sekundärer Allein-Indikator)
+  var workAloneMap={work_home:4,work_part:3,work_full:2,work_shift:1};
+  need(a.alone,workAloneMap[g(5)],1.5);
+  // Q6: Alleinzeit (primärer Allein-Indikator)
+  need(a.alone,aloneMap[g(6)],3);
+  // Q7: Aktivitätsniveau
+  need(a.act,actMap[g(7)],3);
+  // Q8: Aktivitätstyp (MULTI) — höchste Anforderung gewinnt
+  var actTypes=gm(8);
+  if(actTypes.length>0){
+    var actTypeMap={act_walk:1,act_play:2,act_sport:3,act_train:3};
+    var maxType=0;for(var ai=0;ai<actTypes.length;ai++)maxType=Math.max(maxType,actTypeMap[actTypes[ai]]||0);
+    need(a.act,maxType,1.5);
+    if(actTypes.indexOf('act_train')>=0){max+=5;score+=Math.min(5,a.train*1.25);}
+  }
+  // Q9: Reiseverhalten
+  var travelAloneMap={travel_never:null,travel_rare:3,travel_often:2,travel_frequent:1};
+  var tAlone=travelAloneMap[g(9)];
+  if(tAlone!=null)need(a.alone,tAlone,1);
+  // Q10: Zeitbudget
+  need(a.act,timeMap[g(10)],2);
+  // Q11: Größenpräferenz
+  if(g(11)&&g(11)!=='size_any'){var swMap={size_small:1,size_medium:2,size_large:3};var sw=swMap[g(11)];var sz=breedSizes[breed.name]||2;max+=10;var szGap=Math.abs(sz-sw);score+=(szGap===0?10:szGap===1?5:0);}
+  // Q12: Erfahrung
+  need(a.xp,xpMap[g(12)],2);
+  // Q13: Training
+  need(a.train,trainMap[g(13)],2);
+  // Q14: Beschäftigungsform (MULTI) — höchste Anforderung gewinnt
+  var occTypes=gm(14);
+  if(occTypes.length>0){
+    var occActMap={occ_walk:1,occ_play:2,occ_sport:4,occ_brain:2};
+    var occTrainMap={occ_walk:1,occ_play:2,occ_sport:3,occ_brain:4};
+    var maxOA=0,maxOT=0;
+    for(var oi=0;oi<occTypes.length;oi++){maxOA=Math.max(maxOA,occActMap[occTypes[oi]]||0);maxOT=Math.max(maxOT,occTrainMap[occTypes[oi]]||0);}
+    need(a.act,maxOA,1);need(a.train,maxOT,1);
+  }
+  // Q15: Budget
+  need(a.cost,costMap[g(15)],1.5);
+  // Q16: Pflege
+  need(a.groom,groomMap[g(16)],1);
+  // Q17: No-Go (MULTI) — jeder Dealbreaker wird angewendet
+  var nogos=gm(17);
+  if(nogos.indexOf('nogo_shed')>=0&&a.shed>=3)excl*=0.06;
+  if(nogos.indexOf('nogo_bark')>=0&&a.bark>=3)excl*=0.12;
+  if(nogos.indexOf('nogo_energy')>=0&&a.act>=3)excl*=0.06;
+  if(nogos.indexOf('nogo_drive')>=0&&a.hunt>=3)excl*=0.08;
+  // Q18: Trade-off
+  var toff=g(18);
+  if(toff!=null){max+=10;if(toff==='tradeoff_family')score+=(a.kids>=3?10:a.kids*2.5);else if(toff==='tradeoff_lazy')score+=(a.act<=2?10:Math.max(0,10-(a.act-2)*5));else if(toff==='tradeoff_easy')score+=(a.train<=2?10:Math.max(0,10-(a.train-2)*5));else score+=(a.alone>=3?10:a.alone*3.3);}
+  // Q19: Charakter (MULTI) — Punkte gleichmäßig auf gewählte Traits aufteilen
+  var chars=gm(19);
+  if(chars.length>0){
+    max+=15;
+    var pts=15/chars.length;
+    for(var ci=0;ci<chars.length;ci++){
+      var c=chars[ci];
+      if(c==='loyal')score+=Math.min(pts,(a.alone+a.guard)/2*(pts/4));
+      else if(c==='sport')score+=Math.min(pts,a.act*(pts/4));
+      else if(c==='social')score+=Math.min(pts,(a.kids+a.pets)/2*(pts/4));
+      else score+=Math.min(pts,a.guard*(pts/4));
+    }
+  }
+  // Q20: Konsequenz im Alltag
+  var rc=g(20);
+  if(rc==='rc_low'){if(a.xp>=3)excl*=0.55;if(a.train>=3)excl*=0.6;}
+  else if(rc==='rc_none'){if(a.xp>=3)excl*=0.3;if(a.train>=3)excl*=0.35;if(a.xp>=4)excl*=0.2;}
+  else if(rc==='rc_med'){if(a.xp>=4)excl*=0.65;if(a.train>=4)excl*=0.65;}
+  // Q21: Geduld bei Rückschlägen
+  var pat=g(21);
+  if(pat==='pat_low'){if(a.xp>=3)excl*=0.4;if(a.train>=3)excl*=0.4;if(a.act>=4)excl*=0.5;if(a.hunt>=3)excl*=0.6;}
+  else if(pat==='pat_med'){if(a.xp>=4)excl*=0.7;if(a.train>=4)excl*=0.7;}
+  if(max===0)return 0;
+  return Math.max(0,score/max)*excl;
 }
 
-function selectOpt(idx,val) {
-  answers[currentQ]={idx,val};
-  document.querySelectorAll('.quiz-opt').forEach((el,i)=>el.classList.toggle('selected',i===idx));
-  document.getElementById('nextBtn').disabled=false;
+function scoreToPercent(s){if(s<0.15)return Math.max(8,Math.round(s*60));return Math.min(97,Math.round(30+s*67));}
+function dynPct(s,minS,rangeS){return Math.min(97,Math.max(5,Math.round(15+((s-minS)/rangeS)*82)));}
+
+function detectContradictions(){
+  var w=[],g=function(q){return answers[q]?answers[q].val:null;};
+  var chars=gm(19),actT=gm(8),occT=gm(14);
+  if((g(6)==='many'||g(6)==='lots')&&chars.indexOf('loyal')>=0)
+    w.push('⚠️ Du planst viele Abwesenheiten, wünschst dir aber einen sehr bindungsstarken Hund – das kann Trennungsangst verursachen.');
+  if((g(7)==='high'||g(7)==='xhigh')&&g(10)==='low')
+    w.push('⚠️ Sehr aktive Rassen brauchen 3–5 Stunden Auslauf täglich – mit 1–2 Stunden Zeitbudget wird das schwierig.');
+  if((g(6)==='lots'||g(6)==='many')&&(g(7)==='xhigh'||actT.indexOf('act_sport')>=0||occT.indexOf('occ_sport')>=0))
+    w.push('⚠️ Extrem aktive Hunde und lange Alleinzeiten passen nicht zusammen – sie bauen ohne tägliche intensive Beschäftigung Stress ab, der sich in Zerstörung äußern kann.');
+  if((g(5)==='work_full'||g(6)==='lots')&&(g(7)==='high'||g(7)==='xhigh')&&g(10)==='low')
+    w.push('⚠️ Kombination kritisch: Wenig Zeit + viel Abwesenheit + aktiver Hund. Das System empfiehlt dir eine ruhigere Rasse – überdenke deine Prioritäten.');
+  if((g(0)==='apt'||g(0)==='apt_bal')&&g(7)==='xhigh')
+    w.push('⚠️ In einer kleinen Wohnung ist es schwierig, einen extrem aktiven Hund artgerecht zu halten.');
+  if((g(12)==='none'||g(12)==='basic')&&chars.indexOf('sport')>=0)
+    w.push('⚠️ Hochleistungssportpartner brauchen erfahrene Halter – als Neueinsteiger lieber mit einem moderaten Hund beginnen.');
+  if((g(5)==='work_full'||g(6)==='lots')&&g(4)==='social_lots')
+    w.push('⚠️ Du bist viel weg, möchtest aber einen sehr geselligen Hund in lebendiger Umgebung – hier entsteht leicht Stress für das Tier.');
+  if(g(15)==='tight'&&(g(16)==='daily'||g(16)==='pro'))
+    w.push('⚠️ Intensiver Pflegeaufwand und knappes Budget passen schlecht zusammen – Profipflege kann teuer werden.');
+  return w;
 }
 
-function nextQ() { if(answers[currentQ]===undefined)return; if(currentQ<4){currentQ++;renderQuestion();}else showResult(); }
-function prevQ() { if(currentQ>0){currentQ--;renderQuestion();} }
-
-function buildWhy(breed,vals) {
-  const [activity,housing,kids,xp]=vals;
-  const parts=[];
-  if(breed.scores[activity]>=2){const m={low:'Für deinen entspannten Alltag ist das ideal',med:'Passt gut zu deinem moderaten Aktivitätslevel',high:'Als aktiver Mensch wirst du hier auf deine Kosten kommen',xhigh:'Diese Rasse hält mit deinem extrem aktiven Lebensstil problemlos mit'};parts.push(m[activity]||'');}
-  if(breed.scores[housing]>=2){const m={apt:'und fühlt sich auch in der Wohnung pudelwohl',house:'und gedeiht hervorragend mit Garten',rural:'und liebt das Leben auf dem Land',semi:'und kommt gut mit deiner Wohnsituation zurecht'};parts.push(m[housing]||'');}
-  if(breed.scores[kids]>=2){const m={toddler:'– bekannt für seine Sanftheit mit kleinen Kindern',kids:'– ideal für Familien mit Kindern',teen:'– unkompliziert im Umgang mit Teenagern',nokids:'– perfekt für Paare oder Einzelpersonen'};parts.push(m[kids]||'');}
-  const s1=parts.filter(Boolean).join(' ')+'.';
-  const xpNote=(xp==='xp0'||xp==='xp1')&&breed.scores[xp]>=2?'Als Einsteiger wirst du gut mit dieser Rasse zurechtkommen – sie verzeiht Lernfehler.':((xp==='xp2'||xp==='xp3')&&breed.scores[xp]>=2?'Deine Erfahrung kommt dieser Rasse zugute.':'');
-  return [s1,xpNote].filter(Boolean).join(' ');
+function buildChallenges(b){
+  var a=b.attr,c=[];
+  if(a.shed>=3)c.push('Starkes Haaren');if(a.bark>=3)c.push('Bellfreudig');if(a.drool>=3)c.push('Sabbert viel');
+  if(a.alone>=3)c.push('Braucht Gesellschaft');if(a.act>=3)c.push('Hoher Bewegungsbedarf');if(a.train>=3)c.push('Intensive Führung nötig');
+  if(a.groom>=3)c.push('Viel Pflege');if(a.cost>=3)c.push('Höhere Kosten');if(a.hunt>=3)c.push('Hoher Jagdtrieb');if(a.xp>=3)c.push('Nicht für Anfänger');
+  return c;
 }
 
-function renderBreedCard(item,rank,idx) {
-  const b=item.breed;
-  const pct=Math.min(97,Math.round(58+(item.score/15)*39));
-  const vals=[answers[0]?.val,answers[1]?.val,answers[2]?.val,answers[3]?.val,answers[4]?.val];
-  const why=buildWhy(b,vals);
-  return `<div class="result-card${rank===2?' secondary':''}">
-    <div class="result-rank rank-${rank}">${rank===1?'★ Bester Match':'✦ Ebenfalls passend'}</div>
-    <div class="result-header"><span class="result-emoji">${b.emoji}</span>
-      <div class="result-header-text"><h4>${b.name}</h4>
-        <div class="result-match-row"><span class="result-pct">${pct}%</span>
-          <div class="result-bar"><div class="result-bar-fill" id="bar${idx}" style="width:0"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="result-body">
-      <div class="result-traits">${b.traits.map(t=>`<span class="result-trait">${t}</span>`).join('')}</div>
-      <p class="result-desc">${b.desc}${why?' '+why:''}</p>
-    </div>
-  </div>`;
+function buildWhy(b){
+  var a=b.attr,r=[],g=function(q){return answers[q]?answers[q].val:null;};
+  var fam3=gm(3);
+  if((g(6)==='many'||g(6)==='lots')&&a.alone<=2)r.push('verträgt deine Abwesenheitszeiten');
+  if((g(0)==='apt'||g(0)==='apt_bal')&&a.space<=2)r.push('wohnungstauglich');
+  if(g(7)==='low'&&a.act<=2)r.push('passend für deinen entspannten Alltag');
+  if((g(7)==='high'||g(7)==='xhigh')&&a.act>=3)r.push('matcht dein hohes Aktivitätsniveau');
+  if((g(12)==='none'||g(12)==='basic')&&a.xp<=2)r.push('ideal für Einsteiger');
+  if(fam3.indexOf('kids')>=0&&a.kids>=3)r.push('kinderfreundlich');
+  if(fam3.indexOf('pets')>=0&&a.pets>=3)r.push('gut mit anderen Tieren');
+  if(g(15)==='tight'&&a.cost<=2)r.push('budgetfreundlich');
+  if(g(16)==='min'&&a.groom<=2)r.push('pflegeleicht');
+  var nogoW=gm(17);
+  if(nogoW.indexOf('nogo_shed')>=0&&a.shed<=2)r.push('haart wenig');
+  if(nogoW.indexOf('nogo_bark')>=0&&a.bark<=2)r.push('ruhige Rasse');
+  if(nogoW.indexOf('nogo_drive')>=0&&a.hunt<=2)r.push('geringer Jagdtrieb');
+  if(r.length===0)r.push('gutes Gesamtpaket für deinen Lebensstil');
+  return 'Passt, weil: '+r.slice(0,3).join(', ')+'.';
 }
 
-function showResult() {
-  const vals=[answers[0]?.val,answers[1]?.val,answers[2]?.val,answers[3]?.val,answers[4]?.val];
-  const scored=breeds.map(b=>({breed:b,score:vals.reduce((s,v)=>s+(b.scores[v]||0),0)})).sort((a,b)=>b.score-a.score);
-  const top2=scored.slice(0,2);
-  document.getElementById('quizResult').innerHTML=`
-    <div class="result-intro"><h3>Deine 2 perfekten Matches</h3><p>Basierend auf deinen Antworten – von 50 Rassen für dich ausgewählt</p></div>
-    <div class="result-cards-grid">${renderBreedCard(top2[0],1,0)}${renderBreedCard(top2[1],2,1)}</div>
-    <div class="result-cta-box">
-      <p>Alles über <strong>${top2[0].breed.name}</strong> & <strong>${top2[1].breed.name}</strong> – Charakter, Pflege, Kosten & 48 weitere Rassen im Vergleich?</p>
-      <a class="btn-gold" href="#angebot">Ratgeber holen – nur 9,90€ →</a>
-    </div>
-    <button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>`;
+function buildNopeReason(b){
+  var a=b.attr,r=[],g=function(q){return answers[q]?answers[q].val:null;};
+  var nogos=gm(17);
+  if(aloneMap[g(6)]&&a.alone>aloneMap[g(6)])r.push('Trennungsangst-Risiko');
+  if(spaceMap[g(0)]&&a.space>spaceMap[g(0)])r.push('braucht mehr Platz');
+  if(actMap[g(7)]&&a.act>actMap[g(7)]+1)r.push('zu viel Energie');
+  if(xpMap[g(12)]&&a.xp>xpMap[g(12)]+1)r.push('zu anspruchsvoll');
+  if(costMap[g(15)]&&a.cost>costMap[g(15)])r.push('zu teuer');
+  if(nogos.indexOf('nogo_shed')>=0&&a.shed>=3)r.push('haart stark');
+  if(nogos.indexOf('nogo_bark')>=0&&a.bark>=3)r.push('bellt viel');
+  if(nogos.indexOf('nogo_energy')>=0&&a.act>=3)r.push('zu energiegeladen');
+  if(nogos.indexOf('nogo_drive')>=0&&a.hunt>=3)r.push('hoher Jagdtrieb');
+  return r.length>0?r.slice(0,2).join(' · '):'Nicht optimal für deinen Lebensstil';
+}
+
+function renderBreedCard(item,rank){
+  var b=item.breed,a=b.attr,pct=item.pct!=null?item.pct:scoreToPercent(item.score);
+  var challenges=buildChallenges(b),why=buildWhy(b);
+  var actL=['','Wenig Auslauf','Moderat aktiv','Aktiv','Sehr aktiv'][a.act];
+  var costL=['','~100 €/Mo.','~200 €/Mo.','~350 €/Mo.','500 €+'][a.cost];
+  var groomL=['','Pflegeleicht','Etwas Pflege','Tägl. Pflege','Profipflege'][a.groom];
+  var cls=rank===1?'result-card--top result-card':(rank<=3?'result-card--sec result-card':'result-card');
+  var rnk=rank===3?'result-rank rank-3':'result-rank';
+  var h='<div class="'+cls+'"><div class="'+rnk+'">#'+rank+(rank===1?' Bester Match':' Auch passend')+'</div>';
+  h+='<div class="result-header"><div class="result-photo-wrap"><img class="result-photo-img" id="bp'+rank+'" alt="'+b.name+'"><span class="result-emoji" aria-hidden="true">'+b.emoji+'</span></div><div class="result-header-text"><h4>'+b.name+'</h4>';
+  h+='<div class="result-match-row"><span class="result-pct">'+pct+'%</span>';
+  h+='<div class="result-bar"><div class="result-bar-fill" id="bar'+rank+'" style="width:0"></div></div></div></div></div>';
+  h+='<div class="result-quickstats"><span class="result-stat-pill act">'+actL+'</span><span class="result-stat-pill cost">'+costL+'</span><span class="result-stat-pill groom">'+groomL+'</span>';
+  if(a.kids>=3)h+='<span class="result-stat-pill ok">Kinderfreundlich</span>';
+  if(a.xp<=2)h+='<span class="result-stat-pill ok">Anfängergeeignet</span>';else if(a.xp>=3)h+='<span class="result-stat-pill warn">Erfahrung nötig</span>';
+  if(a.drool>=3)h+='<span class="result-stat-pill warn">Sabbert viel</span>';
+  if(a.shed>=4)h+='<span class="result-stat-pill warn">Starkes Haaren</span>';
+  h+='</div><div class="result-body"><div class="result-traits">'+b.traits.map(function(t){return '<span class="result-trait">'+t+'</span>';}).join('')+'</div>';
+  h+='<p class="result-desc" style="margin-bottom:5px">'+b.desc+'</p>';
+  h+='<p class="result-desc" style="color:var(--forest-3);font-weight:600;font-size:0.76rem">'+why+'</p>';
+  if(challenges.length>0){h+='<div class="result-challenges"><span class="result-challenges-label">Herausforderungen: </span>';h+=challenges.map(function(c){return '<span class="result-challenge-tag">'+c+'</span>';}).join('');h+='</div>';}
+  h+='</div></div>';return h;
+}
+
+function renderNopeCard(item){
+  var b=item.breed,pct=item.pct!=null?item.pct:scoreToPercent(item.score);
+  return '<div class="nope-card"><span class="nope-emoji">'+b.emoji+'</span><div class="nope-info"><strong>'+b.name+'</strong><div class="nope-reason">'+buildNopeReason(b)+'</div></div><span class="nope-pct">'+pct+'%</span></div>';
+}
+
+var dogCEOBreeds={
+  "Golden Retriever":"retriever/golden","Labrador Retriever":"labrador",
+  "Deutscher Schäferhund":"germanshepherd","Französische Bulldogge":"bulldog/french",
+  "Englische Bulldogge":"bulldog/english","Beagle":"beagle","Dackel":"dachshund",
+  "Malteser":"maltese","Shih Tzu":"shihtzu","Cavalier King Charles Spaniel":"spaniel/sussex",
+  "Pudel (Standard)":"poodle/standard","Zwergpudel":"poodle/miniature",
+  "Border Collie":"collie/border","Australian Shepherd":"australian/shepherd",
+  "Siberian Husky":"husky","Alaskan Malamute":"malamute","Dobermann":"doberman",
+  "Rottweiler":"rottweiler","Boxer":"boxer","Deutsche Dogge":"dane/great",
+  "Berner Sennenhund":"mountain/bernese","Labradoodle":"labrador",
+  "Corgi (Pembroke)":"corgi/cardigan","Shiba Inu":"shiba","Chow Chow":"chow",
+  "Akita Inu":"akita","Jack Russell Terrier":"terrier/russell",
+  "West Highland Terrier":"terrier/westhighland","Yorkshire Terrier":"terrier/yorkshire",
+  "Chihuahua":"chihuahua","Pomeranian (Spitz)":"pomeranian","Hovawart":"setter/irish",
+  "Eurasier":"samoyed","Vizsla":"vizsla","Weimaraner":"weimaraner","Dalmatiner":"dalmatian",
+  "Irischer Setter":"setter/irish","Samojede":"samoyed","Bernedoodle":"mountain/bernese",
+  "Greyhound":"greyhound/italian","Whippet":"whippet",
+  "Großer Münsterländer":"spaniel/springer","Kleiner Münsterländer":"spaniel/cocker",
+  "Lagotto Romagnolo":"spaniel/cocker","Bolonka Zwetna":"maltese",
+  "Zwergpinscher":"pinscher","Papillon":"papillon","Havaneser":"havanese",
+  "Rhodesian Ridgeback":"ridgeback/rhodesian","Cane Corso":"mastiff",
+  "Belgischer Schäferhund (Malinois)":"malinois","Australian Cattle Dog":"cattledog",
+  "Basenji":"basenji","Basset Hound":"basset","Boston Terrier":"terrier/boston",
+  "Bull Terrier":"terrier/bull","Cockapoo":"poodle/miniature",
+  "Cocker Spaniel":"spaniel/cocker","English Springer Spaniel":"spaniel/springer",
+  "Flat Coated Retriever":"retriever/flatcoated","Foxterrier":"terrier/fox",
+  "Irish Wolfhound":"wolfhound/irish","Keeshond":"keeshond","Leonberger":"leonberg",
+  "Mops":"pug","Neufundländer":"newfoundland",
+  "Nova Scotia Duck Tolling Retriever":"retriever/golden",
+  "Parson Russell Terrier":"terrier/russell","Pointer":"pointer",
+  "Pekingese":"pekinese","Puli":"puli","Schipperke":"schipperke",
+  "Schnauzer":"schnauzer/miniature","Zwergschnauzer":"schnauzer/miniature",
+  "Riesenschnauzer":"schnauzer/giant","Scottish Terrier":"terrier/scottish",
+  "Staffordshire Bull Terrier":"staffordshire/bull",
+  "American Staffordshire Terrier":"staffordshire/bull",
+  "Tibet Terrier":"terrier/tibetan","Bichon Frisé":"frise"
+};
+
+function loadBreedPhotos(top5){
+  top5.forEach(function(item,i){
+    var slug=dogCEOBreeds[item.breed.name];
+    if(!slug)return;
+    var rank=i+1;
+    fetch('https://dog.ceo/api/breed/'+slug+'/images/random')
+      .then(function(r){return r.json();})
+      .then(function(data){
+        if(data.status!=='success'||!data.message)return;
+        var el=document.getElementById('bp'+rank);
+        if(!el)return;
+        el.addEventListener('load',function(){el.classList.add('loaded');},{once:true});
+        el.addEventListener('error',function(){el.style.display='none';},{once:true});
+        el.src=data.message;
+      }).catch(function(){});
+  });
+}
+
+
+document.addEventListener('DOMContentLoaded',function(){
+  document.querySelectorAll('.reel-track').forEach(function(t){t.innerHTML+=t.innerHTML;});
+});
+
+function showResult(){
+  var scored=breeds.map(function(b){return{breed:b,score:scoreBreed(b)};});
+  scored.sort(function(a,b){return b.score-a.score;});
+  var maxS=scored[0].score,minS=scored[scored.length-1].score,rangeS=Math.max(0.05,maxS-minS);
+  for(var pi=0;pi<scored.length;pi++)scored[pi].pct=dynPct(scored[pi].score,minS,rangeS);
+  // Top-5 eigene Skala 72–97% für sichtbare Spreizung
+  var t5max=scored[0].score,t5min=scored[Math.min(4,scored.length-1)].score,t5range=t5max-t5min;
+  for(var ti=0;ti<Math.min(5,scored.length);ti++){
+    scored[ti].pct=t5range<0.005?(97-ti*5):Math.round(72+((scored[ti].score-t5min)/t5range)*25);
+  }
+  var top5=scored.slice(0,5),bottom3=scored.slice(-3).reverse(),warnings=detectContradictions(),h='';
+  if(warnings.length>0){h+='<div class="result-warnings"><h4>Hinweise für dich</h4>'+warnings.map(function(w){return '<p>'+w+'</p>';}).join('')+'</div>';}
+  h+='<div class="result-intro"><h3>Deine Top-5 Matches</h3><p>Aus 80 Rassen – basierend auf deinen 22 Antworten</p></div>';
+  h+='<div class="result-top3">';for(var i=0;i<Math.min(3,top5.length);i++)h+=renderBreedCard(top5[i],i+1);h+='</div>';
+  if(top5.length>3){h+='<div class="result-more"><div class="result-more-header">Weitere Matches</div><div class="result-more-list">';for(var j=3;j<top5.length;j++)h+=renderBreedCard(top5[j],j+1);h+='</div></div>';}
+  h+='<div class="result-cta-box"><p><strong>Mehr zur Rasse wissen?</strong></p><p>Im Ratgeber: alle 80 Rassen tiefgehend erklärt, Kaufleitfaden & Kostenübersicht.</p><a href="#angebot" class="btn-gold">Ratgeber für 9,90€ →</a><button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button></div>';
+  if(bottom3.length>0){h+='<div class="result-nope"><h4>Nicht empfohlen für dich</h4><div class="nope-list">'+bottom3.map(function(x){return renderNopeCard(x);}).join('')+'</div></div>';}
+  document.getElementById('quizResult').innerHTML=h;
+  loadBreedPhotos(top5);
   document.getElementById('quizQuestions').classList.add('hide');
   document.getElementById('quizNav').style.display='none';
   document.getElementById('quizProgress').style.opacity='0.4';
   document.getElementById('quizResult').classList.add('show');
-  setTimeout(()=>{
-    const p0=Math.min(97,Math.round(58+(top2[0].score/15)*39));
-    const p1=Math.min(97,Math.round(58+(top2[1].score/15)*39));
-    document.getElementById('bar0').style.width=p0+'%';
-    document.getElementById('bar1').style.width=p1+'%';
-  },200);
+  setTimeout(function(){for(var i=0;i<top5.length;i++){var el=document.getElementById('bar'+(i+1));if(el)el.style.width=top5[i].pct+'%';}},200);
 }
 
-function resetQuiz() {
-  currentQ=0;answers={};
+function renderQuestion(){
+  var q=questions[currentQ];
+  var row=document.getElementById('quizStepsRow');
+  if(row){row.innerHTML='';for(var i=0;i<questions.length;i++){var d=document.createElement('div');d.className='quiz-step'+(i<currentQ?' done':i===currentQ?' active':'');row.appendChild(d);}}
+  var catEl=document.getElementById('stepCategory');if(catEl)catEl.textContent=q.category;
+  var lbl=document.getElementById('stepLabel');if(lbl)lbl.textContent='Frage '+(currentQ+1)+' / '+questions.length;
+  var selVals=q.multi?((answers[currentQ]&&answers[currentQ].vals)?answers[currentQ].vals:[]):[],sel=answers[currentQ]?answers[currentQ].val:null;
+  var opts='';
+  for(var j=0;j<q.opts.length;j++){
+    var o=q.opts[j];
+    var isSel=q.multi?(selVals.indexOf(o.val)>=0):(sel===o.val);
+    opts+='<button class="quiz-opt'+(isSel?' selected':'')+'" onclick="selectOpt('+j+',\''+o.val+'\')" aria-pressed="'+isSel+'">';
+    opts+='<span class="opt-icon">'+o.icon+'</span>';
+    opts+='<span>'+o.text+'<span class="opt-sub">'+o.sub+'</span></span>';
+    opts+='</button>';
+  }
+  var subHtml='<div class="quiz-q-sub">'+q.sub+(q.multi?'<span class="multi-badge">☑ Mehrfachauswahl</span>':'')+'</div>';
+  document.getElementById('quizQuestions').innerHTML='<div class="quiz-q">'+q.q+'</div>'+subHtml+'<div class="quiz-options">'+opts+'</div>';
   document.getElementById('quizQuestions').classList.remove('hide');
-  document.getElementById('quizNav').style.display='flex';
+  document.getElementById('quizResult').innerHTML='';document.getElementById('quizResult').classList.remove('show');
   document.getElementById('quizProgress').style.opacity='1';
-  document.getElementById('quizResult').classList.remove('show');
-  renderQuestion();
+  var hasAns=q.multi?(selVals.length>0):!!answers[currentQ];
+  var nb=document.getElementById('nextBtn');nb.disabled=!hasAns;nb.textContent=currentQ===questions.length-1?'Ergebnis anzeigen ✨':'Weiter →';
+  document.getElementById('backBtn').style.visibility=currentQ>0?'visible':'hidden';
 }
 
+function selectOpt(idx,val){
+  var q=questions[currentQ];
+  if(q.multi){
+    if(!answers[currentQ])answers[currentQ]={vals:[]};
+    var vals=answers[currentQ].vals;
+    var pos=vals.indexOf(val);
+    if(pos>=0)vals.splice(pos,1);else vals.push(val);
+    document.querySelectorAll('.quiz-opt').forEach(function(el,i){var s=vals.indexOf(q.opts[i].val)>=0;el.classList.toggle('selected',s);el.setAttribute('aria-pressed',String(s));});
+    document.getElementById('nextBtn').disabled=vals.length===0;
+  } else {
+    answers[currentQ]={idx:idx,val:val};
+    document.querySelectorAll('.quiz-opt').forEach(function(el,i){var s=i===idx;el.classList.toggle('selected',s);el.setAttribute('aria-pressed',String(s));});
+    document.getElementById('nextBtn').disabled=false;
+  }
+}
+function nextQ(){
+  var q=questions[currentQ];
+  var hasAns=q.multi?(answers[currentQ]&&answers[currentQ].vals&&answers[currentQ].vals.length>0):!!answers[currentQ];
+  if(!hasAns)return;
+  if(currentQ<questions.length-1){currentQ++;renderQuestion();}else showResult();
+}
+function prevQ(){if(currentQ>0){currentQ--;renderQuestion();}}
+function resetQuiz(){currentQ=0;answers={};document.getElementById('quizNav').style.display='flex';renderQuestion();}
 function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
 
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 renderQuestion();
 </script>
 </body>
