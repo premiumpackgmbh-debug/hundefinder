@@ -112,6 +112,12 @@
   .grid-index a { display:flex; align-items:center; gap:10px; background:var(--off-white); border:1px solid var(--border-soft); border-radius:12px; padding:13px 15px; text-decoration:none; color:var(--ink); font-size:0.88rem; font-weight:600; transition:border-color 0.2s, transform 0.2s; }
   .grid-index a:hover { border-color:var(--forest-3); transform:translateY(-2px); }
   .grid-index .em { font-size:1.15rem; }
+  .search-wrap { position:relative; max-width:520px; margin:28px 0 0; }
+  .search-wrap svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--ink-muted); pointer-events:none; }
+  .search-wrap input { width:100%; padding:15px 18px 15px 48px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); background:var(--off-white); border:1.5px solid var(--border-soft); border-radius:14px; transition:border-color 0.2s, background 0.2s, box-shadow 0.2s; }
+  .search-wrap input:focus { outline:none; background:var(--white); border-color:var(--forest); box-shadow:0 4px 18px rgba(27,67,50,0.10); }
+  .search-wrap input::placeholder { color:var(--ink-muted); }
+  .no-hit { margin-top:20px; font-size:0.9rem; color:var(--ink-muted); background:var(--gold-bg); border:1px solid #F2E3C0; border-radius:12px; padding:14px 18px; }
   @media (max-width:720px) { .related, .req-grid, .suit, .facts { grid-template-columns:1fr; } .verdict { grid-template-columns:repeat(2,1fr); } }
 </style>
 </head>

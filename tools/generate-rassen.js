@@ -366,6 +366,12 @@ const STYLE = `
   .grid-index a { display:flex; align-items:center; gap:10px; background:var(--off-white); border:1px solid var(--border-soft); border-radius:12px; padding:13px 15px; text-decoration:none; color:var(--ink); font-size:0.88rem; font-weight:600; transition:border-color 0.2s, transform 0.2s; }
   .grid-index a:hover { border-color:var(--forest-3); transform:translateY(-2px); }
   .grid-index .em { font-size:1.15rem; }
+  .search-wrap { position:relative; max-width:520px; margin:28px 0 0; }
+  .search-wrap svg { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--ink-muted); pointer-events:none; }
+  .search-wrap input { width:100%; padding:15px 18px 15px 48px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.95rem; color:var(--ink); background:var(--off-white); border:1.5px solid var(--border-soft); border-radius:14px; transition:border-color 0.2s, background 0.2s, box-shadow 0.2s; }
+  .search-wrap input:focus { outline:none; background:var(--white); border-color:var(--forest); box-shadow:0 4px 18px rgba(27,67,50,0.10); }
+  .search-wrap input::placeholder { color:var(--ink-muted); }
+  .no-hit { margin-top:20px; font-size:0.9rem; color:var(--ink-muted); background:var(--gold-bg); border:1px solid #F2E3C0; border-radius:12px; padding:14px 18px; }
   @media (max-width:720px) { .related, .req-grid, .suit, .facts { grid-template-columns:1fr; } .verdict { grid-template-columns:repeat(2,1fr); } }
 `;
 
@@ -549,11 +555,33 @@ ${footer}`;
   <p class="crumbs"><a href="index.html">Start</a> › Rassen</p>
   <h1>80 Hunderassen im ehrlichen Realitätscheck</h1>
   <p style="max-width:680px">Jedes Profil zeigt dir Voraussetzungen, unterschätzte Probleme und ein klares Fazit – ohne Zuckerguss. Du weißt noch nicht, welche Rasse passt? Dann starte mit dem <a href="index.html#quiz">kostenlosen Eignungs-Quiz</a> (22 Fragen, 5 Minuten).</p>
-  <div class="grid-index">
+  <div class="search-wrap">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="breedSearch" type="search" placeholder="Rasse eingeben, z. B. Golden Retriever …" autocomplete="off" aria-label="Hunderasse suchen">
+  </div>
+  <p class="no-hit" id="noHit" hidden>Keine Rasse gefunden. Probier einen anderen Begriff – oder <a href="index.html#quiz">finde im Quiz heraus, welche Rasse zu dir passt</a>.</p>
+  <div class="grid-index" id="breedGrid">
     ${links}
   </div>
 </main>
-${footer}`;
+${footer}
+<script>
+(function(){
+  var inp=document.getElementById('breedSearch');
+  var cards=[].slice.call(document.querySelectorAll('#breedGrid a'));
+  var noHit=document.getElementById('noHit');
+  function norm(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/é/g,'e');}
+  inp.addEventListener('input',function(){
+    var q=norm(inp.value.trim());var hits=0;
+    cards.forEach(function(c){var ok=!q||norm(c.textContent).indexOf(q)>=0;c.style.display=ok?'':'none';if(ok)hits++;});
+    noHit.hidden=hits>0;
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var first=cards.filter(function(c){return c.style.display!=='none';})[0];if(first)location.href=first.getAttribute('href');}
+  });
+  inp.focus();
+})();
+</script>`;
   fs.writeFileSync(path.join(ROOT, 'rassen.html'), shell(
     'Alle 80 Hunderassen im ehrlichen Realitätscheck | Welpenlotse',
     'Alle 80 Hunderassen aus dem Welpenlotse-Quiz mit ehrlicher Analyse: Voraussetzungen, unterschätzte Probleme, Eignung und Fazit – finde die Rasse, die wirklich zu dir passt.',
