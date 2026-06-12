@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#FFFFFF">
-<title>Pudel (Standard): Passt die Rasse zu mir? | Welpenlotse</title>
-<meta name="description" content="Pudel (Standard) im ehrlichen Rasseprofil: Charakter, Aktivität, Pflege, Herausforderungen und für wen die Rasse passt – plus kostenloses Eignungs-Quiz mit 80 Rassen.">
+<title>Pudel (Standard): Passt die Rasse zu mir? Ehrliche Analyse | Welpenlotse</title>
+<meta name="description" content="Pudel (Standard) im ehrlichen Realitätscheck: Voraussetzungen, was Interessenten unterschätzen, für wen die Rasse (nicht) geeignet ist – plus kostenloses Eignungs-Quiz.">
 <link rel="canonical" href="https://www.welpenlotse.de/rassen/pudel-standard.html">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='28' fill='%231B4332'/><g transform='translate(20 18) scale(0.72)' fill='%23F4A51C'><ellipse cx='46' cy='22' rx='15.5' ry='20' transform='rotate(-8 46 22)'/><ellipse cx='76' cy='22' rx='15.5' ry='20' transform='rotate(8 76 22)'/><ellipse cx='15' cy='46' rx='12.5' ry='16.5' transform='rotate(-24 15 46)'/><ellipse cx='107' cy='46' rx='12.5' ry='16.5' transform='rotate(24 107 46)'/><path d='M61 124C38 103 23 88 23 70C23 57 32 48 44 48C52 48 58 53 61 62C64 53 70 48 78 48C90 48 99 57 99 70C99 88 84 103 61 124Z'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,9 +24,10 @@
   nav .logo-icon .logo-toe, nav .logo-icon .logo-heart { fill:var(--gold); }
   .nav-cta { background:var(--forest); color:var(--white); padding:10px 22px; border-radius:8px; font-size:0.875rem; font-weight:700; text-decoration:none; transition:background 0.2s; min-height:44px; display:inline-flex; align-items:center; }
   .nav-cta:hover { background:var(--forest-2); }
-  main { max-width: 860px; margin:0 auto; padding:120px clamp(24px,5vw,40px) 80px; }
+  main { max-width: 880px; margin:0 auto; padding:120px clamp(24px,5vw,40px) 80px; }
   h1 { font-family:'Fraunces',serif; font-size:clamp(2rem,5vw,2.8rem); font-weight:900; letter-spacing:-0.03em; line-height:1.08; margin-bottom:14px; }
-  h2 { font-family:'Fraunces',serif; font-size:1.35rem; font-weight:700; margin:40px 0 16px; color:var(--forest); }
+  h2 { font-family:'Fraunces',serif; font-size:clamp(1.4rem,3vw,1.7rem); font-weight:900; margin:56px 0 18px; color:var(--ink); letter-spacing:-0.02em; scroll-margin-top:84px; }
+  h2 .h2-num { color:var(--gold); font-size:0.85em; margin-right:8px; }
   p, li { font-size:0.95rem; line-height:1.75; color:var(--ink-mid); }
   a { color:var(--forest); }
   .crumbs { font-size:0.78rem; color:var(--ink-muted); margin-bottom:24px; }
@@ -34,13 +35,20 @@
   .crumbs a:hover { color:var(--forest); }
   .breed-head { display:flex; align-items:center; gap:18px; margin-bottom:10px; }
   .breed-emoji { width:72px; height:72px; flex-shrink:0; border-radius:18px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:2.4rem; }
-  .traits { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 18px; }
+  .traits { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 12px; }
   .trait { background:var(--forest-soft); color:var(--forest); padding:4px 12px; border-radius:100px; font-size:0.76rem; font-weight:600; }
-  .pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .pills { display:flex; flex-wrap:wrap; gap:6px; }
   .pill { font-size:0.74rem; padding:4px 11px; border-radius:100px; font-weight:600; background:var(--off-white); border:1px solid var(--border-soft); color:var(--ink-mid); }
   .pill.warn { background:#FEF3C7; color:#92400E; border-color:transparent; }
   .pill.ok { background:#D1FAE5; color:#065F46; border-color:transparent; }
-  .attrs { margin-top:8px; border:1px solid var(--border-soft); border-radius:16px; padding:8px 20px; }
+  .toc { display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 8px; padding:16px 0; border-top:1px solid var(--border-soft); border-bottom:1px solid var(--border-soft); }
+  .toc a { font-size:0.78rem; font-weight:600; color:var(--ink-mid); text-decoration:none; background:var(--off-white); border:1px solid var(--border-soft); padding:7px 13px; border-radius:100px; transition:background 0.2s, color 0.2s, border-color 0.2s; }
+  .toc a:hover { background:var(--forest-soft); color:var(--forest); border-color:transparent; }
+  .facts { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-bottom:24px; }
+  .fact { background:var(--off-white); border:1px solid var(--border-soft); border-radius:14px; padding:14px 16px; }
+  .fact-label { font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-muted); margin-bottom:5px; }
+  .fact-value { font-size:0.86rem; font-weight:600; color:var(--ink); line-height:1.45; }
+  .attrs { border:1px solid var(--border-soft); border-radius:16px; padding:8px 20px; }
   .attr { display:flex; align-items:center; gap:12px; padding:11px 0; border-bottom:1px solid var(--border-soft); }
   .attr:last-child { border-bottom:none; }
   .attr-name { flex:1; font-size:0.86rem; color:var(--ink-mid); }
@@ -48,11 +56,43 @@
   .dot { width:18px; height:8px; border-radius:4px; background:var(--cream); }
   .dot.on { background:var(--forest-3); }
   .attr-word { width:92px; text-align:right; font-size:0.74rem; font-weight:700; color:var(--forest); }
-  ul.plain { list-style:none; }
-  ul.plain li { padding:7px 0 7px 26px; position:relative; border-bottom:1px solid var(--border-soft); font-size:0.9rem; }
-  ul.plain li:last-child { border-bottom:none; }
-  ul.plain.good li::before { content:'✓'; position:absolute; left:0; color:var(--forest-3); font-weight:800; }
-  ul.plain.bad li::before { content:'!'; position:absolute; left:4px; color:#C2402F; font-weight:800; }
+  .chal { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+  .chal span { font-size:0.74rem; padding:4px 11px; background:#FEE2E2; color:#991B1B; border-radius:100px; font-weight:600; }
+  .req-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  .req { background:var(--white); border:1px solid var(--border-soft); border-radius:14px; padding:16px; display:flex; gap:12px; align-items:flex-start; box-shadow:0 4px 16px rgba(27,67,50,0.04); }
+  .req-ico { font-size:1.15rem; flex-shrink:0; width:38px; height:38px; border-radius:10px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; }
+  .req strong { display:block; font-size:0.8rem; color:var(--ink); margin-bottom:3px; }
+  .req p { font-size:0.82rem; line-height:1.55; }
+  .under { border-left:3px solid var(--gold); background:var(--gold-bg); border-radius:0 14px 14px 0; padding:6px 20px; }
+  .under-item { padding:13px 0; border-bottom:1px solid rgba(146,100,10,0.12); }
+  .under-item:last-child { border-bottom:none; }
+  .under-item strong { display:block; font-size:0.9rem; color:#7A5C0A; margin-bottom:3px; }
+  .under-item p { font-size:0.86rem; }
+  .suit { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .suit-col { border-radius:16px; padding:20px; }
+  .suit-col.yes { background:#EAF6EE; border:1px solid #CDE8D6; }
+  .suit-col.no { background:#FBEDEA; border:1px solid #F2D6CF; }
+  .suit-col h3 { font-size:0.95rem; font-weight:800; margin-bottom:10px; }
+  .suit-col.yes h3 { color:#1E6B3C; }
+  .suit-col.no h3 { color:#A33A28; }
+  .suit-col li { list-style:none; font-size:0.85rem; padding:6px 0 6px 24px; position:relative; }
+  .suit-col.yes li::before { content:'✓'; position:absolute; left:0; color:#1E6B3C; font-weight:800; }
+  .suit-col.no li::before { content:'✕'; position:absolute; left:2px; color:#A33A28; font-weight:800; }
+  .reality { background:linear-gradient(150deg,#102E1F 0%,#1B4332 65%,#0D2A1C 100%); border-radius:18px; padding:28px; color:var(--white); }
+  .reality p { color:rgba(255,255,255,0.65); }
+  .reality h3 { font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); margin:20px 0 10px; }
+  .reality h3:first-child { margin-top:0; }
+  .reality li { list-style:none; font-size:0.88rem; color:rgba(255,255,255,0.8); padding:6px 0 6px 26px; position:relative; }
+  .reality li::before { content:'✓'; position:absolute; left:0; top:7px; width:17px; height:17px; border-radius:5px; background:rgba(244,165,28,0.2); color:var(--gold); font-size:0.6rem; font-weight:900; display:flex; align-items:center; justify-content:center; }
+  .reality .fails { font-size:0.85rem; color:rgba(255,255,255,0.55); }
+  .reality .fails strong { color:#F0A898; font-weight:700; }
+  .verdict { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .v-item { background:var(--off-white); border:1px solid var(--border-soft); border-radius:14px; padding:16px; text-align:center; }
+  .v-label { font-size:0.66rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-muted); margin-bottom:8px; }
+  .v-chip { display:inline-block; font-size:0.8rem; font-weight:800; padding:6px 14px; border-radius:100px; }
+  .f-good { background:#D1FAE5; color:#065F46; }
+  .f-mid { background:#FEF3C7; color:#92400E; }
+  .f-bad { background:#FEE2E2; color:#991B1B; }
   .cta-box { background:var(--forest); border-radius:18px; padding:28px; margin-top:36px; color:var(--white); }
   .cta-box h2 { color:var(--white); margin:0 0 8px; }
   .cta-box p { color:rgba(255,255,255,0.65); margin-bottom:18px; }
@@ -72,7 +112,7 @@
   .grid-index a { display:flex; align-items:center; gap:10px; background:var(--off-white); border:1px solid var(--border-soft); border-radius:12px; padding:13px 15px; text-decoration:none; color:var(--ink); font-size:0.88rem; font-weight:600; transition:border-color 0.2s, transform 0.2s; }
   .grid-index a:hover { border-color:var(--forest-3); transform:translateY(-2px); }
   .grid-index .em { font-size:1.15rem; }
-  @media (max-width:720px) { .related { grid-template-columns:1fr; } }
+  @media (max-width:720px) { .related, .req-grid, .suit, .facts { grid-template-columns:1fr; } .verdict { grid-template-columns:repeat(2,1fr); } }
 </style>
 </head>
 <body>
@@ -90,7 +130,24 @@
   <div class="traits"><span class="trait">Intelligent</span><span class="trait">Lernfreudig</span><span class="trait">Fröhlich</span><span class="trait">Sportlich</span></div>
   <div class="pills"><span class="pill">Größe: Groß</span><span class="pill">Kosten: ~200 €/Monat</span><span class="pill ok">Anfängergeeignet</span><span class="pill ok">Kinderfreundlich</span></div>
 
-  <h2>Auf einen Blick</h2>
+  <nav class="toc" aria-label="Inhalt">
+    <a href="#profil">Rasseprofil</a>
+    <a href="#voraussetzungen">Voraussetzungen</a>
+    <a href="#unterschaetzt">Was viele unterschätzen</a>
+    <a href="#geeignet">Für wen (nicht) geeignet</a>
+    <a href="#realitaetscheck">Realitätscheck</a>
+    <a href="#fazit">Fazit</a>
+  </nav>
+
+  <h2 id="profil"><span class="h2-num">01</span>Rasseprofil</h2>
+  <div class="facts">
+    <div class="fact"><div class="fact-label">Ursprünglicher Zweck</div><div class="fact-value">Apportierhund für die Wasserjagd (Frankreich/Deutschland)</div></div>
+    <div class="fact"><div class="fact-label">Energielevel</div><div class="fact-value">Hoch</div></div>
+    <div class="fact"><div class="fact-label">Lern- & Arbeitsbereitschaft</div><div class="fact-value">Sehr hoch – will arbeiten und gefordert werden</div></div>
+    <div class="fact"><div class="fact-label">Schutztrieb</div><div class="fact-value">Kaum ausgeprägt</div></div>
+    <div class="fact"><div class="fact-label">Jagdtrieb</div><div class="fact-value">Gering</div></div>
+    <div class="fact"><div class="fact-label">Sozialverhalten</div><div class="fact-value">Umgänglich und offen</div></div>
+  </div>
   <div class="attrs">
       <div class="attr"><span class="attr-name">Aktivitätsbedarf</span><span class="attr-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="attr-word">hoch</span></div>
       <div class="attr"><span class="attr-name">Erziehungsaufwand</span><span class="attr-dots"><span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></span><span class="attr-word">niedrig</span></div>
@@ -103,14 +160,60 @@
       <div class="attr"><span class="attr-name">Kinderfreundlichkeit</span><span class="attr-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="attr-word">gut</span></div>
       <div class="attr"><span class="attr-name">Verträglichkeit mit Tieren</span><span class="attr-dots"><span class="dot on"></span><span class="dot on"></span><span class="dot on"></span><span class="dot"></span></span><span class="attr-word">gut</span></div>
   </div>
+  <div class="chal"><span>Sollte selten allein sein</span><span>Hoher Bewegungsbedarf</span><span>Aufwendige Fellpflege</span></div>
 
-  <h2>Das spricht für die Rasse</h2>
-  <ul class="plain good"><li>Auch für Einsteiger geeignet</li><li>Familienfreundlich</li><li>Verträgt sich gut mit anderen Tieren</li><li>Eher ruhig</li><li>Haart wenig bis moderat</li><li>Geringer Jagdtrieb</li><li>Moderate Haltungskosten</li></ul>
-  <h2>Das solltest du ehrlich einplanen</h2>
-  <ul class="plain bad"><li>Sollte selten allein sein</li><li>Hoher Bewegungsbedarf</li><li>Aufwendige Fellpflege</li></ul>
+  <h2 id="voraussetzungen"><span class="h2-num">02</span>Voraussetzungen für eine erfolgreiche Haltung</h2>
+  <div class="req-grid">
+    <div class="req"><span class="req-ico" aria-hidden="true">🎓</span><div><strong>Hundeerfahrung</strong><p>Keine Vorerfahrung nötig – mit Hundeschule gut machbar</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">⏱️</span><div><strong>Zeit pro Tag</strong><p>2,5–3,5 Stunden täglich</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">🏃</span><div><strong>Bewegung</strong><p>1,5–2+ Stunden täglich, plus Freilauf oder Sport</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">🧠</span><div><strong>Geistige Auslastung</strong><p>Tägliche Kopfarbeit ist Pflicht: Nasenarbeit, Tricks, Aufgaben – sonst sucht sich der Hund eigene Beschäftigung</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">📋</span><div><strong>Training & Erziehung</strong><p>Grundkommandos und klare Alltagsregeln genügen</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">🏠</span><div><strong>Wohnsituation</strong><p>Wohnung möglich, wenn täglicher Auslauf garantiert ist</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">👨‍👩‍👧</span><div><strong>Familie & Kinder</strong><p>Familientauglich – Umgang respektvoll begleiten</p></div></div>
+    <div class="req"><span class="req-ico" aria-hidden="true">🐈</span><div><strong>Andere Haustiere</strong><p>Verträgt sich bei normaler Sozialisierung gut</p></div></div>
+  </div>
+
+  <h2 id="unterschaetzt"><span class="h2-num">03</span>Was viele Interessenten unterschätzen</h2>
+  <div class="under">
+    <div class="under-item"><strong>Der Bewegungsbedarf</strong><p>Ein großer Spaziergang am Wochenende reicht nicht. Diese Rasse braucht jeden Tag echte Auslastung – auch bei Regen, auch nach deinem langen Arbeitstag.</p></div>
+    <div class="under-item"><strong>Das Alleinbleiben</strong><p>Diese Rasse leidet schnell unter Trennungsstress. Wer täglich viele Stunden außer Haus ist, braucht eine verlässliche Betreuungslösung.</p></div>
+    <div class="under-item"><strong>Der Pflegeaufwand</strong><p>Regelmäßiges Bürsten bzw. Trimmen oder Schur kosten Zeit und Geld. Vernachlässigte Pflege führt zu Verfilzungen und Hautproblemen.</p></div>
+  </div>
+
+  <h2 id="geeignet"><span class="h2-num">04</span>Für wen die Rasse (nicht) geeignet ist</h2>
+  <div class="suit">
+    <div class="suit-col yes">
+      <h3>Gut geeignet für</h3>
+      <ul><li>Sportliche Menschen, die täglich gern draußen sind</li><li>Engagierte Ersthalter, die eine Hundeschule besuchen</li><li>Familien mit Kindern</li><li>Mehrtier-Haushalte (Katzen, Zweithund)</li></ul>
+    </div>
+    <div class="suit-col no">
+      <h3>Eher ungeeignet für</h3>
+      <ul><li>Haushalte, in denen der Hund sich dem Sofa-Rhythmus anpassen soll</li><li>Vollzeit-Abwesende ohne tägliche Betreuungslösung</li></ul>
+    </div>
+  </div>
+
+  <h2 id="realitaetscheck"><span class="h2-num">05</span>Ehrlicher Realitätscheck</h2>
+  <div class="reality">
+    <p>Damit ein Pudel (Standard) mit hoher Wahrscheinlichkeit ein artgerechtes, glückliches Leben führt – und du langfristig zufrieden bleibst – müssen diese Bedingungen erfüllt sein:</p>
+    <h3>Diese Bedingungen sind nicht verhandelbar</h3>
+    <ul><li>Täglich 2,5–3,5 Stunden für Bewegung, Training und Beschäftigung</li><li>Bereitschaft zur Hundeschule – auch wenn vieles intuitiv klappt</li><li>Eine Betreuungslösung für Arbeitszeiten (Familie, Sitter, Büro-Hund)</li><li>Ein realistisches Budget: ~200 €/Monat plus Rücklagen für den Tierarzt</li><li>12–15 Jahre Verantwortung – durch Umzüge, Jobwechsel und Lebensphasen hindurch</li></ul>
+    <h3>Daran scheitern Halter am häufigsten</h3>
+    <p class="fails">Die typischen Abgabegründe bei dieser Rasse: <strong>bewegungsbedarf, alleinbleiben, pflegeaufwand</strong>. Fast immer steckt dahinter keine böse Absicht, sondern eine ehrliche Frage, die vor dem Kauf nicht gestellt wurde: Passt dieser Hund wirklich zu meinem echten Alltag – nicht zu meinem Wunsch-Alltag?</p>
+  </div>
+
+  <h2 id="fazit"><span class="h2-num">06</span>Fazit</h2>
+  <div class="verdict">
+    <div class="v-item"><div class="v-label">Anfängergeeignet</div><span class="v-chip f-good">Ja</span></div>
+    <div class="v-item"><div class="v-label">Zeitaufwand</div><span class="v-chip f-bad">Hoch</span></div>
+    <div class="v-item"><div class="v-label">Trainingsaufwand</div><span class="v-chip f-good">Niedrig</span></div>
+    <div class="v-item"><div class="v-label">Bewegungsbedarf</div><span class="v-chip f-bad">Hoch</span></div>
+    <div class="v-item"><div class="v-label">Familiengeeignet</div><span class="v-chip f-good">Ja</span></div>
+    <div class="v-item"><div class="v-label">Wohnungsgeeignet</div><span class="v-chip f-mid">Eingeschränkt</span></div>
+  </div>
 
   <div class="cta-box">
-    <h2>Passt die Rasse wirklich zu deinem Alltag?</h2>
+    <h2>Passt diese Rasse wirklich zu deinem Alltag?</h2>
     <p>Das kostenlose Quiz gleicht 22 Fragen zu deinem Leben mit 80 Rassen ab – und sagt dir ehrlich, ob es passt.</p>
     <a class="btn-gold" href="../index.html#quiz">Quiz jetzt starten →</a>
     <span class="btn-line">5 Minuten · kostenlos · ohne Anmeldung</span>
@@ -129,7 +232,7 @@
       <a href="australian-shepherd.html"><span class="em">🐕</span>Australian Shepherd</a>
   </div>
 
-  <p class="note">Hinweis: Dieses Profil basiert auf den Welpenlotse-Rassedaten (14 Merkmale, Skala 1–4) und beschreibt rassetypische Tendenzen. Jeder Hund ist ein Individuum – Aufzucht, Sozialisierung und Linie prägen das Wesen mindestens genauso stark. Stand: Juni 2026.</p>
+  <p class="note">Hinweis: Diese Analyse basiert auf den Welpenlotse-Rassedaten (14 Merkmale, Skala 1–4) und beschreibt rassetypische Tendenzen. Jeder Hund ist ein Individuum – Aufzucht, Sozialisierung und Zuchtlinie prägen das Wesen mindestens genauso stark wie die Rasse. Stand: Juni 2026.</p>
 </main>
 <footer>
   <div class="footer-links">
