@@ -191,7 +191,7 @@
   .hero-result-bar-fill { height: 100%; width: 94%; background: linear-gradient(90deg, var(--forest), var(--forest-3)); border-radius: 4px; }
 
   /* Scroll offset for fixed nav */
-  #quiz, #warnsignale, #angebot, #faq { scroll-margin-top: 64px; }
+  #quiz, #warnsignale, #angebot, #faq, #bibliothek { scroll-margin-top: 64px; }
 
   /* ── TICKER ── */
   .ticker-wrap { background: var(--forest); overflow: hidden; padding: 13px 0; }
@@ -432,6 +432,25 @@
   .pp-kicker-text strong { color: var(--gold); }
   .pp-kicker-sub { font-size: 0.85rem; color: rgba(255,255,255,0.35); margin-top: 10px; }
   @media (max-width: 720px) { .pp-grid { grid-template-columns: 1fr; } }
+
+  /* ── RASSEN-BIBLIOTHEK ── */
+  .breeds-lib { background: var(--off-white); }
+  .lib-search-wrap { max-width: 560px; margin: 44px auto 0; position: relative; }
+  .lib-search { position: relative; }
+  .lib-search svg { position: absolute; left: 19px; top: 50%; transform: translateY(-50%); color: var(--ink-muted); pointer-events: none; }
+  .lib-search input { width: 100%; padding: 18px 22px 18px 52px; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1rem; color: var(--ink); background: var(--white); border: 1.5px solid var(--border); border-radius: 100px; box-shadow: 0 10px 30px rgba(27,67,50,0.06); transition: border-color 0.2s, box-shadow 0.2s; }
+  .lib-search input:focus { outline: none; border-color: var(--forest); box-shadow: 0 12px 36px rgba(27,67,50,0.12); }
+  .lib-search input::placeholder { color: var(--ink-muted); }
+  .lib-results { position: absolute; top: calc(100% + 8px); left: 0; right: 0; background: var(--white); border: 1px solid var(--border-soft); border-radius: 16px; box-shadow: 0 18px 48px rgba(27,67,50,0.16); padding: 8px; z-index: 20; }
+  .lib-results a { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-radius: 10px; text-decoration: none; color: var(--ink); font-size: 0.92rem; font-weight: 600; transition: background 0.15s, color 0.15s; }
+  .lib-results a:hover { background: var(--forest-soft); color: var(--forest); }
+  .lib-results .lr-em { font-size: 1.15rem; }
+  .lib-nohit { display: block; padding: 12px 14px; font-size: 0.88rem; color: var(--ink-muted); }
+  .lib-popular { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; max-width: 760px; margin: 24px auto 0; }
+  .lib-popular-label { font-size: 0.78rem; font-weight: 700; color: var(--ink-muted); margin-right: 4px; }
+  .lib-chip { display: inline-flex; align-items: center; gap: 7px; background: var(--white); border: 1px solid var(--border-soft); border-radius: 100px; padding: 8px 15px; font-size: 0.84rem; font-weight: 600; color: var(--ink); text-decoration: none; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .lib-chip:hover { border-color: var(--forest-3); transform: translateY(-2px); box-shadow: 0 6px 18px rgba(27,67,50,0.10); }
+  .lib-cta { text-align: center; margin-top: 30px; }
 
   /* ── OFFER ── */
   .offer-section { background: linear-gradient(160deg, #081A0F 0%, #1B4332 55%, #0A1F15 100%); position: relative; overflow: hidden; }
@@ -692,6 +711,36 @@
         <button class="quiz-next" id="nextBtn" onclick="nextQ()" disabled>Weiter →</button>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ── RASSEN-BIBLIOTHEK ── -->
+<section class="section breeds-lib" id="bibliothek">
+  <div class="section-center reveal">
+    <div class="label-tag">Rassen-Bibliothek</div>
+    <h2 class="section-title">Du weißt schon, welche Rasse?</h2>
+    <p class="section-sub">Alle 80 Rassen im ehrlichen Realitätscheck: Voraussetzungen, unterschätzte Probleme, klares Fazit – und zwei passende Alternativen pro Rasse.</p>
+  </div>
+  <div class="lib-search-wrap reveal">
+    <div class="lib-search">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="libSearch" type="search" placeholder="Rasse eingeben, z. B. Labrador …" autocomplete="off" aria-label="Hunderasse suchen">
+    </div>
+    <div class="lib-results" id="libResults" hidden></div>
+  </div>
+  <div class="lib-popular reveal">
+    <span class="lib-popular-label">Beliebt:</span>
+    <a class="lib-chip" href="rassen/golden-retriever.html">🐕 Golden Retriever</a>
+    <a class="lib-chip" href="rassen/labrador-retriever.html">🦮 Labrador</a>
+    <a class="lib-chip" href="rassen/franzoesische-bulldogge.html">🐾 Französische Bulldogge</a>
+    <a class="lib-chip" href="rassen/deutscher-schaeferhund.html">🐺 Schäferhund</a>
+    <a class="lib-chip" href="rassen/mops.html">🐷 Mops</a>
+    <a class="lib-chip" href="rassen/dackel.html">🌭 Dackel</a>
+    <a class="lib-chip" href="rassen/border-collie.html">🐕 Border Collie</a>
+    <a class="lib-chip" href="rassen/pudel-standard.html">🐩 Pudel</a>
+  </div>
+  <div class="lib-cta reveal">
+    <a class="btn-ghost" href="rassen.html">Alle 80 Rassenprofile ansehen →</a>
   </div>
 </section>
 
@@ -1671,6 +1720,28 @@ document.querySelectorAll('.warn-item').forEach(function(it){
 const obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
 document.querySelectorAll('.js-buy').forEach(function(a){a.setAttribute('href',BUY_URL);});
+
+(function(){
+  var inp=document.getElementById('libSearch');
+  if(!inp)return;
+  var box=document.getElementById('libResults');
+  function norm(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/é/g,'e');}
+  inp.addEventListener('input',function(){
+    var q=norm(inp.value.trim());
+    if(!q){box.hidden=true;box.innerHTML='';return;}
+    var hits=breeds.filter(function(b){return norm(b.name).indexOf(q)>=0;}).slice(0,6);
+    if(hits.length===0){
+      box.innerHTML='<span class="lib-nohit">Keine Rasse gefunden – <a href="#quiz">finde im Quiz heraus, welche zu dir passt</a></span>';
+    } else {
+      box.innerHTML=hits.map(function(b){return '<a href="rassen/'+breedSlug(b.name)+'.html"><span class="lr-em" aria-hidden="true">'+b.emoji+'</span>'+b.name+'</a>';}).join('');
+    }
+    box.hidden=false;
+  });
+  inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){var f=box.querySelector('a[href^="rassen/"]');if(f)location.href=f.getAttribute('href');}
+  });
+  document.addEventListener('click',function(e){if(!box.hidden&&!box.contains(e.target)&&e.target!==inp){box.hidden=true;}});
+})();
 
 (function(){
   var wrap=document.querySelector('.book-3d');
