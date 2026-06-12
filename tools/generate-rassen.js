@@ -13,6 +13,10 @@ const breedsBody = html.match(/const breeds = \[([\s\S]*?)\n\];/)[1];
 const breeds = new Function('return [' + breedsBody + '\n]')();
 const sizesBody = html.match(/const breedSizes=\{([\s\S]*?)\n\};/)[1];
 const breedSizes = new Function('return {' + sizesBody + '}')();
+const ceoBody = html.match(/var dogCEOBreeds=\{([\s\S]*?)\n\};/)[1];
+const dogCEO = new Function('return {' + ceoBody + '}')();
+// Rassen, fuer die Dog CEO kein korrektes Foto liefert -> Emoji statt falschem Hund
+const NO_PHOTO = ['Hovawart', 'Eurasier', 'Lagotto Romagnolo', 'Bolonka Zwetna', 'Kleiner Münsterländer', 'Cane Corso'];
 
 function slug(n) {
   return n.toLowerCase()
@@ -304,7 +308,9 @@ const STYLE = `
   .crumbs a { color:var(--ink-muted); text-decoration:none; }
   .crumbs a:hover { color:var(--forest); }
   .breed-head { display:flex; align-items:center; gap:18px; margin-bottom:10px; }
-  .breed-emoji { width:72px; height:72px; flex-shrink:0; border-radius:18px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:2.4rem; }
+  .breed-emoji { width:96px; height:96px; flex-shrink:0; border-radius:24px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:2.6rem; position:relative; overflow:hidden; box-shadow:0 6px 20px rgba(27,67,50,0.14); }
+  .breed-emoji img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; animation:imgIn 0.45s ease forwards; }
+  @keyframes imgIn { to { opacity:1; } }
   .traits { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 12px; }
   .trait { background:var(--forest-soft); color:var(--forest); padding:4px 12px; border-radius:100px; font-size:0.76rem; font-weight:600; }
   .pills { display:flex; flex-wrap:wrap; gap:6px; }
@@ -479,6 +485,20 @@ for (const b of breeds) {
   const rel = sorted.filter(x => x.name !== b.name && !simNames.includes(x.name) && (breedSizes[x.name] || 2) === size).slice(0, 3);
   const relHtml = rel.map(r => `<a href="${slug(r.name)}.html"><span class="em">${r.emoji}</span>${r.name}</a>`).join('\n      ');
 
+  const photoSlug = NO_PHOTO.includes(b.name) ? null : dogCEO[b.name];
+  const photoScript = photoSlug ? `
+<script>
+(function(){
+  fetch('https://dog.ceo/api/breed/${photoSlug}/images/random').then(function(r){return r.json();}).then(function(d){
+    if(d.status!=='success'||!d.message)return;
+    var img=new Image();
+    img.alt='';
+    img.onload=function(){var t=document.getElementById('breedPhoto');if(t)t.appendChild(img);};
+    img.src=d.message;
+  }).catch(function(){});
+})();
+</script>` : '';
+
   const title = `${b.name}: Passt die Rasse zu mir? Ehrliche Analyse | Welpenlotse`;
   const desc = `${b.name} im ehrlichen Realitätscheck: Voraussetzungen, was Interessenten unterschätzen, für wen die Rasse (nicht) geeignet ist – plus kostenloses Eignungs-Quiz.`;
   const canonical = `https://www.welpenlotse.de/rassen/${s}.html`;
@@ -487,7 +507,7 @@ for (const b of breeds) {
 <main>
   <p class="crumbs"><a href="../index.html">Start</a> › <a href="../rassen.html">Rassen</a> › ${b.name}</p>
   <div class="breed-head">
-    <div class="breed-emoji" aria-hidden="true">${b.emoji}</div>
+    <div class="breed-emoji" id="breedPhoto" aria-hidden="true">${b.emoji}</div>
     <h1>${b.name}</h1>
   </div>
   <p>${b.desc}</p>
@@ -574,7 +594,7 @@ for (const b of breeds) {
 
   <p class="note">Hinweis: Diese Analyse basiert auf den Welpenlotse-Rassedaten (14 Merkmale, Skala 1–4) und beschreibt rassetypische Tendenzen. Jeder Hund ist ein Individuum – Aufzucht, Sozialisierung und Zuchtlinie prägen das Wesen mindestens genauso stark wie die Rasse. Stand: Juni 2026.</p>
 </main>
-${footer}`;
+${footer}${photoScript}`;
 
   fs.writeFileSync(path.join(outDir, s + '.html'), shell(title, desc, canonical, body));
   count++;

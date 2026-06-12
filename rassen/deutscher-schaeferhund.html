@@ -34,7 +34,9 @@
   .crumbs a { color:var(--ink-muted); text-decoration:none; }
   .crumbs a:hover { color:var(--forest); }
   .breed-head { display:flex; align-items:center; gap:18px; margin-bottom:10px; }
-  .breed-emoji { width:72px; height:72px; flex-shrink:0; border-radius:18px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:2.4rem; }
+  .breed-emoji { width:96px; height:96px; flex-shrink:0; border-radius:24px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:2.6rem; position:relative; overflow:hidden; box-shadow:0 6px 20px rgba(27,67,50,0.14); }
+  .breed-emoji img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; animation:imgIn 0.45s ease forwards; }
+  @keyframes imgIn { to { opacity:1; } }
   .traits { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0 12px; }
   .trait { background:var(--forest-soft); color:var(--forest); padding:4px 12px; border-radius:100px; font-size:0.76rem; font-weight:600; }
   .pills { display:flex; flex-wrap:wrap; gap:6px; }
@@ -136,7 +138,7 @@
 <main>
   <p class="crumbs"><a href="../index.html">Start</a> › <a href="../rassen.html">Rassen</a> › Deutscher Schäferhund</p>
   <div class="breed-head">
-    <div class="breed-emoji" aria-hidden="true">🐺</div>
+    <div class="breed-emoji" id="breedPhoto" aria-hidden="true">🐺</div>
     <h1>Deutscher Schäferhund</h1>
   </div>
   <p>Treu und schutztriebig – ideal für erfahrene Halter mit Führungsanspruch.</p>
@@ -266,5 +268,16 @@
   </div>
   <p class="footer-copy">© 2026 Welpenlotse. Alle Rechte vorbehalten.</p>
 </footer>
+<script>
+(function(){
+  fetch('https://dog.ceo/api/breed/germanshepherd/images/random').then(function(r){return r.json();}).then(function(d){
+    if(d.status!=='success'||!d.message)return;
+    var img=new Image();
+    img.alt='';
+    img.onload=function(){var t=document.getElementById('breedPhoto');if(t)t.appendChild(img);};
+    img.src=d.message;
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
