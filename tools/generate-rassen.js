@@ -149,6 +149,22 @@ function dots(v) {
   return s;
 }
 
+// Profil-Ähnlichkeit: gewichtete Distanz über alle 14 Merkmale + Größe
+const SIM_W = { act: 2, xp: 2, train: 2, alone: 1.5, kids: 1.5, hunt: 1.5, pets: 1, space: 1, cost: 1, groom: 1, shed: 1, bark: 1, guard: 1, drool: 0.5 };
+const SIM_MAX = Object.values(SIM_W).reduce((s, w) => s + w * 3, 0) + 2 * 3;
+function similarBreeds(b) {
+  return breeds
+    .filter(x => x.name !== b.name)
+    .map(x => {
+      let d = 0;
+      for (const k in SIM_W) d += SIM_W[k] * Math.abs(b.attr[k] - x.attr[k]);
+      d += 2 * Math.abs((breedSizes[b.name] || 2) - (breedSizes[x.name] || 2));
+      return { x, sim: Math.round(100 * (1 - d / SIM_MAX)) };
+    })
+    .sort((p, q) => q.sim - p.sim)
+    .slice(0, 2);
+}
+
 // ── Abschnitts-Logik ──
 function profileFacts(b, a) {
   const learn = hasTrait(b, SMART) ? 'Sehr hoch – will arbeiten und gefordert werden'
@@ -353,6 +369,13 @@ const STYLE = `
   .btn-gold { display:inline-block; background:var(--gold); color:var(--ink); padding:13px 26px; border-radius:9px; font-weight:700; font-size:0.92rem; text-decoration:none; transition:background 0.18s, transform 0.18s; }
   .btn-gold:hover { background:#f5b740; transform:translateY(-1px); }
   .btn-line { display:inline-block; margin-left:14px; color:rgba(255,255,255,0.8); font-size:0.88rem; }
+  .sim-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+  .sim-card { display:flex; gap:14px; align-items:flex-start; background:var(--white); border:1.5px solid var(--border-soft); border-radius:16px; padding:18px; text-decoration:none; transition:border-color 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .sim-card:hover { border-color:var(--forest-3); transform:translateY(-3px); box-shadow:0 12px 32px rgba(27,67,50,0.10); }
+  .sim-emoji { width:46px; height:46px; border-radius:13px; background:var(--forest-soft); display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0; }
+  .sim-card strong { display:block; font-size:0.95rem; color:var(--ink); margin-bottom:5px; }
+  .sim-pct { display:inline-block; font-size:0.68rem; font-weight:800; background:var(--gold-bg); color:#7A5C0A; padding:3px 9px; border-radius:100px; margin-bottom:7px; }
+  .sim-card p { font-size:0.8rem; line-height:1.55; color:var(--ink-muted); }
   .related { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px; }
   .related a { display:flex; align-items:center; gap:9px; background:var(--off-white); border:1px solid var(--border-soft); border-radius:12px; padding:12px 14px; text-decoration:none; font-size:0.84rem; font-weight:600; color:var(--ink); transition:border-color 0.2s, transform 0.2s; }
   .related a:hover { border-color:var(--forest-3); transform:translateY(-2px); }
@@ -372,7 +395,7 @@ const STYLE = `
   .search-wrap input:focus { outline:none; background:var(--white); border-color:var(--forest); box-shadow:0 4px 18px rgba(27,67,50,0.10); }
   .search-wrap input::placeholder { color:var(--ink-muted); }
   .no-hit { margin-top:20px; font-size:0.9rem; color:var(--ink-muted); background:var(--gold-bg); border:1px solid #F2E3C0; border-radius:12px; padding:14px 18px; }
-  @media (max-width:720px) { .related, .req-grid, .suit, .facts { grid-template-columns:1fr; } .verdict { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:720px) { .related, .req-grid, .suit, .facts, .sim-grid { grid-template-columns:1fr; } .verdict { grid-template-columns:repeat(2,1fr); } }
 `;
 
 function shell(title, desc, canonical, body) {
@@ -448,7 +471,12 @@ for (const b of breeds) {
   const verd = verdict(a).map(([l, v, c]) =>
     `<div class="v-item"><div class="v-label">${l}</div><span class="v-chip ${c}">${v}</span></div>`).join('\n    ');
 
-  const rel = sorted.filter(x => x.name !== b.name && (breedSizes[x.name] || 2) === size).slice(0, 3);
+  const sims = similarBreeds(b);
+  const simNames = sims.map(s2 => s2.x.name);
+  const simsHtml = sims.map(s2 =>
+    `<a class="sim-card" href="${slug(s2.x.name)}.html"><span class="sim-emoji" aria-hidden="true">${s2.x.emoji}</span><div><strong>${s2.x.name}</strong><span class="sim-pct">${s2.sim} % ähnliches Profil</span><p>${s2.x.desc}</p></div></a>`
+  ).join('\n    ');
+  const rel = sorted.filter(x => x.name !== b.name && !simNames.includes(x.name) && (breedSizes[x.name] || 2) === size).slice(0, 3);
   const relHtml = rel.map(r => `<a href="${slug(r.name)}.html"><span class="em">${r.emoji}</span>${r.name}</a>`).join('\n      ');
 
   const title = `${b.name}: Passt die Rasse zu mir? Ehrliche Analyse | Welpenlotse`;
@@ -533,7 +561,13 @@ for (const b of breeds) {
     <a class="btn-gold" href="../index.html#angebot">Zum Schutzpaket – 19,90 € →</a>
   </div>
 
-  <h2>Ähnliche Rassen (${sizeLabel[size]})</h2>
+  <h2>Ähnliches Profil? Diese zwei lohnen den Vergleich</h2>
+  <p style="font-size:0.85rem">Berechnet aus allen 14 Merkmalen – die zwei Rassen, die dem Anforderungsprofil von ${b.name} am nächsten kommen:</p>
+  <div class="sim-grid">
+    ${simsHtml}
+  </div>
+
+  <h2>Weitere Rassen derselben Größe (${sizeLabel[size]})</h2>
   <div class="related">
       ${relHtml}
   </div>
