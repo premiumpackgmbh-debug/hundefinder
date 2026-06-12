@@ -15,8 +15,8 @@ const sizesBody = html.match(/const breedSizes=\{([\s\S]*?)\n\};/)[1];
 const breedSizes = new Function('return {' + sizesBody + '}')();
 const ceoBody = html.match(/var dogCEOBreeds=\{([\s\S]*?)\n\};/)[1];
 const dogCEO = new Function('return {' + ceoBody + '}')();
-// Rassen, fuer die Dog CEO kein korrektes Foto liefert -> Emoji statt falschem Hund
-const NO_PHOTO = ['Hovawart', 'Eurasier', 'Lagotto Romagnolo', 'Bolonka Zwetna', 'Kleiner Münsterländer', 'Cane Corso'];
+// Rassen ohne brauchbare Fotoquelle (aktuell keine – alle Mappings live verifiziert)
+const NO_PHOTO = [];
 
 function slug(n) {
   return n.toLowerCase()

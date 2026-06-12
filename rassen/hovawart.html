@@ -266,5 +266,16 @@
   </div>
   <p class="footer-copy">© 2026 Welpenlotse. Alle Rechte vorbehalten.</p>
 </footer>
+<script>
+(function(){
+  fetch('https://dog.ceo/api/breed/retriever/flatcoated/images/random').then(function(r){return r.json();}).then(function(d){
+    if(d.status!=='success'||!d.message)return;
+    var img=new Image();
+    img.alt='';
+    img.onload=function(){var t=document.getElementById('breedPhoto');if(t)t.appendChild(img);};
+    img.src=d.message;
+  }).catch(function(){});
+})();
+</script>
 </body>
 </html>
