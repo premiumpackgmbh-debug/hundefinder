@@ -17,6 +17,10 @@ const ceoBody = html.match(/var dogCEOBreeds=\{([\s\S]*?)\n\};/)[1];
 const dogCEO = new Function('return {' + ceoBody + '}')();
 // Rassen ohne brauchbare Fotoquelle (aktuell keine – alle Mappings live verifiziert)
 const NO_PHOTO = [];
+// Feste Fotos (CC0/Public Domain via Wikimedia Commons) statt Dog-CEO-Ersatzrassen
+const CUSTOM_PHOTO = {
+  'Cane Corso': 'https://upload.wikimedia.org/wikipedia/commons/6/66/Cane_Corso_testa.jpg'
+};
 
 function slug(n) {
   return n.toLowerCase()
@@ -485,7 +489,8 @@ for (const b of breeds) {
   const rel = sorted.filter(x => x.name !== b.name && !simNames.includes(x.name) && (breedSizes[x.name] || 2) === size).slice(0, 3);
   const relHtml = rel.map(r => `<a href="${slug(r.name)}.html"><span class="em">${r.emoji}</span>${r.name}</a>`).join('\n      ');
 
-  const photoSlug = NO_PHOTO.includes(b.name) ? null : dogCEO[b.name];
+  const customUrl = CUSTOM_PHOTO[b.name];
+  const photoSlug = (customUrl || NO_PHOTO.includes(b.name)) ? null : dogCEO[b.name];
   const photoScript = photoSlug ? `
 <script>
 (function(){
@@ -507,7 +512,7 @@ for (const b of breeds) {
 <main>
   <p class="crumbs"><a href="../index.html">Start</a> › <a href="../rassen.html">Rassen</a> › ${b.name}</p>
   <div class="breed-head">
-    <div class="breed-emoji" id="breedPhoto" aria-hidden="true">${b.emoji}</div>
+    <div class="breed-emoji" id="breedPhoto" aria-hidden="true">${b.emoji}${customUrl ? `<img src="${customUrl}" alt="" loading="lazy" onerror="this.remove()">` : ''}</div>
     <h1>${b.name}</h1>
   </div>
   <p>${b.desc}</p>

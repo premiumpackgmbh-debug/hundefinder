@@ -1556,11 +1556,19 @@ var dogCEOBreeds={
   "Tibet Terrier":"terrier/tibetan","Bichon Frisé":"frise"
 };
 
+var customPhotos={"Cane Corso":"https://upload.wikimedia.org/wikipedia/commons/6/66/Cane_Corso_testa.jpg"};
+
 function loadBreedPhotos(top5){
   top5.forEach(function(item,i){
+    var rank=i+1;
+    var custom=customPhotos[item.breed.name];
+    if(custom){
+      var cel=document.getElementById('bp'+rank);
+      if(cel){cel.addEventListener('load',function(){cel.classList.add('loaded');},{once:true});cel.addEventListener('error',function(){cel.style.display='none';},{once:true});cel.src=custom;}
+      return;
+    }
     var slug=dogCEOBreeds[item.breed.name];
     if(!slug)return;
-    var rank=i+1;
     fetch('https://dog.ceo/api/breed/'+slug+'/images/random')
       .then(function(r){return r.json();})
       .then(function(data){
