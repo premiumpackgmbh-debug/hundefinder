@@ -16,7 +16,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'><rect width='128' height='128' rx='28' fill='%231B4332'/><g transform='translate(20 18) scale(0.72)' fill='%23F4A51C'><ellipse cx='46' cy='22' rx='15.5' ry='20' transform='rotate(-8 46 22)'/><ellipse cx='76' cy='22' rx='15.5' ry='20' transform='rotate(8 76 22)'/><ellipse cx='15' cy='46' rx='12.5' ry='16.5' transform='rotate(-24 15 46)'/><ellipse cx='107' cy='46' rx='12.5' ry='16.5' transform='rotate(24 107 46)'/><path d='M61 124C38 103 23 88 23 70C23 57 32 48 44 48C52 48 58 53 61 62C64 53 70 48 78 48C90 48 99 57 99 70C99 88 84 103 61 124Z'/></g></svg>">
 <title>Welpenlotse – Welcher Hund passt zu dir?</title>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"Welpenkauf-Schutzpaket","description":"Das Schritt-für-Schritt-System für den sicheren Welpenkauf in Deutschland – 5 Teile, 8 Rassen im Detail, 8 Checklisten zum Ausdrucken.","url":"https://www.welpenlotse.de/","brand":{"@type":"Brand","name":"Welpenlotse"},"offers":{"@type":"Offer","price":"9.90","priceCurrency":"EUR","availability":"https://schema.org/InStock"}}
+{"@context":"https://schema.org","@type":"Product","name":"Welpenkauf-Schutzpaket","description":"Das Schritt-für-Schritt-System für den sicheren Welpenkauf in Deutschland – 5 Teile, 8 Rassen im Detail, 8 Checklisten zum Ausdrucken.","url":"https://www.welpenlotse.de/","brand":{"@type":"Brand","name":"Welpenlotse"},"offers":{"@type":"Offer","price":"19.90","priceCurrency":"EUR","availability":"https://schema.org/InStock"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
@@ -316,6 +316,8 @@
   .result-challenges { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
   .result-challenges-label { font-size: 0.7rem; font-weight: 700; color: var(--ink-mid); }
   .result-challenge-tag { font-size: 0.68rem; padding: 2px 7px; background: #FEE2E2; color: #991B1B; border-radius: 100px; }
+  .result-profile-link { display: inline-block; margin-top: 10px; font-size: 0.76rem; font-weight: 700; color: var(--forest); text-decoration: none; border-bottom: 1.5px solid var(--forest-soft); transition: color 0.2s, border-color 0.2s; }
+  .result-profile-link:hover { color: var(--forest-3); border-color: var(--forest-3); }
   .result-more { margin-bottom: 18px; }
   .result-more-header { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
   .result-more-list { display: flex; flex-direction: column; gap: 8px; }
@@ -379,6 +381,31 @@
   .warn-cta-row p strong { color: var(--white); }
   .warn-cta-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--ink); padding: 13px 26px; border-radius: 8px; font-size: 0.92rem; font-weight: 700; text-decoration: none; transition: background 0.18s, transform 0.18s; }
   .warn-cta-btn:hover { background: #f5b740; transform: translateY(-1px); }
+
+  /* ── EINBLICK ── */
+  .peek-section { background: var(--white); }
+  .peek-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+  .peek-page { background: #FDFBF7; border: 1px solid var(--border-soft); border-radius: 10px; padding-bottom: 14px; box-shadow: 0 14px 40px rgba(27,67,50,0.10); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+  .peek-page:nth-child(1) { transform: rotate(-1.2deg); }
+  .peek-page:nth-child(3) { transform: rotate(1.2deg); }
+  .peek-page:hover { transform: rotate(0) translateY(-6px); box-shadow: 0 22px 56px rgba(27,67,50,0.16); }
+  .peek-head { background: var(--forest); color: var(--gold); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 10px 16px; }
+  .peek-head--red { background: #8C2B20; color: #FBE9E5; }
+  .peek-body { padding: 16px; }
+  .peek-box { border-left: 3px solid var(--gold); background: var(--gold-bg); border-radius: 0 8px 8px 0; padding: 10px 12px; }
+  .peek-box-label { font-size: 0.56rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #7A5C0A; margin-bottom: 6px; }
+  .peek-line { font-size: 0.74rem; color: var(--ink-mid); line-height: 1.6; padding: 3px 0; }
+  .peek-line strong { color: var(--ink); }
+  .peek-row { display: flex; justify-content: space-between; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border-soft); font-size: 0.72rem; }
+  .peek-row:last-child { border-bottom: none; }
+  .peek-row span:first-child { color: var(--ink-mid); }
+  .peek-good { color: var(--forest-2); font-weight: 700; }
+  .peek-bad { color: #C2402F; font-weight: 700; }
+  .peek-check { display: flex; align-items: flex-start; gap: 8px; padding: 7px 0; font-size: 0.74rem; color: var(--ink-mid); border-bottom: 1px solid var(--border-soft); }
+  .peek-check:last-child { border-bottom: none; }
+  .peek-check::before { content: ''; width: 13px; height: 13px; border: 1.5px solid #C2402F; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+  .peek-foot { font-size: 0.58rem; color: var(--ink-muted); padding: 12px 16px 0; display: flex; justify-content: space-between; letter-spacing: 0.04em; }
+  @media (max-width: 1000px) { .peek-grid { grid-template-columns: 1fr; max-width: 420px; } .peek-page:nth-child(1), .peek-page:nth-child(3) { transform: none; } }
 
   /* ── PRICE PERSPECTIVE ── */
   .price-persp { background: #0B1C10; padding: 88px 0 80px; }
@@ -538,11 +565,12 @@
   </a>
   <div class="nav-links">
     <a href="#quiz">Quiz</a>
+    <a href="rassen.html">Rassen</a>
     <a href="#warnsignale">Warnsignale</a>
     <a href="#angebot">Schutzpaket</a>
     <a href="#faq">FAQ</a>
   </div>
-  <a class="nav-cta" href="#angebot" aria-label="Welpenkauf-Schutzpaket jetzt kaufen für 9,90 Euro">Welpenkauf-Schutzpaket – 9,90 €</a>
+  <a class="nav-cta" href="#angebot" aria-label="Welpenkauf-Schutzpaket jetzt kaufen für 19,90 Euro">Welpenkauf-Schutzpaket – 19,90 €</a>
 </nav>
 
 <main id="main">
@@ -573,12 +601,12 @@
   </div>
   <div class="hero-right">
     <img id="hero-img" src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=1200&h=900&fit=crop&auto=format" alt="Glücklicher Golden Retriever mit Blume im Maul" width="1200" height="900" fetchpriority="high" onerror="this.style.opacity=0">
-    <a class="hero-product-tag" href="#angebot" aria-label="Zum Welpenkauf-Schutzpaket für 9,90 Euro">
+    <a class="hero-product-tag" href="#angebot" aria-label="Zum Welpenkauf-Schutzpaket für 19,90 Euro">
       <span class="hpt-icon" aria-hidden="true"><svg viewBox="0 0 122 126"><ellipse cx="46" cy="22" rx="15.5" ry="20" transform="rotate(-8 46 22)"/><ellipse cx="76" cy="22" rx="15.5" ry="20" transform="rotate(8 76 22)"/><ellipse cx="15" cy="46" rx="12.5" ry="16.5" transform="rotate(-24 15 46)"/><ellipse cx="107" cy="46" rx="12.5" ry="16.5" transform="rotate(24 107 46)"/><path d="M61 124C38 103 23 88 23 70C23 57 32 48 44 48C52 48 58 53 61 62C64 53 70 48 78 48C90 48 99 57 99 70C99 88 84 103 61 124Z"/></svg></span>
       <span>
         <span class="hpt-label">Unser Ratgeber</span>
         <strong>Welpenkauf-Schutzpaket</strong>
-        <span class="hpt-price">PDF · Sofort-Download · 9,90 €</span>
+        <span class="hpt-price">PDF · Sofort-Download · 19,90 €</span>
       </span>
       <span class="hpt-arrow" aria-hidden="true">→</span>
     </a>
@@ -599,13 +627,13 @@
   <div class="ticker-track">
     <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Kostenloses Rassenquiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Welpenkauf-Schutzpaket für 9,90 € <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Welpenkauf-Schutzpaket für 19,90 € <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">8 Checklisten zum Ausdrucken <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Belegt mit VDH- & Tierschutzbund-Quellen <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">80 Rassen im Quiz <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Kostenloses Rassenquiz <span class="ticker-sep">✦</span></span>
-    <span class="ticker-item">Welpenkauf-Schutzpaket für 9,90 € <span class="ticker-sep">✦</span></span>
+    <span class="ticker-item">Welpenkauf-Schutzpaket für 19,90 € <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Sofort-Download <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">8 Checklisten zum Ausdrucken <span class="ticker-sep">✦</span></span>
     <span class="ticker-item">Belegt mit VDH- & Tierschutzbund-Quellen <span class="ticker-sep">✦</span></span>
@@ -671,7 +699,7 @@
 <section class="section offer-section" id="angebot">
   <div class="offer-grid">
     <div class="book-visual reveal">
-      <a class="book-link js-buy" href="#angebot" aria-label="Welpenkauf-Schutzpaket jetzt für 9,90 Euro kaufen">
+      <a class="book-link js-buy" href="#angebot" aria-label="Welpenkauf-Schutzpaket jetzt für 19,90 Euro kaufen">
         <div class="book-3d">
           <div class="book-cover">
             <span class="bc-frame" aria-hidden="true"></span>
@@ -687,8 +715,8 @@
         </div>
       </a>
       <div class="offer-price-display">
-        <div class="offer-price-was">statt 29 €</div>
-        <div class="offer-price-main">9,90<sup>€</sup></div>
+        <div class="offer-price-was">später: 29 €</div>
+        <div class="offer-price-main">19,90<sup>€</sup></div>
         <div class="offer-price-type">Einmalig · Sofort-Download · PDF</div>
       </div>
     </div>
@@ -722,9 +750,54 @@
           <div class="value-text"><strong>BONUS: 8 Checklisten zum Ausdrucken</strong> – Vom Anzeigen-Schnellcheck bis zur Ausstiegssignale-Karte, zum Abhaken vor Ort</div>
         </div>
       </div>
-      <div class="offer-urgency">Einführungspreis: 9,90 € statt 29 € – nur für kurze Zeit zum Start</div>
+      <div class="offer-urgency">Einführungspreis zum Start: 19,90 € – steigt später auf 29 €</div>
       <a class="offer-cta-main js-buy" href="#angebot">Jetzt sofort herunterladen →</a>
       <p class="offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── EINBLICK ── -->
+<section class="section peek-section">
+  <div class="section-center reveal">
+    <div class="label-tag">Blick ins Schutzpaket</div>
+    <h2 class="section-title">So sieht es von innen aus</h2>
+    <p class="section-sub">Keine Katze im Sack: drei Original-Auszüge. So arbeitet der Ratgeber – klare Regeln, direkte Vergleiche, Checklisten zum Abhaken.</p>
+  </div>
+  <div class="peek-grid">
+    <div class="peek-page reveal">
+      <div class="peek-head">Teil 1 · Züchter oder Vermehrer?</div>
+      <div class="peek-body">
+        <div class="peek-box">
+          <div class="peek-box-label">Auf einen Blick</div>
+          <p class="peek-line">— Der gefährlichste Moment ist nicht der Besuch, sondern die <strong>Anzeige</strong>.</p>
+          <p class="peek-line">— Ein auffallend niedriger Preis ist das stärkste <strong>Warnsignal</strong>.</p>
+          <p class="peek-line">— Kein Muttertier am Aufzuchtort = <strong>kein Kauf</strong>, ausnahmslos.</p>
+        </div>
+      </div>
+      <div class="peek-foot"><span>Welpenkauf-Schutzpaket</span><span>Seite 3</span></div>
+    </div>
+    <div class="peek-page reveal">
+      <div class="peek-head">Teil 1 · Der direkte Vergleich</div>
+      <div class="peek-body">
+        <div class="peek-row"><span>Muttertier</span><span class="peek-good">wird mit Wurf gezeigt</span></div>
+        <div class="peek-row"><span></span><span class="peek-bad">„gerade nicht da"</span></div>
+        <div class="peek-row"><span>Fragen an dich</span><span class="peek-good">viele – er prüft dich</span></div>
+        <div class="peek-row"><span></span><span class="peek-bad">keine – Hauptsache, du zahlst</span></div>
+        <div class="peek-row"><span>Preis</span><span class="peek-good">deckt reale Kosten</span></div>
+        <div class="peek-row"><span></span><span class="peek-bad">auffällig niedrig (Köder)</span></div>
+      </div>
+      <div class="peek-foot"><span>Seriöser Züchter vs. Vermehrer</span><span>Seite 5</span></div>
+    </div>
+    <div class="peek-page reveal">
+      <div class="peek-head peek-head--red">Werkzeug 8 · Ausstiegssignale-Karte</div>
+      <div class="peek-body">
+        <div class="peek-check">Das Muttertier ist nicht anwesend oder „gerade weg"</div>
+        <div class="peek-check">Übergabe auf Parkplatz oder Raststätte</div>
+        <div class="peek-check">Vorkasse für Transport oder Anzahlung verlangt</div>
+        <div class="peek-check">Welpe unter 8 Wochen (gesetzlich verboten)</div>
+      </div>
+      <div class="peek-foot"><span>Wenn auch nur eines zutrifft – geh.</span><span>Seite 35</span></div>
     </div>
   </div>
 </section>
@@ -733,10 +806,10 @@
 <section class="price-persp">
   <div class="price-persp-inner">
     <div class="price-persp-eyebrow">Kurz in Perspektive</div>
-    <h2 class="price-persp-title">Kostet weniger als zwei Cappuccinos.<br><em>Schützt dich vor dem teuersten Fehler beim Welpenkauf.</em></h2>
+    <h2 class="price-persp-title">Kostet weniger als ein Sack Welpenfutter.<br><em>Schützt dich vor dem teuersten Fehler beim Welpenkauf.</em></h2>
     <div class="pp-grid">
       <div>
-        <div class="pp-col-head">Für 9,90 € bekommst du sonst …</div>
+        <div class="pp-col-head">Für 19,90 € bekommst du sonst …</div>
         <div class="pp-item">
           <div class="pp-item-price">~8 €</div>
           <div class="pp-item-body">
@@ -802,8 +875,8 @@
       </div>
     </div>
     <div class="pp-kicker reveal">
-      <p class="pp-kicker-text">9,90 €. Einmal. <strong>Für den sicheren Kauf deines Welpen.</strong></p>
-      <p class="pp-kicker-sub">Günstiger als ein Parkticket. Und 10.000× wertvoller.</p>
+      <p class="pp-kicker-text">19,90 €. Einmal. <strong>Für den sicheren Kauf deines Welpen.</strong></p>
+      <p class="pp-kicker-sub">Günstiger als eine einzige Stunde beim Verhaltenstherapeuten. Und um ein Vielfaches wertvoller.</p>
     </div>
   </div>
 </section>
@@ -951,7 +1024,7 @@
   <div class="label-tag">Dein Hund wartet auf dich</div>
   <h2 class="section-title">Die richtige Wahl beginnt<br>mit dem richtigen Wissen</h2>
   <p class="section-sub">Für weniger als einen Sack Hundefutter bekommst du das komplette Schutz-System – und holst deinen Welpen sicher nach Hause.</p>
-  <a class="btn-cta-gold js-buy" href="#angebot">Schutzpaket jetzt für 9,90 € kaufen →</a>
+  <a class="btn-cta-gold js-buy" href="#angebot">Schutzpaket jetzt für 19,90 € kaufen →</a>
   <p class="final-cta-small">Sofort-Download · Einmalzahlung · Kein Abo</p>
 </section>
 
@@ -966,6 +1039,7 @@
     <p class="footer-tagline">Dein Weg zum richtigen Hund</p>
   </div>
   <div class="footer-links">
+    <a href="rassen.html">Alle Rassen</a>
     <a href="datenschutz.html">Datenschutz</a>
     <a href="impressum.html">Impressum</a>
     <a href="mailto:premiumpack.gmbh@gmail.com">Kontakt</a>
@@ -977,6 +1051,9 @@
 // Kauf-Link: Hier später den Link des Zahlungsanbieters eintragen (z. B. Digistore24/Copecart).
 // Alle Kauf-Buttons auf der Seite übernehmen diesen Link automatisch.
 const BUY_URL = '#angebot';
+
+// Slug muss identisch zu tools/generate-rassen.js bleiben
+function breedSlug(n){return n.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/é/g,'e').replace(/[()]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');}
 
 const questions = [
   { category:"Wohnsituation", q:"Wo wohnst du aktuell?", sub:"Deine Wohnsituation bestimmt, welche Hunderassen infrage kommen.", opts:[
@@ -1432,6 +1509,7 @@ function renderBreedCard(item,rank){
   h+='<p class="result-desc" style="margin-bottom:5px">'+b.desc+'</p>';
   h+='<p class="result-desc" style="color:var(--forest-3);font-weight:600;font-size:0.76rem">'+why+'</p>';
   if(challenges.length>0){h+='<div class="result-challenges"><span class="result-challenges-label">Herausforderungen: </span>';h+=challenges.map(function(c){return '<span class="result-challenge-tag">'+c+'</span>';}).join('');h+='</div>';}
+  h+='<a class="result-profile-link" href="rassen/'+breedSlug(b.name)+'.html">Komplettes Rasseprofil ansehen →</a>';
   h+='</div></div>';return h;
 }
 
@@ -1511,7 +1589,7 @@ function showResult(){
   if(warnings.length>0){h+='<div class="result-warnings"><h4>Hinweise für dich</h4>'+warnings.map(function(w){return '<p>'+w+'</p>';}).join('')+'</div>';}
   h+='<div class="result-intro"><h3>Dein bester Match</h3><p>Aus 80 Rassen – basierend auf deinen 22 Antworten</p></div>';
   h+='<div class="result-top3">'+renderBreedCard(top5[0],1)+'</div>';
-  h+='<div class="result-offer"><span class="result-offer-eyebrow">Dein nächster Schritt</span><h3>'+top5[0].breed.name+' gefunden? Jetzt sicher kaufen.</h3><p class="result-offer-lead">Das <strong>Welpenkauf-Schutzpaket</strong> führt dich Schritt für Schritt zum seriösen Züchter – ohne Vermehrer, ohne kranken Welpen, ohne Betrug.</p><ul class="result-offer-list"><li><strong>5 Teile</strong> – Anzeigen-Check, Züchterbesuch, Papiere, Gesundheitstests, Vertrag &amp; Geld</li><li><strong>8 Checklisten</strong> zum Ausdrucken &amp; Abhaken beim Züchterbesuch</li><li><strong>Sofort-Download</strong> als PDF – auf jedem Gerät lesbar</li></ul><div class="result-offer-price"><span class="rop-was">statt 29 €</span><span class="rop-main">9,90 €</span><span class="rop-note">einmalig</span></div><a href="'+BUY_URL+'" class="result-offer-btn">Jetzt für 9,90 € kaufen →</a><p class="result-offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks</p></div>';
+  h+='<div class="result-offer"><span class="result-offer-eyebrow">Dein nächster Schritt</span><h3>'+top5[0].breed.name+' gefunden? Jetzt sicher kaufen.</h3><p class="result-offer-lead">Das <strong>Welpenkauf-Schutzpaket</strong> führt dich Schritt für Schritt zum seriösen Züchter – ohne Vermehrer, ohne kranken Welpen, ohne Betrug.</p><ul class="result-offer-list"><li><strong>5 Teile</strong> – Anzeigen-Check, Züchterbesuch, Papiere, Gesundheitstests, Vertrag &amp; Geld</li><li><strong>8 Checklisten</strong> zum Ausdrucken &amp; Abhaken beim Züchterbesuch</li><li><strong>Sofort-Download</strong> als PDF – auf jedem Gerät lesbar</li></ul><div class="result-offer-price"><span class="rop-was">später 29 €</span><span class="rop-main">19,90 €</span><span class="rop-note">einmalig</span></div><a href="'+BUY_URL+'" class="result-offer-btn">Jetzt für 19,90 € kaufen →</a><p class="result-offer-trust">Sofortiger Zugriff · Kein Abo · Keine Tricks</p></div>';
   if(top5.length>1){h+='<div class="result-more"><div class="result-more-header">Auch passend für dich – Platz 2 bis 5</div><div class="result-more-list">';for(var j=1;j<top5.length;j++)h+=renderBreedCard(top5[j],j+1);h+='</div></div>';}
   if(bottom3.length>0){h+='<div class="result-nope"><h4>Nicht empfohlen für dich</h4><div class="nope-list">'+bottom3.map(function(x){return renderNopeCard(x);}).join('')+'</div></div>';}
   h+='<button class="result-retake" onclick="resetQuiz()">Quiz wiederholen</button>';
