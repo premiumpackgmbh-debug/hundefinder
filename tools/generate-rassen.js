@@ -519,14 +519,14 @@ for (const b of breeds) {
   <div class="traits">${b.traits.map(t => `<span class="trait">${t}</span>`).join('')}</div>
   <div class="pills">${pills}</div>
 
-  <nav class="toc" aria-label="Inhalt">
+  <div class="toc" role="navigation" aria-label="Inhalt">
     <a href="#profil">Rasseprofil</a>
     <a href="#voraussetzungen">Voraussetzungen</a>
     <a href="#unterschaetzt">Was viele unterschätzen</a>
     <a href="#geeignet">Für wen (nicht) geeignet</a>
     <a href="#realitaetscheck">Realitätscheck</a>
     <a href="#fazit">Fazit</a>
-  </nav>
+  </div>
 
   <h2 id="profil"><span class="h2-num">01</span>Rasseprofil</h2>
   <div class="facts">
